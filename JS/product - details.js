@@ -1,0 +1,5041 @@
+// product-details.js
+
+const SAFETY_BOX_PRICE = 150.00;
+
+// Helper function to format price as Philippine Peso (₱)
+const formatPrice = (price) => {
+    return `₱${price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+};
+
+// --- PRODUCT DATA MODEL ---
+
+const productDetails = {
+    // 1. Product 1: "12 Red Roses Bouquet"
+    'R1': {
+        codename: 'BQT-R1', 
+        // name property removed
+        image: 'REAL FLOWERS/1.png',
+        basePrice: 3500.00,
+        description: 'Elevate your affections and deliver a message of pure devotion and gentle joy with BQT-R1. This exquisite arrangement showcases the serene beauty of the white Oriental Lily alongside the sweet, comforting hues of pastel Pink and soft Yellow Roses. Its graceful presence and enchanting aroma are sure to uplift spirits and convey sincere admiration.',
+        color: 'White, Pink, Yellow',
+        inclusions: [
+            'Flowers: White Oriental Lily, Pastel Pink Roses, Soft Yellow Roses, Baby\'s Breath (Fillers)',
+            'Arrangement Size: 10 Roses / 2 Stems of Oriental Lily, Hand-tied bouquet',
+            'Materials: Elegant white non-woven wrappers, Delicate Pink Ribbon',
+            'Suggested Occasions: Mother’s Day, Birthday, Get Well Soon, Friendship, Congratulations, New Baby',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 2. Product 2: "Pink & Yellow Gerbera Mix"
+    'R2': {
+        codename: 'BQT-R2', 
+        // name property removed
+        image: 'REAL FLOWERS/2.png',
+        basePrice: 1850.00,
+        description: 'Capture the spirit of success and deep affection with BQT-R2. This stunning arrangement features the striking Pink Stargazer Lily, symbolizing ambition, prosperity, and abundance, alongside the classic beauty of Pink Roses, which convey admiration, gratitude, and gentle love. It is a powerful statement for someone achieving their dreams.',
+        color: 'Pink',
+        inclusions: [
+            'Flowers: Pink Stargazer Lilies, Hot Pink Roses, Eucalyptus (Fillers)',
+            'Arrangement Size: 12 Roses / 3 Stems of Stargazer Lily, Hand-tied bouquet',
+            'Materials: Elegant pink non-woven wrappers, Pink Ribbon',
+            'Suggested Occasions: Congratulations (New Job, Promotion, Graduation), Deep Admiration, Anniversary, Birthday',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 3. Product 3: "White Ecuadorian Roses"
+    'R3': {
+        codename: 'BQT-R3', 
+        // name property removed
+        image: 'REAL FLOWERS/3.png',
+        basePrice: 4100.00,
+        description: 'Express your sincerest feelings with BQT-R3. This exquisite arrangement perfectly balances purity and devotion with the joyful hues of spring. It showcases an elegant White Lily, symbolizing purity, sympathy, and new beginnings, alongside a mix of Pink Roses (for admiration and gratitude) and Peach or Cream Roses (representing sincerity and modesty).',
+        color: 'White',
+        inclusions: [
+            'Flowers: White Lily (1 Stem, multiple blooms), Pink Roses, Peach/Cream Roses, Baby\'s Breath (Fillers)',
+            'Arrangement Size: 12–15 Stems (Mixed Roses/Lily), Hand-tied bouquet',
+            'Materials: Classic white non-woven wrappers, Delicate pink satin ribbon',
+            'Suggested Occasions: Get Well Soon, Congratulating a New Mother, Sincere Thank You, Sympathy/Condolences, Anniversary',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    // 4. Product 4: "The Radiant Serenity"
+    'R4': {
+        codename: 'BQT-R4', 
+        image: 'REAL FLOWERS/4.png',
+        basePrice: 3800.00, // Placeholder price
+        description: 'Illuminate any occasion with BQT-R4. This exquisite bouquet masterfully combines the captivating charm of vibrant Pink Oriental Lilies, symbolizing ambition and prosperity, with the timeless grace of White Roses, representing purity, new beginnings, and reverence. [cite_start]Its radiant hues and enchanting fragrance create a harmonious display, perfect for conveying deep admiration and heartfelt good wishes. ',
+        color: 'Pink, White',
+        inclusions: [
+           'Flowers: Pink Oriental Lilies (2-3 stems, multiple blooms), White Roses (6-8 stems), Baby\'s Breath (Fillers) ',
+           'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Soft pink non-woven wrappers, Cream satin ribbon ',
+           'Suggested Occasions: Congratulations, Get Well Soon, Mother\'s Day, Anniversary, Birthday, Sympathy ',
+           'Complimentary Inclusions: Message card, Water tubes '
+        ],
+        care: [
+           'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+          'Change Water Daily: Keep the water clean and fresh by changing it every day. ',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting. ',
+           'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves. ',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers. ',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms. '
+        ]
+    },
+
+    // 5. Product 5: "Joy and Friendship Mix"
+    'R5': {
+        codename: 'BQT-R5', 
+        image: 'REAL FLOWERS/5.png',
+        basePrice: 2500.00, // PLACEHOLDER PRICE
+        description: 'Brighten anyone\'s day with BQT-R5! This charming bouquet is a celebration of pure joy and warm friendship, featuring the crisp innocence of White Daisies alongside the cheerful glow of Yellow Roses. Accented with fluffy White Pompom Chrysanthemums, its radiant charm and vibrant presence are sure to bring smiles and uplift spirits, making every moment feel special.',
+        color: 'White, Yellow',
+        inclusions: [
+            'Flowers: White Daisies/Gerberas, Yellow Roses, White Pompom Chrysanthemums, Baby\'s Breath (Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Crisp white non-woven wrappers, Elegant cream satin ribbon',
+            'Suggested Occasions: Birthday, Get Well Soon, Friendship, Thank You, Congratulations',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 6. Product 6: "Orange Ecuadorian Roses"
+    'R6': {
+        codename: 'BQT-R6', 
+        image: 'REAL FLOWERS/6.png',
+        basePrice: 4500.00, // PLACEHOLDER PRICE
+        description: 'Elevate your celebrations and demonstrate unwavering devotion with BQT-R6. This exquisite bouquet showcases roses, perfect for any momentous occasion. Its vibrant hues and enchanting aroma are sure to uplift and evoke feelings of delight and appreciation.',
+        color: 'Orange',
+        inclusions: [
+            'Flowers: Orange Ecuadorian Roses, Fillers',
+            'Arrangement Size: 30 stems, Arm bouquet',
+            'Materials: Modern & Non-woven wrappers, Ribbon',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Valentine\'s Day, Mother\'s Day',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 7. Product 7: "Sunny Yellow Mix"
+    'R7': {
+        codename: 'BQT-R7', 
+        image: 'REAL FLOWERS/7.png',
+        basePrice: 3200.00, // PLACEHOLDER PRICE
+        description: 'Spread warmth and happiness with BQT-R7. This captivating bouquet bursts with the sunny optimism of Yellow Roses, symbolizing joy, friendship, and new beginnings. Complemented by delicate white daisies, crisp white alstroemeria, and fluffy white mums, this arrangement is a perfect embodiment of cheerfulness and bright energy. Its radiant charm is sure to bring a delightful smile to anyone\'s face.',
+        color: 'Yellow, White',
+        inclusions: [
+            'Flowers: Yellow Roses, White Daisies, White Alstroemeria, White Pompom Chrysanthemums (Fillers)',
+            'Arrangement Size: 8-10 Roses / Medium, Hand-tied bouquet',
+            'Materials: Textured cream/off-white non-woven wrappers, Elegant cream/white ribbon',
+            'Suggested Occasions: Birthday, Get Well Soon, Friendship, Thank You, Congratulations, New Baby, Just Because',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 8. Product 8: "Pink Oriental Lily Symphony"
+    'R8': {
+        codename: 'BQT-R8', 
+        image: 'REAL FLOWERS/8.png',
+        basePrice: 4200.00, // PLACEHOLDER PRICE
+        description: 'Wrap your dearest in BQT-R8, a symphony of soft hues and delicate textures designed to convey heartfelt affection and deep appreciation. This exquisite bouquet features the elegant Pink Oriental Lily, symbolizing ambition and prosperity, beautifully complemented by graceful Pink Roses, charming Pink Carnations, and pristine White Eustoma (for lasting beauty). Its gentle colors and rich blooms create a serene and loving expression, perfect for any occasion where warmth and tenderness are key.',
+        color: 'Pink, White',
+        inclusions: [
+            'Flowers: Pink Oriental Lilies, Pink Roses, Pink Carnations, White Eustoma/Lisianthus, Eucalyptus (Fillers)',
+            'Arrangement Size: Large, Hand-tied bouquet',
+            'Materials: Soft pink and white non-woven wrappers, Elegant pink satin ribbon',
+            'Suggested Occasions: Mother\'s Day, Anniversary, Birthday, Get Well Soon, Sympathy, Thank You, New Baby',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 9. Product 9: "Gentle Lavender Elegance"
+    'R9': {
+        codename: 'BQT-R9', 
+        image: 'REAL FLOWERS/9.png',
+        basePrice: 3900.00, // PLACEHOLDER PRICE
+        description: 'Step into a world of gentle elegance with BQT-R9, This captivating bouquet features a harmonious blend of soft Lavender Roses, symbolizing enchantment, love at first sight, and majesty, perfectly complemented by pristine White Roses for purity and reverence. Delicate accent flowers in varying shades of purple and pink complete this dreamy arrangement, creating a magical display that is both serene and utterly charming.',
+        color: 'Lavender, White, Purple',
+        inclusions: [
+            'Flowers: Lavender Roses, White Roses, Purple/Pink Daisies/Accent Flowers, Eucalyptus (Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Soft lavender and white non-woven wrappers, Delicate lavender satin ribbon',
+            'Suggested Occasions: Anniversary, Birthday, Engagement, Romance, Apology, Just Because, Mother\'s Day',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 10. Product 10: "White Lily and Rose Mix"
+    'R10': {
+        codename: 'BQT-R10', 
+        image: 'REAL FLOWERS/10.png',
+        basePrice: 3100.00, // PLACEHOLDER PRICE
+        description: 'A picture of delicate grace, combining White Lilies (purity and new beginnings) with a lovely mix of light Pink and Cream/Pale Yellow Roses (admiration, gratitude, and friendship). It\'s a serene, elegant choice.',
+        color: 'White, Pink, Yellow',
+        inclusions: [
+            'Flowers: White Lilies (1 stem, multiple blooms), Light Pink Roses, Cream/Pale Yellow Roses, Baby\'s Breath (Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Crisp white non-woven wrappers, Soft pink satin ribbon',
+            'Suggested Occasions: Mother\'s Day, Get Well Soon, New Baby, Anniversary, Thank You, Thinking of You',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 11. Product 11: "Pink Spray and Classic Roses"
+    'R11': {
+        codename: 'BQT-R11', 
+        image: 'REAL FLOWERS/11.png',
+        basePrice: 2900.00, // PLACEHOLDER PRICE
+        description: 'Share a message of gentle affection and pure joy with BQT-R11. This enchanting bouquet features an abundance of delicate Pink Spray Roses and classic Pink Roses, symbolizing admiration, gratitude, and happiness. Nestled amongst ethereal Baby\'s Breath, this arrangement evokes a feeling of innocent charm and heartfelt sentiment, making it a truly captivating gift for any special moment.',
+        color: 'Pink',
+        inclusions: [
+            'Flowers: Pink Spray Roses, Pink Roses, Baby\'s Breath (Fillers)',
+            'Arrangement Size: Medium-Large, Hand-tied bouquet',
+            'Materials: Soft pink and white non-woven wrappers, Delicate pink lace-edged ribbon',
+            'Suggested Occasions: Birthday, Anniversary, Mother\'s Day, Thank You, Friendship, New Baby, Just Because',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 12. Product 12: "White Lily, Rose, and Carnation Mix"
+    'R12': {
+        codename: 'BQT-R12', 
+        image: 'REAL FLOWERS/12.png',
+        basePrice: 4800.00, // PLACEHOLDER PRICE
+        description: 'Convey pure devotion and sincere admiration with BQT-R12. This magnificent arrangement blends the pristine elegance of White Lilies with soft Pink Carnations and tender Light Pink Roses. It’s a beautifully textured bouquet, perfect for honoring a cherished relationship or celebrating a meaningful milestone with grace.',
+        color: 'White, Pink',
+        inclusions: [
+            'Flowers: White Lilies (multiple stems/blooms), Light Pink Roses, White & Pink Carnations, White Eustoma, Seasonal Fillers',
+            'Arrangement Size: Large, Hand-tied bouquet',
+            'Materials: Soft pink and white paper wrappers, Pink satin ribbon',
+            'Suggested Occasions: Mother\'s Day, Anniversary, New Baby, Get Well Soon, Sympathy/Condolences, Thank You',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 13. Product 13: "Purple Tulips"
+    'R13': {
+        codename: 'BQT-R13', 
+        image: 'REAL FLOWERS/13.png',
+        basePrice: 5200.00, // PLACEHOLDER PRICE
+        description: 'Present a gift of majesty and deep admiration with BQT-R13. This exquisite bouquet features a generous cluster of vibrant Purple Tulips, symbolizing royalty, elegance, and profound love. Each bloom stands proudly amidst delicate white fillers, creating a luxurious and graceful display. Perfect for making a grand statement, this arrangement speaks volumes of heartfelt emotion and sophisticated taste.',
+        color: 'Purple, White',
+        inclusions: [
+            'Flowers: Purple Tulips (10-12 stems), White Daisies/Chamomile, Seasonal Green Fillers',
+            'Arrangement Size: Medium-Large, Hand-tied bouquet',
+            'Materials: Elegant cream/beige and white non-woven wrappers, White satin ribbon',
+            'Suggested Occasions: Anniversary, Birthday, Romance, Apology, Mother\'s Day, Deep Admiration, Engagement',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 14. Product 14: "Peach and Coral Roses"
+    'R14': {
+        codename: 'BQT-R14', 
+        image: 'REAL FLOWERS/14.png',
+        basePrice: 3600.00, // PLACEHOLDER PRICE
+        description: 'Ignites feelings of passion, desire, and heartfelt appreciation. Showcases a collection of vibrant Peach and Coral Roses that speak of enthusiasm and gratitude. Accented by delicate white carnations and lush eucalyptus.',
+        color: 'Peach, Coral, White',
+        inclusions: [
+            'Flowers: Peach/Coral Roses (10-12 stems), White Carnations, Eucalyptus (Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Soft peach/blush and white non-woven wrappers, Cream satin ribbon',
+            'Suggested Occasions: Anniversary, Birthday, Romance, Thank You, Celebrating Success, Mother\'s Day',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 15. Product 15: "Deep Red Roses and Eucalyptus"
+    'R15': {
+        codename: 'BQT-R15', 
+        image: 'REAL FLOWERS/15.png',
+        basePrice: 3700.00, // PLACEHOLDER PRICE
+        description: 'Declares love, passion, and profound respect. Features magnificent Deep Red Roses (universal symbol of unwavering love and romance). The Eucalyptus foliage provides a fashionable accent and sophisticated, natural charm.',
+        color: 'Red',
+        inclusions: [
+            'Flowers: Deep Red Roses (10-12 stems), Eucalyptus (Foliage/Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Crisp white and luxurious gold wrappers, Black satin ribbon',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Proposal, Birthday (especially for a romantic partner), Romance',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 16. Product 16: "Deep and Light Pink Roses"
+    'R16': {
+        codename: 'BQT-R16', 
+        image: 'REAL FLOWERS/16.png',
+        basePrice: 3400.00, // PLACEHOLDER PRICE
+        description: 'Celebrates joy, gratitude, and deep admiration. Showcases a vibrant blend of Deep and Light Pink Roses, combining the passionate message of deeper hues with the sweet sentiment of lighter shades. Accented with Eucalyptus foliage.',
+        color: 'Pink',
+        inclusions: [
+            'Flowers: Deep Pink/Fuchsia Roses, Light Pink Roses, Eucalyptus (Foliage/Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Soft pink and white non-woven wrappers, Deep pink satin ribbon',
+            'Suggested Occasions: Birthday, Mother\'s Day, Anniversary, Thank You, Congratulations, Just Because',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 17. Product 17: "Deep Red Roses, Baby\'s Breath, and Eucalyptus"
+    'R17': {
+        codename: 'BQT-R17', 
+        image: 'REAL FLOWERS/17.png',
+        basePrice: 4000.00, // PLACEHOLDER PRICE
+        description: 'Ignites the deepest feelings of love, passion, and devotion. This quintessential romantic bouquet features magnificent Deep Red Roses (unwavering, intense love). The soft accent of Baby\'s Breath symbolizes everlasting love, while Eucalyptus adds a modern touch.',
+        color: 'Red, White',
+        inclusions: [
+            'Flowers: Deep Red Roses (10-12 stems), Baby\'s Breath, Eucalyptus (Foliage/Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Crisp white non-woven wrappers, Sheer mesh, Red satin ribbon',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Proposal, Deepest Romance, Birthday (for a significant other)',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 18. Product 18: "Green and White Harmony"
+    'R18': {
+        codename: 'BQT-R18', 
+        image: 'REAL FLOWERS/18.png',
+        basePrice: 4300.00, // PLACEHOLDER PRICE
+        description: 'Embraces elegance and tranquility, blending lush greens and pristine whites. Features green chrysanthemums, delicate white roses, and soft green accents, capturing the essence of renewal and refined beauty.',
+        color: 'Green, White',
+        inclusions: [
+            'Flowers: Green Novelty Chrysanthemums (Spider Mums), White Roses, Green Eustoma/Ranunculus, Blue Hyacinth/Accent Blooms, Eucalyptus (Foliage/Fillers)',
+            'Arrangement Size: Medium-Large, Hand-tied bouquet',
+            'Materials: Elegant moss green and white non-woven wrappers, Cream ribbon',
+            'Suggested Occasions: Housewarming, Corporate Gifting, Get Well Soon, Congratulations, Sympathy, Birthday (for a modern recipient)',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 19. Product 19: "Pink Lilies and Baby\'s Breath"
+    'R19': {
+        codename: 'BQT-R19', 
+        image: 'REAL FLOWERS/19.png',
+        basePrice: 4600.00, // PLACEHOLDER PRICE
+        description: 'Showcases vibrant Pink Oriental Lilies (symbolizing love, femininity, and prosperity) softly framed by abundant Baby\'s Breath (everlasting love, purity, and innocence). It is designed to convey deep devotion and joyful wishes.',
+        color: 'Pink, White',
+        inclusions: [
+            'Flowers: Pink Oriental Lilies (multiple large blooms/buds), Baby\'s Breath (Generous Fillers), Minimal Greenery',
+            'Arrangement Size: Large, Hand-tied bouquet',
+            'Materials: Soft pink and white layered wrappers, Pink ribbon',
+            'Suggested Occasions: Mother\'s Day, Anniversary, Birthday, Thank You, Deep Affection',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 20. Product 20: "Timeless Grace Mix"
+    'R20': {
+        codename: 'BQT-R20', 
+        image: 'REAL FLOWERS/20.png',
+        basePrice: 4700.00, // PLACEHOLDER PRICE
+        description: 'A timeless bouquet of grace, purity, and enduring affection. It combines pink roses (admiration and gratitude) with white lilies (purity and new beginnings), softened with delicate Baby’s Breath.',
+        color: 'Pink, White',
+        inclusions: [
+            'Flowers: Pink Roses, White Lilies (Oriental/Asiatic), and Baby\'s Breath',
+            'Arrangement Size: Classic, large, hand-tied bouquet',
+            'Materials: Elegant white/cream and pink wrappers, Satin ribbon',
+            'Suggested Occasions: Anniversary, Mother\'s Day, Sympathy, Thank You, Thinking of You',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 21. Product 21: "Preserved Tranquility" (Preserved Arrangement)
+    'R21': {
+        codename: 'BQT-R21', 
+        image: 'REAL FLOWERS/21.png',
+        basePrice: 3500.00, // PLACEHOLDER PRICE
+        description: 'An exquisite preserved arrangement that blends lush greens and pristine whites. Features green-hued daisies, delicate white roses, and textured green blooms that symbolize renewal and hope.',
+        color: 'Green, White',
+        inclusions: [
+            'Flowers: Preserved/Artificial Green Daisies, White Roses, Green Cabbage Roses/Mums, other green/white accent flowers (Long-lasting)',
+            'Arrangement Size: Medium Box/Vase Arrangement',
+            'Materials: Elegant Box or Glass Dome',
+            'Suggested Occasions: Housewarming, Corporate Gifting, Get Well Soon, Congratulations',
+            'Complimentary Inclusions: Care guide (No water required)'
+        ],
+        care: [
+           'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'R22': {
+        codename: 'BQT-R22', 
+        image: 'REAL FLOWERS/22.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'Step into a world of enchanting beauty with BQT-R22. This exquisite preserved arrangement evokes the charm of a whimsical garden with delicate hues of lavender, blush pink, and creamy white. Featuring lavender roses, pink carnations, soft white blooms, and gentle greenery, it symbolizes grace, affection, and timeless elegance — a perfect lasting gift for any cherished moment or serene space.',
+        color: 'Lavender, Pink, White',
+        inclusions: [
+            'Flowers: Preserved/Artificial Lavender Roses, Pink Carnations, White Accent Blooms (e.g., daisies, ranunculus), Cream Daisies/Mums, Eucalyptus (Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Soft white and lavender non-woven wrappers, Delicate lavender satin ribbon',
+            'Key Symbolism: Enchantment, Grace, Enduring Affection, Lasting Beauty',
+            'Suggested Occasions: Anniversary, Birthday, Engagement, Romance, Housewarming, Just Because, Mother\'s Day',
+            'Complimentary Inclusions: Message card'
+        ],
+        care: [
+           'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    
+
+    // 23. Product 23: "Preserved Passion" (Preserved Arrangement)
+    'R23': {
+        codename: 'BQT-R23', 
+        image: 'REAL FLOWERS/23.png',
+        basePrice: 4100.00, // PLACEHOLDER PRICE
+        description: 'A striking preserved arrangement of timeless love and enduring passion. Captivates with deep red roses and red peonies/carnations (intense romance) beautifully contrasted by white roses and daisies (purity and new beginnings). Elegantly wrapped in chic black paper.',
+        color: 'Red, White',
+        inclusions: [
+            'Flowers: Preserved/Artificial Deep Red Roses, Red Peonies/Carnations, White Roses, White Daisies, Greenery (Eucalyptus style) (Long-lasting)',
+            'Arrangement Size: Medium Bouquet/Box Arrangement',
+            'Materials: Chic Black Paper Wrap, Red Ribbon',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Proposal, Deepest Romance',
+            'Complimentary Inclusions: Care guide (No water required)'
+        ],
+        care: [
+          'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 24. Product 24: "Iridescent Joy" (Preserved Arrangement)
+    'R24': {
+        codename: 'BQT-R24', 
+        image: 'REAL FLOWERS/24.png',
+        basePrice: 4400.00, // PLACEHOLDER PRICE
+        description: 'A vibrant preserved floral arrangement that bursts with the festive energy of deep red and blush pink blooms (including classic roses, gerberas, and peonies). The unique iridescent wrap adds a touch of modern magic.',
+        color: 'Red, Pink, White',
+        inclusions: [
+            'Flowers: Preserved/Artificial Deep Red Roses, Red Peonies/Mums, Pink Roses/Camellias, Red Gerberas/Daisies, White Roses/Accent Flowers, Greenery (Long-lasting)',
+            'Arrangement Size: Large Bouquet/Box Arrangement',
+            'Materials: Unique Iridescent/Holographic Paper Wrap',
+            'Suggested Occasions: Birthday, Graduation, Celebration, Congratulations',
+            'Complimentary Inclusions: Care guide (No water required)'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+     'R25': {
+        codename: 'BQT-R25', 
+        image: 'REAL FLOWERS/25.png',
+        basePrice: 4000.00, // PLACEHOLDER PRICE
+        description: 'Unleash a cascade of enchantment and enduring affection with BQT-R25. This captivating preserved floral arrangement blends serene lavender roses with soft blush pink camellias/peonies and crisp white daisies, evoking the gentle beauty of a fairytale garden. The subtle iridescent wrap adds a magical sparkle, making this bouquet a truly unique and long-lasting gift. It\'s perfect for expressing gentle love, appreciation, or simply bringing a touch of whimsical elegance to any setting.',
+        color: 'Lavender, Pink, White',
+        inclusions: [
+            'Flowers: Preserved/Artificial Lavender Roses, Blush Pink Camellias/Peonies, White Daisies, Pink Gerbera/Daisies, White Accent Blooms, Greenery',
+            'Arrangement Size: Medium-Large, Hand-tied bouquet',
+            'Materials: Soft blush pink and iridescent/holographic non-woven wrappers, Delicate pink satin ribbon',
+            'Key Symbolism: Enchantment, Grace, Enduring Affection, Lasting Beauty, Whimsy',
+            'Suggested Occasions: Birthday, Anniversary, Engagement, Romance, Housewarming, Just Because, Mother\'s Day',
+             'Complimentary Inclusions: Message card'
+        ],
+        care: [
+           'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+     'R26': {
+        codename: 'BQT-R26', 
+        image: 'REAL FLOWERS/26.png',
+        basePrice: 4400.00, // PLACEHOLDER PRICE
+        description: 'A vibrant preserved floral arrangement that bursts with the festive energy of deep red and blush pink blooms (including classic roses, gerberas, and peonies). The unique iridescent wrap adds a touch of modern magic.',
+        color: 'Red, Pink, White',
+        inclusions: [
+            'Flowers: Preserved/Artificial Deep Red Roses, Red Peonies/Mums, Pink Roses/Camellias, Red Gerberas/Daisies, White Roses/Accent Flowers, Greenery (Long-lasting)',
+            'Arrangement Size: Large Bouquet/Box Arrangement',
+            'Materials: Unique Iridescent/Holographic Paper Wrap',
+            'Suggested Occasions: Birthday, Graduation, Celebration, Congratulations',
+            'Complimentary Inclusions: Care guide (No water required)'
+        ],
+        care: [
+           'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    
+    // 27. Product 27: "Majestic Purple Tulips"
+    'R27': {
+        codename: 'BQT-R27', 
+        image: 'REAL FLOWERS/27.png',
+        basePrice: 5000.00, // PLACEHOLDER PRICE
+        description: 'Features majestic purple tulips (symbolizing royalty and admiration), softened by delicate white chamomile or small daisies (innocence and purity). Wrapped in soothing shades of cream and tan.',
+        color: 'Purple, White',
+        inclusions: [
+            'Flowers: Fresh Purple Tulips (approx 10-12 stems), White Chamomile/Daisies (Fillers)',
+            'Arrangement Size: Medium-Large, Hand-tied bouquet',
+            'Materials: Cream and Tan Non-woven wrappers',
+            'Suggested Occasions: Anniversary, Birthday, Mother\'s Day, Royalty Theme',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 28. Product 28: "Sunflower & Lavender Mix"
+    'R28': {
+        codename: 'BQT-R28', 
+        image: 'REAL FLOWERS/28.png',
+        basePrice: 4900.00, // PLACEHOLDER PRICE
+        description: 'Unites the bright optimism of sunflowers with the elegant charm of lavender or mauve roses (symbolizing enchantment and love at first sight). A joyful and unique expression.',
+        color: 'Yellow, Lavender',
+        inclusions: [
+            'Flowers: Sunflower, Lavender/Mauve Roses, Greenery/Fillers',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Natural craft paper/Yellow & Purple wrappers',
+            'Suggested Occasions: Birthday, Graduation, Get Well Soon, Friendship, Happiness',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 29. Product 29: "Grand Purple Tulip Statement"
+    'R29': {
+        codename: 'BQT-R29', 
+        image: 'REAL FLOWERS/29.png',
+        basePrice: 5500.00, // PLACEHOLDER PRICE
+        description: 'A luxurious bouquet showcasing an abundant display of exquisite purple tulips, the timeless symbol of royalty and deep admiration. Elegantly wrapped in soft lavender and lilac tones.',
+        color: 'Purple',
+        inclusions: [
+            'Flowers: Fresh Purple/Violet Tulips (approximately 15+ stems)',
+            'Arrangement Size: Large, Hand-tied bouquet',
+            'Materials: Soft Lavender/Lilac non-woven wrappers',
+            'Suggested Occasions: Anniversary, Proposal, Luxury Gifting, Deep Admiration',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 30. Product 30: "Refined Lavender Romance"
+    'R30': {
+        codename: 'BQT-R30', 
+        image: 'REAL FLOWERS/30.png',
+        basePrice: 5100.00, // PLACEHOLDER PRICE
+        description: 'Captures the essence of refined romance. Features Lavender/Purple Roses (enchantment) and Blush Pink Roses (grace), complemented by Purple Lisianthus for a beautiful texture and layered sentiment.',
+        color: 'Lavender, Pink',
+        inclusions: [
+            'Flowers: Fresh Lavender/Purple Roses, Blush Pink Roses, Purple Lisianthus/Eustoma, Purple Accent Flowers, Mixed Greenery',
+            'Arrangement Size: Large, Hand-tied bouquet',
+            'Materials: Two-tone purple/pink and cream wrappers',
+            'Suggested Occasions: Anniversary, Romance, Birthday, Mother\'s Day',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'R31': {
+        codename: 'BQT-R31', 
+        image: 'REAL FLOWERS/31.png',
+        basePrice: 4100.00, // PLACEHOLDER PRICE
+        description: 'Present a gift of majestic elegance and heartfelt devotion with BQT-R31. This striking bouquet showcases deep purple tulips, symbols of royalty, admiration, and high regard, beautifully complemented by airy Baby’s Breath that represents purity and eternal love. Hand-tied in a rich jewel-toned wrap, it’s a sophisticated expression of respect and affection fit for someone truly deserving of a crown.',
+        color: 'Violet, White',
+        inclusions: [
+            'Flowers: Fresh Deep Purple/Violet Tulips, White Baby\'s Breath/Gypsophila',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Luxurious deep purple and coordinating sheer non-woven wrappers, Elegant white satin ribbon',
+            'Key Symbolism: Royalty, Deep Admiration, Purity, Eternal Love, Elegance',
+            'Suggested Occasions: Celebrating a major achievement (Promotion, Graduation), Formal Apology, Milestone Anniversary, Mother\'s Day, or honoring a mentor/figure of high esteem',
+            'Complimentary Inclusions: Message card'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'R32': {
+        codename: 'BQT-R32', 
+        image: 'REAL FLOWERS/32.png',
+        basePrice: 5100.00, // PLACEHOLDER PRICE
+        description: 'Celebrate joy, adoration, and gratitude with BQT-R32. This radiant arrangement features cheerful sunflowers symbolizing happiness and positivity, paired with soft pink roses for admiration and ruffled pink carnations for heartfelt thanks. Wrapped in bright, cheerful tones, it’s a delightful bouquet that uplifts the spirit and perfectly expresses warmth and appreciation.',
+        color: 'Yellow, Pink',
+        inclusions: [
+           'Flowers: Fresh Sunflowers, Pink Roses, Pink Carnations, Mixed Greenery',
+'Arrangement Size: Medium-Large, Hand-tied bouquet',
+'Materials: Contrasting bright non-woven wrappers, Ribbon',
+'Key Symbolism: Joy, Adoration, Affection, Gratitude, New Beginnings',
+'Suggested Occasions: Birthday, Thank You, Friendship Day, Get Well Soon, Congratulatory Gift, or "Just Because" to cheer someone up.',
+'Complimentary Inclusions: Message card'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'R33': {
+        codename: 'BQT-R33', 
+        image: 'REAL FLOWERS/33.png',
+        basePrice: 3100.00, // PLACEHOLDER PRICE
+        description: 'Presenting BQT-R33 a joyful celebration of friendship and new beginnings. This cheerful arrangement pairs vibrant yellow roses, symbolizing joy and happiness, with bold white gerbera daisies that represent purity and fresh starts. Accented by white spray chrysanthemums for a touch of loyalty and truth, it’s a radiant bouquet that spreads warmth and heartfelt cheer on any occasion.',
+        color: 'Lavender, Pink',
+        inclusions: [
+            'Flowers: Fresh Yellow Roses, Sunflowers, White Gerbera Daisies, White Spray Chrysanthemums/Pompoms (Loyal Love, Truth), Mixed Greenery',
+'Arrangement Style: Bright, bold, and cheerful hand-tied bouquet',
+'Materials: Contrasting blue-colored paper with a classic black ribbon',
+'Key Symbolism: Happiness, Friendship, Purity, and New Beginnings',
+'Suggested Occasions: Birthdays, Get Well Soon, Graduations, Promotions, or simply to cheer up a close friend.',
+'Complimentary Inclusions: Message card'
+
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+
+    
+    // 34. Product 34: "Matured Romance"
+    'R34': {
+        codename: 'BQT-R34', 
+        image: 'REAL FLOWERS/34.png',
+        basePrice: 4500.00, // PLACEHOLDER PRICE
+        description: 'Captures enduring love and heartfelt passion. Soft blush pink roses (grace, elegance, and admiration) are beautifully paired with deep red spray roses (commitment, respect, and intense love).',
+        color: 'Pink, Red',
+        inclusions: [
+            'Flowers: Dusty Rose/Blush Roses and Dark Red/Burgundy Spray Roses (Fillers)',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Neutral-toned wrappers, Pink/Red ribbon',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Romance, Deep Affection',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 35. Product 35: "Ultimate Expression of Romance"
+    'R35': {
+        codename: 'BQT-R35', 
+        image: 'REAL FLOWERS/35.png',
+        basePrice: 4900.00, // PLACEHOLDER PRICE
+        description: 'The ultimate expression of romance, blending classic beauty with heartfelt emotion. Features premium red roses (deep love and passion) complemented by delicate Baby’s Breath (everlasting love). Wrapped in elegant paper in a combination of red and black.',
+        color: 'Red, White',
+        inclusions: [
+            'Flowers: Premium Red Roses, delicate Baby\'s Breath, and aromatic Eucalyptus foliage',
+            'Arrangement Size: Large, Hand-tied bouquet',
+            'Materials: Red and Black wrappers, Red satin ribbon',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Proposal, Deepest Romance',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+    // 36. Product 36: "Placeholder Bouquet"
+    'R36': {
+        codename: 'BQT-R36', 
+        image: 'REAL FLOWERS/36.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This is a placeholder entry for Product BQT-36. Please update the details with the correct flower data when available.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Placeholder Bouquet Flowers',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Placeholder Wrappers and Ribbon',
+            'Suggested Occasions: Placeholder Occasion',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    //crochet
+
+  'C1': {
+        codename: 'BQT-C1',
+        image: 'CROCHET FLOWERS/1.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate life’s special moments with the BQT-C1 hand-crocheted bouquet—an elegant blend of cream, soft yellow, and vibrant orange blooms. This timeless, everlasting arrangement is perfect for showing admiration and appreciation.',
+        color: 'Cream, Soft Yellow, Vibrant Orange',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses, Tulips, Daisies, and various Filler Flowers.',
+            'Arrangement Size: Approximately 10-15 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Non-woven/Paper Wrapper, and \'Just For You\' Ribbon.',
+            'Suggested Occasions: Birthday, Graduation, Housewarming, Thank You Gift, Teacher Appreciation, or as a unique Home Decor piece.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Bag (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C2': {
+        codename: 'BQT-C2',
+        image: 'CROCHET FLOWERS/2.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Present a beautiful and lasting symbol of elegance and purity with the BQT-C2. This exquisite hand-crocheted bouquet captures the serene beauty of Lilies and complementary purple fillers. The rich lavender and deep purple hues are wrapped to perfection, making it an everlasting gift that brings a touch of nature\'s tranquility to any space.',
+        color: 'Lavender, Deep Purple, White',
+        inclusions: [
+            'Flowers: Hand-crocheted Purple Lilies, White Filler Flowers, and various Lavender/Violet Sprigs.',
+            'Arrangement Size: Approximately 8-12 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Textured Paper/Non-woven Wrappers (shades of lilac/purple), and \'Wonderful Time\' Ribbon.',
+            'Suggested Occasions: Sympathy, Get Well Soon, Housewarming, Mother\'s Day, Gift for a Sister or Friend, or a lovely Desk Decor item.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Packaging (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C3': {
+        codename: 'BQT-C3',
+        image: 'CROCHET FLOWERS/3.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten someone’s day with the radiant BQT-C3 a vibrant hand-crocheted bouquet featuring a stunning sunflower that symbolizes adoration, longevity, and joy. Surrounded by green foliage and cheerful yellow and white accents, this everlasting arrangement brings the warmth of sunshine to any space or occasion.',
+        color: 'Yellow, White, Green',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflower, Callas, Daisies, Green Roses/Cabbage Roses, and various Yellow/White Filler Flowers.',
+            'Arrangement Size: Approximately 7-10 stems, Small to Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Non-woven Wrappers (cream/peach), and a decorative Satin Ribbon.',
+            'Suggested Occasions: Congratulations, Graduation, Friendship Day, Thinking of You, Home/Office Decor, or a Birthday gift.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Card Insert (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C4': {
+        codename: 'BQT-C4',
+     image: 'CROCHET FLOWERS/4.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Express affection and joy with the delightful BQT-C4 a hand-crocheted bouquet in soft pastel pink, gentle yellow, and pops of red for a whimsical touch. Wrapped in rustic burlap and crisp paper, this everlasting arrangement exudes handmade charm, perfect for celebrating lasting love and friendship.',
+        color: 'Pastel Pink, Gentle Yellow, Red',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses (pink and yellow), Daisies, Forget-Me-Nots, and various whimsical Filler Sprigs.',
+            'Arrangement Size: Approximately 10-14 stems, Small to Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Natural Burlap Wrap, Tissue/Non-woven Paper, and a Soft Blue Ribbon.',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Mother\'s Day, Get Well Soon, Friendship Gift, or as Cottagecore Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative Message Card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C5': {
+        codename: 'BQT-C5',
+        image: 'CROCHET FLOWERS/5.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Offer a tender gesture of care and lasting beauty with the BQT-C5 a charming hand-crocheted bouquet featuring a lovely pink lily surrounded by soft pastel poppies and fillers. Wrapped in light paper and finished with a pink bow, this everlasting arrangement beautifully conveys admiration and heartfelt wishes that endure.',
+        color: 'Pink, Pastel Pink, Cream',
+        inclusions: [
+            'Flowers: Hand-crocheted Pink Lily, Pink Poppies, Callas, and various light Filler Flowers.',
+            'Arrangement Size: Approximately 6-9 stems, Small to Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Textured Paper Wrappers (pink/white/cream), and a Soft Pink Ribbon.',
+            'Suggested Occasions: Newborn Celebrations, Bridal Shower, Thank You Gift, Get Well Soon, Housewarming, or Chic Table Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Packaging (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C6': {
+        codename: 'BQT-C6',
+        image: 'CROCHET FLOWERS/6.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Immerse yourself in the enchanting beauty of the BQT-C6 a hand-crocheted bouquet showcasing elegant purple and white blooms, from graceful lilies to lush peonies and delicate fillers. Expertly crafted and wrapped in soft lavender paper, this everlasting arrangement adds a touch of serene sophistication to any space.',
+        color: 'Purple, White, Lavender',
+        inclusion: [
+            'Flowers: Hand-crocheted Purple Lilies, White and Purple Peonies, Daisies, Crocuses, and various filler sprigs.',
+            'Arrangement Size: Approximately 10-15 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Lavender Non-woven Paper Wrappers, and a White Satin Ribbon.',
+            'Suggested Occasions: Anniversary, Birthday, Get Well Soon, Mother\'s Day, Thank You Gift, or as a Charming Home Decor accent.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C7': {
+        codename: 'BQT-C7',
+        image: 'CROCHET FLOWERS/7.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate joy and lasting friendship with the delightful BQT-C7 a hand-crocheted bouquet featuring two radiant sunflowers symbolizing happiness and longevity, accented by soft pink carnations and white fillers. Wrapped in pink and white papers, this everlasting arrangement brings warmth and cheer to any space or occasion.',
+        color: 'Yellow, Pink, White',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflowers, Pink Carnations/Peonies, Daisies, and delicate white Filler Flowers.',
+            'Arrangement Size: Approximately 8-12 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Pink and White Non-woven Paper Wrappers, and a Pink Organza/Satin Ribbon.',
+            'Suggested Occasions: Birthday, Friendship Day, Get Well Soon, Thank You Gift, Graduation, or a Charming Home Decor piece.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Packaging (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C8': {
+        codename: 'BQT-C8',
+        image: 'CROCHET FLOWERS/8.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Offer an elegant expression of affection with the BQT-C8 a sophisticated hand-crocheted bouquet featuring a majestic white lily surrounded by soft pink roses and gentle lavender accents. Wrapped in mauve and lavender paper, this everlasting arrangement makes a luxurious gift for celebrating milestones and conveying heartfelt admiration.',
+        color: 'White, Pink, Lavender',
+        inclusions: [
+            'Flowers: Hand-crocheted White Lily, Pink Roses, Callas, Tulips, and various Purple/White Filler Flowers.',
+            'Arrangement Size: Approximately 10-15 stems, Medium-to-Large sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Mauve and Lavender Non-woven Paper Wrappers, and an Organza Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Proposal, Birthday, Mother\'s Day, or Statement Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C9': {
+        codename: 'BQT-C9',
+        image: 'CROCHET FLOWERS/9.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate vibrant color and joy with the BQT-C9 a hand-crocheted bouquet featuring a whimsical mix of soft pink, sunny yellow, calming blue, and gentle lavender blooms. Wrapped in classic Kraft paper, this everlasting arrangement exudes natural charm, making it a cheerful and thoughtful gift for any occasion.',
+        color: 'Pink, Yellow, Blue, Lavender',
+        inclusion: [
+            'Flowers: Hand-crocheted Roses (Pink, Yellow, Lavender), Blue Hydrangeas/Filler Clusters, Daffodils/Tulips, and various small accent flowers.',
+            'Arrangement Size: Approximately 10-15 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Natural Kraft Paper Wrapper, and a Rustic Fabric/Twine Ribbon.',
+            'Suggested Occasions: Birthday, Housewarming, Teacher Appreciation, Thank You Gift, Get Well Soon, or Eclectic Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C10': {
+        codename: 'BQT-C10',
+        image: 'CROCHET FLOWERS/10.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Show sweet affection and timeless devotion with the BQT-C10 — a hand-crocheted bouquet of alternating pink and white roses, accented by cheerful daisies and lush green foliage. Wrapped in delicate white and pink paper with a satin ribbon, this everlasting arrangement is a thoughtful and elegant gift for any special occasion.',
+        color: 'Pink, White, Green',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses (Pink and White), Daisies, and Green Leaves.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Non-woven/Mesh Wrappers (White and Pink), and a Pink Satin Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Mother\'s Day, Get Well Soon, or Chic Table Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Packaging (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C11': {
+        codename: 'BQT-C11',
+        image: 'CROCHET FLOWERS/11.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate new beginnings with the BQT-C11 a hand-crocheted bouquet of pastel tulips in pink, peach, and yellow. Wrapped in pink paper with a white ribbon, this everlasting arrangement brings cheerful, lasting beauty to any space.',
+        color: 'Pink, Peach, Yellow',
+        inclusions: [
+            'Flowers: Hand-crocheted Tulips (Pink, Peach, and Yellow) with soft green foliage.',
+            'Arrangement Size: Approximately 6-8 stems, Small to Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Pink Non-woven Paper Wrapper, and a White Satin Ribbon.',
+            'Suggested Occasions: Spring Celebrations, Easter, Mother\'s Day, Get Well Soon, Birthday, or Brightening Home/Office Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C12': {
+        codename: 'BQT-C12',
+        image: 'CROCHET FLOWERS/12.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Elevate your sentiments with the BQT-C12 a hand-crocheted bouquet of cream and peach roses, accented with white daisies and lush greenery. Wrapped in neutral tones with a “Just for You” ribbon, this everlasting arrangement is a sophisticated, low-maintenance gift for any special occasion.',
+        color: 'Cream, Peach, White',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses (Cream/Peach center), Daisies, and various small White Filler Flowers with green foliage.',
+            'Arrangement Size: Approximately 8-12 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Non-woven Wrappers (Cream/Yellow Tones), and a \'Just for you\' Ribbon.',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Valentine\'s Day, Mother\'s Day, or Elegant Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C13': {
+        codename: 'BQT-C13',
+        image: 'CROCHET FLOWERS/13.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Give a sweet and memorable gift with the BQT-C13 a hand-crocheted bouquet of cream and pale pink roses, paired with two adorable crocheted bunny dolls. Wrapped in soft natural tones with a matching ribbon, this everlasting arrangement is a heartfelt, whimsical gift for a loved one or special little one.',
+        color: 'Cream, Pale Pink, Neutral',
+        inclusions: [
+            'Inclusions: Hand-crocheted Roses (Cream/Pink), Filler Flowers, and Two Crocheted Bunny Dolls.',
+            'Arrangement Size: Approximately 8-12 stems plus dolls, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Neutral/Taupe Non-woven Paper Wrapper, and a matching Ribbon.',
+            'Suggested Occasions: Newborn Baby Gift, Baby Shower, Birthday (Child or Adult), Valentine\'s Day, or Nursery/Room Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C14': {
+        codename: 'BQT-C14',
+        image: 'CROCHET FLOWERS/14.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Capture the serenity of a garden with the BQT-C14 a hand-crocheted bouquet of purple tulips, white daisies, and pastel fillers. Wrapped in textured pink and white paper with a soft ribbon, this everlasting arrangement is a gentle, heartfelt gift that endures.',
+        color: 'Purple, White, Pink',
+        inclusions: [
+            'Flowers: Hand-crocheted Tulips (Purple/White), Daisies, Small Roses, and various purple/pink filler sprigs.',
+            'Arrangement Size: Approximately 12-16 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Textured Non-woven/Mesh Wrappers (Pink and White), and a Pink Ribbon.',
+            'Suggested Occasions: Spring Celebrations, Birthday, Mother\'s Day, Get Well Soon, Bridal Shower, or Feminine Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C15': {
+        codename: 'BQT-C15',
+        image: 'CROCHET FLOWERS/15.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Illuminate any occasion with the BQT-C15 a hand-crocheted bouquet of vibrant yellow and white tulips, roses, and daisies. Wrapped in textured white and cream, this everlasting arrangement radiates joy, warmth, and lasting happiness.',
+        color: 'Yellow, White, Cream',
+        inclusions: [
+            'Flowers: Hand-crocheted Tulips (Yellow/White), Roses (Yellow/Cream), Daisies, and various yellow/white filler flowers.',
+            'Arrangement Size: Approximately 12-18 stems, Medium-to-Large sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Textured Paper Wrappers (Cream/Yellow Tones), and a Cream Satin Ribbon.',
+            'Suggested Occasions: Congratulations, Birthday, Get Well Soon, Housewarming, Teacher Appreciation, or Vibrant Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C16': {
+        codename: 'BQT-C16',
+        image: 'CROCHET FLOWERS/16.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Make a vibrant statement with the BQT-C16 — a hand-crocheted bouquet of cheerful sunflowers and yellow tulips, accented with deep blue and red blooms. Wrapped in striking navy textured paper, this everlasting arrangement is a joyful, sophisticated gift for celebrating success, passion, and admiration.',
+        color: 'Yellow, Blue, Red, Navy',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflowers, Yellow Tulip, Daisies, and various Red and Blue Filler Flowers/Berries.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Navy Blue Textured Paper Wrapper, and a Red, White, and Blue Ribbon.',
+            'Suggested Occasions: Graduation, Congratulations, Birthday, Anniversary, Father\'s Day, or Bold Office/Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C17': {
+        codename: 'BQT-C17',
+        image: 'CROCHET FLOWERS/17.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate with a vibrant burst of color and texture with the BQT-C17 a hand-crocheted bouquet featuring a lavender cabbage rose, pink delphiniums, yellow tulips, and blue and purple accents. Wrapped in Kraft and cream paper, this everlasting arrangement makes a stunning, joyful centerpiece for any occasion.',
+        color: 'Lavender, Pink, Yellow, Blue, Purple',
+        inclusions: [
+            'Flowers: Hand-crocheted Cabbage Rose (Lavender), Delphiniums (Pink), Tulips (Yellow/Blue), and various filler flowers/sprigs.',
+            'Arrangement Size: Approximately 15-20 stems, Large, voluminous bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Kraft Paper and Cream Paper Wrappers, and a Rustic Fabric/Twine Ribbon.',
+            'Suggested Occasions: Birthday, Housewarming, Anniversary, Graduation, or a Bold Statement Decor Piece.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Packaging (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C18': {
+        codename: 'BQT-C18',
+        image: 'CROCHET FLOWERS/18.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Convey sweet, romantic feelings with the BQT-C18 a hand-crocheted bouquet of pink roses, poppies, and daisies in soft shades. Wrapped in stylish pink paper with decorative accents and tied with a chic ribbon, this everlasting arrangement is a thoughtful gift to express admiration, appreciation, and gentle love.',
+        color: 'Pink, Soft Shades',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses, Large Daisies, Poppies, and various Pink Filler Flowers.',
+            'Arrangement Size: Approximately 8-12 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Pink Solid and Printed Paper Wrappers, and a decorative White Ribbon.',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Birthday, Mother\'s Day, Bridal Shower, or Feminine Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C19': {
+        codename: 'BQT-C19',
+        image: 'CROCHET FLOWERS/19.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Make a vibrant impression with the BQT-C19 a hand-crocheted bouquet featuring a majestic lavender lily, pink and yellow tulips, and purple and blue filler blooms. Wrapped in crisp white and sheer paper with a “Just for You” ribbon, this everlasting arrangement is a sophisticated gift for expressing admiration and deep affection.',
+        color: 'Lavender, Pink, Yellow, Purple, Blue',
+        inclusions: [
+            'Flowers: Hand-crocheted Large Lily (Lavender), Tulips (Pink/Yellow), and various Textured Purple, Pink, and Blue Filler Flowers.',
+            'Arrangement Size: Approximately 12-16 stems, Medium-to-Large sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, White and Sheer Paper Wrappers, and a \'Just for you\' Ribbon.',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Valentine\'s Day, Mother\'s Day, or Elegant Statement Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Gift Packaging (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C20': {
+        codename: 'BQT-C20',
+        image: 'CROCHET FLOWERS/20.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Express heartfelt love with the BQT-C20 a hand-crocheted bouquet of pink and cream roses, cheerful daisies, and two adorable crocheted hearts. Wrapped in soft pink paper with a charming message card, this everlasting arrangement is a perfect symbol of enduring affection for romantic occasions.',
+        color: 'Pink, Cream, White',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses (Pink/Cream), Daisies, White Filler Flowers, and Two Crocheted Hearts.',
+            'Arrangement Size: Approximately 10-15 stems plus hearts, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Pink Non-woven Paper Wrapper, and a \'Just for you\' Ribbon.',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Proposal, Birthday, Mother\'s Day, or Romantic Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, \'You are my LOVE\' backing card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C21': {
+        codename: 'BQT-C21',
+        image: 'CROCHET FLOWERS/21.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten any celebration with the BQT-C21 a hand-crocheted bouquet of yellow-centered roses and white filler flowers that radiate warmth and joy. Wrapped in soft yellow-cream paper with a “Just for You” ribbon, this everlasting arrangement is a cheerful, thoughtful gift to brighten someone’s day.',
+        color: 'Yellow, White, Cream',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses (Yellow/White), Daisies, and various small White and Yellow Filler Flowers with green foliage.',
+            'Arrangement Size: Approximately 12-16 stems, Medium-to-Large sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Yellow-Cream Non-woven Paper Wrapper, and a \'Just for you\' Ribbon.',
+            'Suggested Occasions: Birthday, Graduation, Get Well Soon, Friendship Day, or Sunny Home/Office Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C22': {
+        codename: 'BQT-C22',
+        image: 'CROCHET FLOWERS/22.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Ignite passion and joy with the BQT-C22 a hand-crocheted bouquet featuring a central sunflower surrounded by deep red and warm orange roses. Wrapped in rich metallic-red paper with soft accents, this everlasting arrangement is a bold, sophisticated gift for celebrating love, courage, and vitality.',
+        color: 'Red, Orange, Yellow',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflower, Roses (Red and Orange), and small Yellow/White Filler Flowers.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Metallic Red and Brown/Kraft Paper Wrappers, and a Yellow/Gold Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Promotion/Success Celebration, or Vibrant Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, LED String Lights (if applicable), Decorative backing card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C23': {
+        codename: 'BQT-C23',
+        image: 'CROCHET FLOWERS/23.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Bring smiles and lasting sunshine with the BQT-C23 — a hand-crocheted bouquet featuring a vibrant sunflower, soft pink roses, and green cabbage roses. Wrapped in green and cream paper with a cheerful ribbon, this everlasting arrangement is a thoughtful, low-maintenance gift celebrating friendship, growth, and optimism.',
+        color: 'Yellow, Pink, Green, Cream',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflower, Roses (Pink), Cabbage Roses (Green), Daisies, and various small filler flowers/foliage.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Green and Cream Non-woven Paper Wrappers, and an Orange/Yellow Ribbon.',
+            'Suggested Occasions: Birthday, Graduation, Housewarming, Thank You Gift, Friendship Day, or Fresh Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, LED String Lights (if applicable), Decorative backing card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C24': {
+        codename: 'BQT-C24',
+        image: 'CROCHET FLOWERS/24.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Ignite passion and joy with the BQT-C24 a hand-crocheted bouquet featuring a central sunflower surrounded by deep red and warm orange roses. Wrapped in rich metallic-red paper with soft accents, this everlasting arrangement is a bold, sophisticated gift for celebrating love, courage, and vitality.',
+        color: 'Red, Orange, Yellow',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflower, Roses (Red and Orange), and small Yellow/White Filler Flowers.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Metallic Red and Brown/Kraft Paper Wrappers, and a Yellow/Gold Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Promotion/Success Celebration, or Vibrant Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, LED String Lights (if applicable), Decorative backing card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C25': {
+        codename: 'BQT-C25',
+        image: 'CROCHET FLOWERS/25.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Gift a unique and captivating display with the BQT-C25 — a hand-crocheted bouquet of blue and white roses, accented with delicate white fillers. Wrapped in striking blue paper and highlighted with LED string lights, this everlasting arrangement is a sophisticated, romantic statement for unforgettable moments.',
+        color: 'Blue, White',
+        inclusions: [
+            'Flowers: Hand-crocheted Blue and White Roses, Daisies, and White Filler Flowers.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Blue and White Non-woven Paper Wrappers, and a White Satin Ribbon.',
+            'Suggested Occasions: Proposal, Anniversary, Birthday, Valentine\'s Day, or Unique Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, LED String Lights included.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C26': {
+        codename: 'BQT-C26',
+        image: 'CROCHET FLOWERS/26.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Express admiration and affection with the BQT-C26 a hand-crocheted bouquet of layered lavender and white roses with purple fillers, accented by two crocheted pink hearts and a message card. Wrapped in soft lavender paper, this everlasting arrangement is a tender symbol of enduring love.',
+        color: 'Lavender, White, Purple, Pink',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses (Lavender/Purple and White), various small purple and white Filler Flowers, and Two Crocheted Pink Hearts.',
+            'Arrangement Size: Approximately 10-15 stems plus hearts, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Lavender Non-woven Paper Wrapper, and a White \'Just for you\' Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Mother\'s Day, or Romantic Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, LED String Lights (if applicable), \'You are my LOVE\' backing card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C27': {
+        codename: 'BQT-C27',
+        image: 'CROCHET FLOWERS/27.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Demonstrate passion and devotion with the BQT-C27 a hand-crocheted bouquet of lush red roses accented with white fillers and subtle lighting. Wrapped in soft pink and taupe paper with a “Just For You” ribbon, this everlasting arrangement is a timeless symbol of love for any special occasion.',
+        color: 'Red, White, Pink, Taupe',
+        inclusions: [
+            'Flowers: Hand-crocheted Red Roses, White Daisies, and various small White Filler Flowers.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Pink and Taupe Non-woven Paper Wrappers, and a White \'Just for you\' Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Proposal, Birthday, or Romantic Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, LED String Lights included.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C28': {
+        codename: 'BQT-C28',
+        image: 'CROCHET FLOWERS/28.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Bring sunshine and style with the BQT-C28 a hand-crocheted bouquet featuring a soft yellow rose, yellow tulips, green accents, and crocheted leaves. Wrapped in light green paper with a white ribbon, this everlasting arrangement is a cheerful, sophisticated, and gender-neutral gift for new beginnings or brightening any space.',
+        color: 'Yellow, Green, White',
+        inclusions: [
+            'Flowers: Hand-crocheted Yellow Rose, Yellow Tulips, Green Floral Buds, and various stylized green leaves.',
+            'Arrangement Size: Approximately 7-10 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Light Green Non-woven Paper Wrapper, and a White Ribbon.',
+            'Suggested Occasions: Congratulations, Graduation, Housewarming, Birthday, or Modern Home/Office Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C29': {
+        codename: 'BQT-C29',
+        image: 'CROCHET FLOWERS/29.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate milestones with the BQT-C29, a hand-crocheted bouquet of bright sunflowers, blue and white flowers, and a charming crocheted graduation doll. Wrapped in cheerful blue paper with a white ribbon, this everlasting arrangement is a thoughtful gift to honor a graduate’s hard work and bright future.',
+        color: 'Yellow, Blue, White',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflowers, Blue Lilies/Stars, White Roses/Daisies, Blue Roses, and various white/blue filler flowers.',
+            'Special Inclusion: One Crocheted Graduation Doll (wearing a graduation cap).',
+            'Arrangement Size: Approximately 10-15 stems plus doll, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Blue and White Non-woven Paper Wrappers, and a White Organza/Satin Ribbon.',
+            'Suggested Occasions: Graduation, Achievements, Congratulations, Birthday, or as a Cherished Keepsake.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Blank message card.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C30': {
+        codename: 'BQT-C30',
+        image: 'CROCHET FLOWERS/30.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten any day with the BQT-C30 a hand-crocheted bouquet of large sunflowers, accented with orange and white fillers. Wrapped in sage green and rustic brown paper, this everlasting arrangement is a heartfelt gift that conveys warmth, encouragement, and lasting sunshine.',
+        color: 'Yellow, Orange, White, Green, Brown',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflowers (5-7 pieces), Orange and White Filler Flowers/Daisies, and green foliage.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Sage Green and Rustic Brown Paper Wrappers, and a White/Sheer Ribbon.',
+            'Suggested Occasions: Congratulations, Get Well Soon, Friendship Day, Thank You Gift, or Bright Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (\'You are sunshine\').'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C31': {
+        codename: 'BQT-C31',
+        image: 'CROCHET FLOWERS/31.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Send a cheerful greeting with the BQT-C31, a hand-crocheted bouquet featuring a bright sunflower, yellow tulip, white daisies, and orange fillers. Wrapped in rustic brown paper, this everlasting arrangement is a heartfelt gift celebrating friendship, growth, and happiness.',
+        color: 'Yellow, White, Orange, Brown',
+        inclusions: [
+            'Flowers: Hand-crocheted Sunflower, Yellow Tulip, White Daisies, Orange Accent Flowers, and green foliage.',
+            'Arrangement Size: Approximately 8-10 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Rustic Brown Paper Wrappers, and a White Satin Ribbon.',
+            'Suggested Occasions: Birthday, Friendship Day, Thinking of You, Home/Office Decor, or Graduation Gift.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (\'FLOWER STUDIO\').'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C32': {
+        codename: 'BQT-C32',
+        image: 'CROCHET FLOWERS/32.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Offer a luxurious gesture of love with the BQT-C32, a hand-crocheted bouquet of soft pink, cream, and white roses and peonies, accented with a large pink bloom. Wrapped in romantic pink shades with a silky white ribbon, this everlasting arrangement is a sophisticated gift celebrating affection and elegance.',
+        color: 'Pink, Cream, White',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses/Peonies (Pink, Cream, and White), Large Pink Accent Flower (e.g., Lily/Hibiscus), and small pink filler flowers/sprigs.',
+            'Arrangement Size: Approximately 8-12 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Pink Non-woven Paper Wrappers, and a White Satin Ribbon.',
+            'Suggested Occasions: Mother\'s Day, Anniversary, Birthday, Bridal Shower, or Elegant Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, Decorative backing card (if applicable).'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C33': {
+        codename: 'BQT-C33',
+        image: 'CROCHET FLOWERS/33.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Show passion and devotion with the BQT-C33, a hand-crocheted bouquet of lush red roses accented with white fillers and subtle lighting. Wrapped in soft pink and taupe paper with a “Just For You” ribbon, this everlasting arrangement is a timeless symbol of love for any special occasion.',
+        color: 'Red, White, Pink, Taupe',
+        inclusions: [
+            'Flowers: Hand-crocheted Red Roses, White Daisies, and various small White Filler Flowers.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Pink and Taupe Non-woven Paper Wrappers, and a White \'Just for you\' Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Proposal, Birthday, or Romantic Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon, LED String Lights included.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C34': {
+        codename: 'BQT-C34',
+        image: 'CROCHET FLOWERS/34.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Embrace sophistication with the BQT-C34 a hand-crocheted bouquet of tan, brown, and beige roses accented with green eucalyptus. Wrapped in rustic burlap and light brown paper, this everlasting arrangement is a stylish, gender-neutral gift ideal for housewarmings or modern decor.',
+        color: 'Tan, Brown, Beige, Green',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses (Shades of Tan, Brown, and Beige) with Eucalyptus sprigs.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Rustic Burlap and Light Brown Paper Wrappers, and a Heart-Patterned Ribbon.',
+            'Suggested Occasions: Housewarming, Anniversary, Birthday, or Modern Rustic Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    'C35': {
+        codename: 'BQT-C35',
+        image: 'CROCHET FLOWERS/35.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Send a sweet hug with the BQT-C35 a hand-crocheted bouquet of pink and white roses, soft pink tulips, and green accents, completed with a charming crocheted piglet doll. Wrapped in soft pink paper with a “Always By Your Side” ribbon, this everlasting arrangement is a heartfelt gift of tender affection.',
+        color: 'Pink, White, Green',
+        inclusions: [
+            'Flowers: Hand-crocheted Roses (Pink and White), Pink Tulip, and green foliage.',
+            'Special Inclusion: One Crocheted Pink Piglet Doll.',
+            'Arrangement Size: Approximately 6-8 stems plus doll, Small to Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Soft Pink Paper Wrappers, and a White Ribbon (\'Always By Your Side\').',
+            'Suggested Occasions: Birthday, Valentine\'s Day, Newborn Gift, or Cute Home Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+
+    'C36': {
+        codename: 'BQT-C36',
+        image: 'CROCHET FLOWERS/36.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Present a serene and striking gift with the BQT-C36 a hand-crocheted bouquet of white callas and delicate blue and white roses. Wrapped in sky blue paper with white polka dots and finished with a “Just For You” ribbon, this everlasting arrangement is a sophisticated, memorable gift for those who appreciate unique beauty.',
+        color: 'White, Blue',
+        inclusions: [
+            'Flowers: Hand-crocheted White Callas, Blue and White Roses, and small White Filler Flowers.',
+            'Arrangement Size: Approximately 10-14 stems, Medium-sized bouquet.',
+            'Materials: Premium Yarn (Milk Cotton/Wool blend), Floral Wire, Sky Blue Polka Dot Paper Wrappers, and a White \'Just for you\' Ribbon.',
+            'Suggested Occasions: Anniversary, Birthday, Apology, or Elegant Home/Office Decor.',
+            'Complimentary Inclusions: Tied with a decorative ribbon.'
+        ],
+        care: [
+            'Avoid Wetness: Do Not Submerge in water or place in a vase with water. Crochet flowers do not need water.',
+            'Dusting/Cleaning: Regularly dust the flowers using a soft brush, lint roller, or a hairdryer on a cool, low setting to remove accumulated dust.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent the yarn colors from fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, gently mold or trim them back into place with your hands.',
+            'No to Heater and Fan Exposure: Keep them away from intense heat sources, like direct heaters, as they might damage the yarn fibers or stiffener.',
+            'Keep Away from Pets/Children: These are decorative items and should not be used as toys or given to pets due to potential choking hazards (wire or small parts).'
+        ]
+    },
+    
+    //fuzzy
+
+    
+ // --- Product F1 (BQT-FZW-01) ---
+    'F1': {
+        codename: 'BQT-F1',
+        image: 'FUZZY WIRE FLOWERS/1.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Elevate your space with a timeless gift and demonstrate heartfelt affection with BQT-F1. This exquisite bouquet showcases a mix of handcrafted fuzzy wire flowers in warm, elegant tones, perfect for any memorable occasion. Its charming texture and permanent beauty are sure to uplift and evoke feelings of delight and lasting appreciation.',
+        color: 'Warm, Elegant Tones, Brown/Tan Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Mix of Daisy, Lily, and filler styles).',
+            'Arrangement Size: Approximately 10-12 stems, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Brown/Tan Tones), Satin Ribbon.',
+            'Suggested Occasions: Anniversary, Birthday, Housewarming, Graduation, Get Well Soon, A lasting token of appreciation.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F2 (BQT-FZW-02) ---
+    'F2': {
+        codename: 'BQT-F2',
+        image: 'FUZZY WIRE FLOWERS/2.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten any space and share joyful sentiments with BQT-F2. This unique bouquet features handcrafted fuzzy wire flowers in vibrant purples, pinks, yellows, and whites, adding a cheerful, whimsical touch to any occasion. Its charming texture and lasting beauty make it a delightful keepsake that uplifts spirits and spreads happiness.',
+        color: 'Vibrant Purples, Pinks, Yellows, and Whites, Lavender/Purple Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Mix of Lilies, Tulips, Daisies, and various filler flowers).',
+            'Arrangement Size: Approximately 12-15 stems, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Vibrant Lavender and Purple Tones), Satin Ribbon.',
+            'Suggested Occasions: Birthday, Graduation, Housewarming, Get Well Soon, Mother\'s Day, or simply to brighten someone\'s day.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F3 (BQT-FZW-03) ---
+    'F3': {
+        codename: 'BQT-F3',
+        image: 'FUZZY WIRE FLOWERS/3.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Present a gift of pure elegance and lasting beauty with BQT-F3. This exquisite bouquet features a pristine collection of handcrafted fuzzy wire white lilies and delicate daisies, accented with lush green foliage, perfect for conveying sincerity and appreciation on any significant occasion. Its refined charm and permanent form are sure to leave a lasting impression, serving as a beautiful, enduring keepsake that never wilts.',
+        color: 'Pristine White with Green Foliage, Grey/Black and White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Elegant White Lilies, cheerful Daisies, and green filler foliage).',
+            'Arrangement Size: Approximately 8-10 prominent stems with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Translucent and Solid Wrappers (Sophisticated Grey/Black and White Tones), Sheer White Ribbon.',
+            'Suggested Occasions: Anniversary, Sympathy, Condolences, Thank You, Housewarming, Bridal Shower, or a timeless expression of pure affection.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F4 (BQT-FZW-04) ---
+    'F4': {
+        codename: 'BQT-F4',
+        image: 'FUZZY WIRE FLOWERS/4.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Unveil a dreamy blend of lavender and white with BQT-F4. This enchanting bouquet features handcrafted fuzzy wire flowers in soft purple and pristine white, creating a serene and delicate display. Perfect for expressing gentle affection or celebrating new beginnings, its lasting beauty makes it a charming and enduring keepsake..',
+        color: 'Soft Purple (Lavender) and Pristine White, Soft Pink/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Mix of Lilies, Tulips, Daisies, and various elegant filler flowers in lavender and white tones).',
+            'Arrangement Size: Approximately 10-12 stems, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Pink and White Tones), Sheer Pink Ribbon.',
+            'Suggested Occasions: Birthday, Baby Shower, Anniversary, Thank You, Housewarming, or simply to express admiration and gentle care.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F5 (BQT-FZW-05) ---
+    'F5': {
+        codename: 'BQT-F5',
+        image: 'FUZZY WIRE FLOWERS/5.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Bring the tranquility of a spring garden indoors with BQT-F5. This stunning bouquet features a refreshing collection of handcrafted fuzzy wire flowers in various shades of vibrant green and creamy white, complemented by charming little butterflies. It’s perfect for adding a touch of natural serenity and everlasting charm to any room. Its unique texture and fresh color palette are sure to uplift spirits and serve as a beautiful, enduring piece of decor.',
+        color: 'Vibrant Green and Creamy White, Fresh Green Wrappers, Gold Butterfly Accents',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Green Tulips, Mint Green Lilies, White Daisies, and various green filler elements).',
+            'Arrangement Size: Approximately 8-10 prominent stems with lush fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Fresh Green Tones), Organza Ribbon with Gold Trim, Decorative Butterflies.',
+            'Suggested Occasions: Housewarming, Get Well Soon, Graduation, Mother\'s Day, Thank You, or as a unique gift for a gardener or nature lover.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F6 (BQT-FZW-06) ---
+    'F6': {
+        codename: 'BQT-F6',
+        image: 'FUZZY WIRE FLOWERS/6.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Declare your affection with BQT-F6, a timeless and heartfelt gesture. This striking bouquet features handcrafted fuzzy wire red roses paired with cheerful white daisies and fresh green accents. Perfect for expressing love and joy, its lasting beauty ensures a memorable keepsake that never fades.',
+        color: 'Vibrant Red and Cheerful White with Green Accents, Soft Pink/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Vibrant Red Roses, sweet White Daisies, and delicate green foliage).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Pink and White Tones), Burgundy Satin Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Proposal, Mother\'s Day, or a passionate expression of enduring love.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F7 (BQT-FZW-07) ---
+    'F7': {
+        codename: 'BQT-F7',
+        image: 'FUZZY WIRE FLOWERS/7.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Ignite a spark of joy and celebrate with BQT-F7. This dazzling bouquet features a dynamic blend of handcrafted fuzzy wire flowers in striking crimson reds and pristine whites, accented with cheerful greens. Perfect for any celebratory occasion, its bold colors and permanent form are sure to make a statement, bringing lasting delight and appreciation as an enduring keepsake.',
+        color: 'Striking Crimson Reds, Pristine Whites, and Green Accents, Red/Gold-patterned Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Vivid Red Tulips, bright Red Gerberas, elegant White & Pink Lilies, and delicate white daisies with green foliage).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Decorative Wrappers (Rich Red, Gold-patterned Cream, and White Tones), Sheer Red Organza Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Christmas, Graduation, or a spirited declaration of festive cheer.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F8 (BQT-FZW-08) ---
+    'F8': {
+        codename: 'BQT-F8',
+        image: 'FUZZY WIRE FLOWERS/8.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Radiate warmth and happiness with BQT-F8. This cheerful bouquet showcases handcrafted fuzzy wire flowers in sunny yellow and crisp white, accented with fresh green foliage. Ideal for celebrating joyful milestones, its vibrant colors and lasting form create a delightful keepsake that preserves special moments.',
+        color: 'Sunny Yellow and Crisp White, Vibrant Green Wrappers with Newspaper Print Accents',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Bright Yellow Tulips, Sun-yellow Daisies, White Accent Blooms, and green foliage).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Vibrant Green and Newspaper Print Accents), Yellow Satin Ribbon.',
+            'Suggested Occasions: Birthday, Get Well Soon, Graduation, Housewarming, Easter, or simply to share a ray of sunshine.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F9 (BQT-FZW-09) ---
+    'F9': {
+        codename: 'BQT-F9',
+        image: 'FUZZY WIRE FLOWERS/9.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate elegance and devotion with BQT-F9. This stunning bouquet features a lush cluster of handcrafted fuzzy wire lavender tulips, perfectly interspersed with cheerful white and yellow daisies. The regal purple hues and lasting texture of the fuzzy wire create a magnificent, enduring gift, ideal for conveying deep admiration and grace.',
+        color: 'Soft Lavender, White, and Yellow, Vibrant Purple/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Lavender Tulips and sweet White & Yellow Daisies).',
+            'Arrangement Size: Approximately 10-12 prominent stems with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Vibrant Purple and pleated White Tones), Wide Purple Satin Ribbon.',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Mother\'s Day, Easter, or to express appreciation and profound respect.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F10 (BQT-FZW-10) ---
+    'F10': {
+        codename: 'BQT-F10',
+        image: 'FUZZY WIRE FLOWERS/10.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Express your affection in full bloom with BQT-F10. This dazzling bouquet features a captivating blend of handcrafted fuzzy wire flowers in passionate reds, soft pinks, and pure whites, beautifully arranged to symbolize love and admiration. Its rich colors and permanent, soft texture make it a magnificent, everlasting gift for a cherished moment.',
+        color: 'Passionate Reds, Soft Pinks, and Pure Whites, Pink/Cream/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Deep Red Tulips, Soft Pink Tulips, White Lilies with Pink Accents, Red Poppies/Anemones, and White Daisies).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Pink, Cream, and White Tones), Deep Red Satin and Sheer Ribbons.',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Mother\'s Day, Birthday, or a romantic expression of enduring commitment.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F11 (BQT-FZW-11) ---
+    'F11': {
+        codename: 'BQT-F11',
+        image: 'FUZZY WIRE FLOWERS/11.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Capture the vibrant warmth of the season with BQT-F11. This stunning bouquet features handcrafted fuzzy wire flowers in rich shades of orange, yellow, and deep red, evoking the glow of a sunset. Perfect for adding lasting autumn cheer, its vivid colors and permanent texture create a beautiful, enduring piece of decor.',
+        color: 'Rich Shades of Orange, Yellow, and Deep Red (Sunset Tones), Bright Yellow/Cream Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Large Orange Chrysanthemum/Peony, Sunflowers, Yellow Daisies, and deep Red accents).',
+            'Arrangement Size: Approximately 10-12 medium and large blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Bright Yellow and Cream Tones), Sheer Yellow Ribbon with Lace Trim.',
+            'Suggested Occasions: Thanksgiving, Fall Birthdays, Housewarming, Graduation, or a warm expression of happiness and gratitude.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F12 (BQT-FZW-12) ---
+    'F12': {
+        codename: 'BQT-F12',
+        image: 'FUZZY WIRE FLOWERS/12.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Drift into tranquility with BQT-F12. This enchanting bouquet features a calming collection of handcrafted fuzzy wire flowers in various shades of serene blue and pure white, creating a harmonious and refreshing display. Perfect for conveying peace and heartfelt wishes, its gentle colors and permanent texture are sure to bring lasting delight and serve as a beautiful, enduring keepsake.',
+        color: 'Serene Blue and Pure White, Deep/Sky Blue/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Blue Lilies, Blue Tulips, Blue and White Daisies, and delicate filler accents).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Deep Blue, Sky Blue, and White Tones), "Just For You" Printed Ribbon.',
+            'Suggested Occasions: Birthday, Graduation, Get Well Soon, Housewarming, Sympathy, or a thoughtful expression of calm and support.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F13 (BQT-FZW-13) ---
+    'F13': {
+        codename: 'BQT-F13',
+        image: 'FUZZY WIRE FLOWERS/13.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Make a bold, dramatic statement with BQT-F13. This striking bouquet showcases handcrafted fuzzy wire flowers in deep royal blue and crisp white, elegantly wrapped in matte black paper. Its vibrant contrast and lasting form create a sophisticated, enduring gift, perfect for expressing devotion or celebrating a significant achievement.',
+        color: 'Deep Royal Blue and Crisp White, Matte Black/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Vivid Royal Blue Tulips, Crisp White Lilies, and bright Blue-Centered Anemones/Daisies).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Matte Black and White Tones), Sheer White Organza Ribbon.',
+            'Suggested Occasions: Anniversary, Proposal, Graduation, Father\'s Day, or a powerful expression of profound appreciation.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F14 (BQT-FZW-14) ---
+    'F14': {
+        codename: 'BQT-F14',
+        image: 'FUZZY WIRE FLOWERS/14.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Convey gentle affection and delicate beauty with BQT-F14. This charming bouquet features handcrafted fuzzy wire flowers in soft pastel shades of light pink, cream, and white, accented with subtle green foliage. Its tender colors and lasting texture make it a perfect gift for expressing warm sentiments on any occasion.',
+        color: 'Soft Pastel Pink, Cream, and White, Soft Pink/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Pink and Cream Tulips, large Pink Peonies/Roses, White and Pink filler flowers).',
+            'Arrangement Size: Approximately 10-12 medium blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Pink and White Tones, with a textured accent wrap), Sheer Pink Organza Ribbon.',
+            'Suggested Occasions: Mother\'s Day, Baby Shower (Girl), Anniversary, Birthday, or a tender expression of sympathy or care.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F15 (BQT-FZW-15) ---
+    'F15': {
+        codename: 'BQT-F15',
+        image: 'FUZZY WIRE FLOWERS/15.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Declare your unwavering devotion with BQT-F15, a bouquet of sophisticated elegance. Featuring handcrafted fuzzy wire flowers in passionate reds and vivid pinks, accented with crisp white blooms, it exudes glamour and romance. Wrapped in black and shimmering silver, its bold colors and lasting form create an unforgettable gift for life’s most cherished moments.',
+        color: 'Passionate Reds, Vivid Pinks, and Crisp Whites, Black/Silver Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Large Pink Lilies, Deep Red Tulips, White/Pink Accent Blooms, and decorative fillers).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Decorative Wrappers (Glossy Black, Shimmering Silver Netting, and Clear Tones), Wide Red Satin Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Proposal, Birthday, or a luxurious expression of powerful, enduring love.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F16 (BQT-FZW-16) ---
+    'F16': {
+        codename: 'BQT-F16',
+        image: 'FUZZY WIRE FLOWERS/16.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Step into a world of enchanting pastels with BQT-F16. This exquisite bouquet showcases handcrafted fuzzy wire flowers in soft lavender, lilac, and gentle pink, creating a dreamy, magical display. Ideal for celebrating romance, friendship, or special milestones, its delicate texture and lasting form make it a truly everlasting gift.',
+        color: 'Soft Lavender, Lilac, and Gentle Pink, Soft Pink/White/Lavender Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Large Lavender Tulips, Purple Lilies, Lilac Daisies, and various pink and purple accent blooms).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Pink, White, and Lavender Tones with Gold Trim), Wide White and Pink Sheer Ribbons.',
+            'Suggested Occasions: Anniversary, Birthday, Mother\'s Day, Graduation, Sweet Sixteen, or a romantic gesture of gentle affection.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F17 (BQT-FZW-17) ---
+    'F17': {
+        codename: 'BQT-F17',
+        image: 'FUZZY WIRE FLOWERS/17.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Convey sweet, gentle affection and lasting warmth with BQT-F17. This delightful bouquet features a serene collection of handcrafted fuzzy wire flowers in soft pinks and creamy whites, beautifully arranged to symbolize tenderness and sincere care. The charming texture and everlasting beauty make it a perfect, enduring gift for a loved one.',
+        color: 'Soft Pinks and Creamy Whites, Soft Pink/Grey/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Pink Tulips, Pink Daisies, delicate Pink Lilies, and white accent blooms).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Pink, Light Grey, and White Tones), Sheer Pink and Satin Ribbons.',
+            'Suggested Occasions: Mother\'s Day, Birthday, Anniversary, Get Well Soon, or a tender expression of thanks and admiration.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F18 (BQT-FZW-18) ---
+    'F18': {
+        codename: 'BQT-F18',
+        image: 'FUZZY WIRE FLOWERS/18.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate joy and devotion with BQT-F18. This exceptionally cheerful bouquet features a magnificent handcrafted fuzzy wire sunflower as its centerpiece, encircled by sweet pink tulips and delicate white daisies. Symbolizing adoration, happiness, and eternal love, this bouquet\'s vibrant colors and lasting texture make it a magnificent, unforgettable gift for any cherished moment.',
+        color: 'Yellow, Pink, and White with Green Accents, Pink Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Large Yellow Sunflower, Pink Tulips, and small White Daisies with yellow centers).',
+            'Arrangement Size: Approximately 1 Large Bloom & 8-10 smaller stems, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Pink "I Love You" print and Solid Pink Tones), Deep Pink Satin Ribbon.',
+            'Suggested Occasions: Birthday, Valentine\'s Day, Anniversary, Graduation, or a heartfelt expression of pure, sunny happiness.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F19 (BQT-FZW-19) ---
+    'F19': {
+        codename: 'BQT-F19',
+        image: 'FUZZY WIRE FLOWERS/19.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate elegance and joy with BQT-F19. This beautiful bouquet features handcrafted pink tulips, accented with delicate lilies and charming gold butterflies. Symbolizing love and grace, its soft pink hues, rich texture, and lasting form make it a truly unforgettable and enduring gift.',
+        color: 'Soft Pink and White, Pink Mesh Wrappers, Gold Butterfly Accents',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Pink and White Tulips, Pink Lilies, and subtle filler flowers).',
+            'Arrangement Size: Approximately 12-14 prominent blooms, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Decorative Wrappers (Solid Soft Pink and delicate Pink Netting/Mesh), Pink Satin Ribbon, Gold Butterfly Accents.',
+            'Suggested Occasions: Mother\'s Day, Anniversary, Birthday, Proposal, Valentine\'s Day, or a luxurious expression of enduring love.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F20 (BQT-FZW-20) ---
+    'F20': {
+        codename: 'BQT-F20',
+        image: 'FUZZY WIRE FLOWERS/20.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Embrace royal elegance with BQT-F20. This stunning bouquet features handcrafted purple stargazer lilies, accented with soft lavender and white blooms. Symbolizing ambition, dignity, and admiration, its vibrant colors and lasting texture make it a majestic, enduring gift for someone truly special.',
+        color: 'Purple and Lavender with White Accents, Gold Mesh/Lavender Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Large Purple Stargazer Lilies, Lavender Filler Blooms, and green foliage).',
+            'Arrangement Size: Approximately 3-5 large lily blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Decorative Wrappers (Lavender, Soft Pink, Gold Mesh, and Clear Translucent Tones), Satin and Sheer Ribbons in Purple and Lavender.',
+            'Suggested Occasions: Anniversary, Birthday, Promotion/Achievement, Mother\'s Day, or a luxurious expression of profound admiration.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F21 (BQT-FZW-21) ---
+    'F21': {
+        codename: 'BQT-F21',
+        image: 'FUZZY WIRE FLOWERS/21.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Express sweetness and joy with BQT-F21. This charming bouquet features handcrafted fuzzy wire flowers in soft pinks, sunny yellow, and creamy whites, creating a warm and cheerful display. Its delightful colors and permanent texture make it an uplifting, enduring gift.',
+        color: 'Soft Pinks, Sunny Yellow, and Creamy Whites, Pink/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Pink Tulips, Yellow Daisies, Cream/White Lilies, and other mixed filler flowers).',
+            'Arrangement Size: Approximately 10-12 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Pink and White Tones), Sheer Yellow and Satin Ribbons.',
+            'Suggested Occasions: Birthday, Get Well Soon, Mother\'s Day, Housewarming, or a warm, spontaneous gesture of affection.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F22 (BQT-FZW-22) ---
+    'F22': {
+        codename: 'BQT-F22',
+        image: 'FUZZY WIRE FLOWERS/22.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Make a passionate declaration with BQT-F22. This breathtaking bouquet features handcrafted fuzzy wire flowers in deep crimson and hot pink, accented with a striking white lily. Symbolizing intense love and desire, its bold colors and permanent form create a spectacular, unforgettable gift for a romantic occasion.',
+        color: 'Deep Crimson and Hot Pink with White Accents, Bright Pink/White Mesh Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Crimson Tulips, Hot Pink Lilies, a prominent White Lily, and delicate accent blooms).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Solid Bright Pink and Soft White Mesh), Deep Crimson Satin Ribbon with Pearl Accent.',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Proposal, Birthday, or a passionate declaration of enduring love.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F23 (BQT-FZW-23) ---
+    'F23': {
+        codename: 'BQT-F23',
+        image: 'FUZZY WIRE FLOWERS/23.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate the joyful spirit of spring with BQT-F23. This vibrant bouquet features handcrafted fuzzy wire flowers in pastel pinks, sunny yellows, soft blues, and lavender, creating a cheerful, lively display. Symbolizing hope, happiness, and new beginnings, its lasting texture makes it a beautiful, enduring gift.',
+        color: 'Pastel Pinks, Sunny Yellows, Soft Blues, and Lavender, Cream/Pale Yellow Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Mix of Tulips, Daisies, Lilies, and small filler blooms in pastel and bright tones).',
+            'Arrangement Size: Approximately 10-12 medium and small blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Cream, White Mesh, and Pale Yellow Tones), Blue and White Printed Satin Ribbons.',
+            'Suggested Occasions: Birthday, Easter, Housewarming, Get Well Soon, or simply to share a thoughtful burst of color.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F24 (BQT-FZW-24) ---
+    'F24': {
+        codename: 'BQT-F24',
+        image: 'FUZZY WIRE FLOWERS/24.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Elevate your celebrations with BQT-F24. This delightful bouquet features cheerful handcrafted fuzzy wire flowers in a mix of orange, yellow, red, and pink, perfectly topped with a fun "Happy Birthday" accent. Its vibrant colors and permanent form create a festive, lasting centerpiece for any birthday event.',
+        color: 'Cheerful Mix of Orange, Yellow, Red, and Pink, Orange/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Mix of Orange Tulips, Yellow Daisies, Red Lillies, and bright Pink accent blooms).',
+            'Arrangement Size: Approximately 10-12 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Orange, White, and Yellow Tones), Multi-colored Satin Ribbon, "Happy Birthday" Topper.',
+            'Suggested Occasions: Birthday, Birthday, Birthday, or any celebration that calls for cheerful, lasting decor.',
+            'Complimentary Inclusions: Message card, "Happy Birthday" Topper.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F25 (BQT-FZW-25) ---
+    'F25': {
+        codename: 'BQT-F25',
+        image: 'FUZZY WIRE FLOWERS/25.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Embrace rustic elegance with BQT-F25. This beautiful bouquet showcases handcrafted fuzzy wire flowers in cream, beige, and warm brown tones, arranged for a sophisticated, timeless look. Its neutral palette and textured wrapping make it a chic, enduring gift that complements any space.',
+        color: 'Cream, Beige, and Warm Brown Tones, Textured Brown/Beige Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Mix of Cream Lilies, Beige Daisies, and textured brown filler elements).',
+            'Arrangement Size: Approximately 10-12 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Decorative Wrappers (Textured Brown, Beige, and Cream Tones), Matching Ribbon.',
+            'Suggested Occasions: Housewarming, Birthday, Anniversary, Sympathy, or a subtle expression of appreciation and warmth.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F26 (BQT-FZW-26) ---
+    'F26': {
+        codename: 'BQT-F26',
+        image: 'FUZZY WIRE FLOWERS/26.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Evoke calm and gentle delight with BQT-F26. This serene bouquet features handcrafted fuzzy wire flowers in soft lavender and pristine white, creating a peaceful, soothing display. Its delicate colors and lasting texture make it a beautiful, enduring gift that brings lasting joy.',
+        color: 'Soft Lavender and Pristine White, Soft Lavender/Textured White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Purple Lilac Blooms, White Daisies, and White Tulip accents).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Lavender and Textured White Tones), White Printed Satin Ribbon.',
+            'Suggested Occasions: Birthday, Get Well Soon, Housewarming, Sympathy, or a thoughtful expression of grace and serenity.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F27 (BQT-FZW-27) ---
+    'F27': {
+        codename: 'BQT-F27',
+        image: 'FUZZY WIRE FLOWERS/27.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Indulge in vibrant romance with BQT-F27. This gorgeous bouquet features a luxurious collection of handcrafted fuzzy wire flowers in passionate reds, vibrant pinks, and cheerful purples. Symbolizing deep affection and glamour, its bold, permanent blooms make it an unforgettable gift for the one you adore.',
+        color: 'Passionate Reds, Vibrant Pinks, and Cheerful Purples, Deep Pink/Red Mesh Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Deep Red Roses/Peonies, Vibrant Pink Lilies, Purple Lilac Clusters, and Red accent blooms).',
+            'Arrangement Size: Approximately 10-12 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Decorative Wrappers (Solid Deep Pink and Red Tulle/Mesh), Wide Satin Ribbon in matching tones.',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Birthday, Proposal, or an extravagant expression of love and desire.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F28 (BQT-FZW-28) ---
+    'F28': {
+        codename: 'BQT-F28',
+        image: 'FUZZY WIRE FLOWERS/28.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten any day with the sweet charm of BQT-F28. This cheerful bouquet features handcrafted fuzzy wire daisies with white petals and sunny yellow centers, symbolizing purity and new beginnings. Its lively display and lasting form make it a delightful, enduring keepsake.',
+        color: 'Pristine White and Sunny Yellow, Crisp White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Numerous White Daisies with Yellow Centers).',
+            'Arrangement Size: Approximately 15-20 individual daisy blooms, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Crisp White Tones), Sheer Gold Organza Ribbon.',
+            'Suggested Occasions: Birthday, Get Well Soon, Thank You, Housewarming, Mother\'s Day, or simply to spread happiness and cheer.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F29 (BQT-FZW-29) ---
+    'F29': {
+        codename: 'BQT-F29',
+        image: 'FUZZY WIRE FLOWERS/29.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate warmth and cheer with the radiant beauty of BQT-F29. This stunning bouquet features handcrafted fuzzy wire flowers in sun-kissed yellow, creamy white, and deep brown accents, capturing the essence of a bright summer day. Its lasting, textured blooms bring a cheerful touch to any space, serving as a beautiful reminder of joy.',
+        color: 'Sun-kissed Yellow, Creamy White, and Deep Brown Accents, Tan/Cream/Brown Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Yellow Sunflowers, Yellow Daisies, a Cream Ruffle Rose/Peony, and a Cream Tulip).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Warm Tan, Cream, and Brown Tones), Iridescent Organza and Satin Ribbons.',
+            'Suggested Occasions: Birthday, Housewarming, Get Well Soon, Graduation, or a heartfelt expression of optimism and warmth.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F30 (BQT-FZW-30) ---
+    'F30': {
+        codename: 'BQT-F30',
+        image: 'FUZZY WIRE FLOWERS/30.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Embrace the lushness of a secret garden with BQT-F30. This exquisite bouquet features handcrafted fuzzy wire flowers in vibrant greens, delicate whites, and sunny yellows, accented with soft butterflies. Its fresh color palette and permanent texture create a serene, enduring gift, perfect for nature lovers.',
+        color: 'Vibrant Greens, Delicate Whites, and Sunny Yellows, Green/White Wrappers, Butterfly Accents',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Green and White Lilies, Yellow Daisies, various textured green fillers, and soft white butterfly accents).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Fresh Green and Crisp White Tones), Green Satin Ribbon.',
+            'Suggested Occasions: Housewarming, Get Well Soon, Mother\'s Day, Thank You, or as a unique gift for a plant enthusiast.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F31 (BQT-FZW-31) ---
+    'F31': {
+        codename: 'BQT-F31',
+        image: 'FUZZY WIRE FLOWERS/31.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Ignite a magical moment with BQT-F31. This enchanting bouquet features handcrafted fuzzy wire pink tulips, elegantly accented with soft fairy lights and nestled among delightful chocolates. Perfect for a romantic surprise, its gentle glow, beautiful textures, and sweet treats make it an unforgettable, everlasting gift.',
+        color: 'Soft Pink and White, Pink/White Wrappers, Integrated Fairy Lights',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Pink Tulips and delicate filler accents).',
+            'Arrangement Size: Approximately 10-12 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Decorative Wrappers (Solid Soft Pink and Sheer White Netting), Satin and Sheer Ribbons, Integrated Fairy Lights, Chocolates/Gifts.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Proposal, or a magical expression of love and care.',
+            'Complimentary Inclusions: Message card, Chocolates, Fairy Lights.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F32 (BQT-FZW-32) ---
+    'F32': {
+        codename: 'BQT-F32',
+        image: 'FUZZY WIRE FLOWERS/32.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Bring the freshness of a lush meadow indoors with BQT-F32. This playful bouquet features handcrafted fuzzy wire flowers in cheerful yellow, crisp white, and vibrant green foliage, including striped leaves. Its lively energy and unique textures create a beautiful, lasting piece of nature-inspired decor.',
+        color: 'Cheerful Yellow, Crisp White, and Vibrant Green (Striped Foliage), White/Soft Green Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Yellow Blooms, White Daisies, Green and White Striped Lilies/Foliage, and textured green fillers).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Crisp White and Soft Green Tones, with Newspaper Accents), Pale Green Satin Ribbon.',
+            'Suggested Occasions: Housewarming, Get Well Soon, Birthday, Graduation, or a unique gift for a plant lover.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F33 (BQT-FZW-33) ---
+    'F33': {
+        codename: 'BQT-F33',
+        image: 'FUZZY WIRE FLOWERS/33.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Unleash a magical charm with BQT-F33. This fantastical bouquet showcases handcrafted fuzzy wire flowers in soft purples, iridescent white, and delicate greens, highlighted by a majestic sheer wing accent. Perfect for a unique gift, its dreamy composition and lasting texture create an ethereal, enduring piece of art.',
+        color: 'Soft Purples, Iridescent White, and Delicate Greens, White/Purple Wrappers, Sheer Wing Accent',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Purple Lilies, White Tulips, Iridescent Filler Blooms, and green foliage).',
+            'Arrangement Size: Approximately 8-10 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Decorative Wrappers (Solid White and Sheer Iridescent Purple Netting), Satin and Sheer Ribbons, Large Sheer Wing Accent.',
+            'Suggested Occasions: Birthday, Graduation, Baby Shower, Costume Party/Event, or a magical expression of creativity and joy.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F34 (BQT-FZW-34) ---
+    'F34': {
+        codename: 'BQT-F34',
+        image: 'FUZZY WIRE FLOWERS/34.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Infuse any space with warmth and vibrant energy using BQT-F34. This captivating bouquet features handcrafted fuzzy wire flowers in cheerful yellows, brilliant oranges, and soft whites, accented with fresh green foliage. Perfect for celebrating happiness and success, its dazzling colors and lasting form make it a wonderful, enduring gift.',
+        color: 'Cheerful Yellows, Brilliant Oranges, and Soft Whites, Soft Yellow/White Wrappers',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Yellow Tulips, Bright Orange Daisies/Anemones, White Daisies, and various yellow and white accent blooms).',
+            'Arrangement Size: Approximately 10-12 prominent blooms with fillers, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Soft Yellow and White Tones), Yellow Satin Ribbon.',
+            'Suggested Occasions: Birthday, Housewarming, Get Well Soon, Graduation, or a cheerful expression of optimism and appreciation.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F35 (BQT-FZW-35) ---
+    'F35': {
+        codename: 'BQT-F35',
+        image: 'FUZZY WIRE FLOWERS/35.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Capture hearts with the ultimate cute gesture: BQT-F35. This enchanting bouquet features a miniature fuzzy wire teddy bear nestled among handcrafted fuzzy wire flowers in soft pinks, gentle purples, and creamy whites. Perfect for celebrating love, friendship, or a new arrival, its unique charm and lasting beauty make it an unforgettable keepsake filled with warmth and affection.',
+        color: 'Soft Pinks, Gentle Purples, and Creamy Whites, Pink/White Wrappers, Teddy Bear Accent',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Soft Pink Roses/Peonies, Purple Tulips, Creamy White Daisies, and accent blooms).',
+            'Arrangement Size: Approximately 8-10 blooms and the teddy bear, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper/Non-woven Wrappers (Solid Soft Pink and White Tones), Sheer Pink Ribbon, Miniature Fuzzy Wire Teddy Bear.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Baby Shower, or a tender gesture of friendship and care.',
+            'Complimentary Inclusions: Message card, Miniature Fuzzy Wire Teddy Bear.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+
+    // --- Product F36 (BQT-FZW-36) ---
+    'F36': {
+        codename: 'BQT-F36',
+        image: 'FUZZY WIRE FLOWERS/36.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Share a charming, unforgettable gift with BQT-F36. This exquisite bouquet features large handcrafted fuzzy wire pink and white lilies, centered around an adorable soft plush pink bunny. Symbolizing tenderness and love, its luxurious blooms and cuddly accent make it a perfect, enduring keepsake for a cherished one.',
+        color: 'Pink and White, Soft Pink/Cream Wrappers, Plush Bunny Accent',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers (Large Pink Lilies, White Lilies, and pink filler flowers).',
+            'Arrangement Size: Approximately 4-6 large lily blooms with the plush toy, Hand-tied bouquet (Size may vary slightly).',
+            'Materials: Fuzzy Chenille Wire, Craft Paper Wrappers (Soft Pink and Cream Tones), Wide Sheer Ribbon, Special Inclusion: Soft Plush Pink Bunny centerpiece.',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Birthday, Baby Shower (Girl), or a tender declaration of deep affection.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Avoid Wetness: These are permanent, handcrafted flowers and do not require water.',
+            'Dusting/Cleaning: To remove dust, gently shake the bouquet or use a soft, dry brush or a low-power setting on a vacuum with a brush attachment.',
+            'Avoid Direct Sunlight: Place the bouquet away from prolonged, intense direct sunlight to prevent potential color fading over time.',
+            'Reshape Gently: If the flowers or leaves lose their shape, you can gently reshape them by hand since they are made with flexible wire.',
+            'Keep Dry: Avoid getting the bouquet wet, as moisture could affect the materials and shape of the wire flowers and wrapping.',
+            'Store Safely: When not on display, store the bouquet in a cool, dry place away from heavy objects that could crush the delicate wires.'
+        ]
+    },
+    
+    //Lego
+
+   'L1': {
+        codename: 'BQT-L1',
+        image: 'LEGO FLOWERS/1L.png',
+        basePrice: '1,399.00',
+        description: 'Elevate your display and showcase your creativity with BQT-L1, a cheerful and vibrant brick flower bouquet. Featuring a lively mix of colorful blooms, this stunning arrangement brings warmth and joy to any occasion. Its vivid hues and intricate details are sure to inspire delight and admiration wherever it’s placed.',
+        color: 'Warm, Elegant Tones, Brown/Tan Wrappers',
+        inclusions: [
+            'Flowers: Sunflower, Red Rose, Pink Tulip, Dragonfly/Butterfly accent, Daisies, and delicate Baby\'s Breath fillers.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 10-15 stems; Arm bouquet.',
+            'Materials: High-quality building bricks (ABS plastic), Non-woven wrappers, Decorative ribbon, and delicate net fabric.',
+            'Suggested Occasions: Decoration, Gifting (Birthday, Get Well, Graduation), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L2': {
+        codename: 'BQT-L2',
+        image: 'LEGO FLOWERS/2L.png',
+        basePrice: '1,599.00',
+        description: 'Elevate your display and express your creativity with BQT-L2, a bright and lively brick flower bouquet. Featuring bold Sunflowers and striking Blue Roses, this stunning arrangement adds warmth and charm to any celebration. Its vivid colors and unique details are sure to inspire joy, admiration, and delight.',
+        color: 'Bright, Lively, Sunflowers and striking Blue Roses, Blue Ribbon',
+        inclusions: [
+            'Flowers: Sunflowers (dominant), Blue Rose, Baby\'s Breath fillers, and Green Eucalyptus accents.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 8-12 stems; Arm bouquet.',
+            'Materials: High-quality building bricks (ABS plastic), Non-woven wrappers, Blue Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Graduation, Promotion, Birthday), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L3': {
+        codename: 'BQT-L3',
+        image: 'LEGO FLOWERS/3L.png',
+        basePrice: '899.00',
+        description: 'Elevate your display and demonstrate your creative flair with BQT-L3. This exquisite bouquet showcases two prominent Pink Daisies, perfect for a cheerful gift or any special occasion. Its soft pink hues and enchanting details are sure to uplift and evoke feelings of delight and admiration.',
+        color: 'Exquisite, Soft Pink Hues, Light Blue/Mint Wrappers with star accents',
+        inclusions: [
+            'Flowers: Two large Pink Daisies/Cosmos, Baby\'s Breath fillers, and delicate greenery.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 2 main stems; Small table display.',
+            'Materials: High-quality building bricks (ABS plastic), Light Blue/Mint wrappers with star accents, Pink Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Valentine\'s Day, Mother\'s Day, Anniversary), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L4': {
+        codename: 'BQT-L4',
+        image: 'LEGO FLOWERS/4L.png',
+        basePrice: '1,199.00',
+        description: 'Elevate your display and show off your creativity with BQT-L4, a charming brick flower bouquet featuring bright Sunflowers and delicate Daisies. This classic arrangement, wrapped in soft pastels, radiates warmth and cheer perfect for brightening any space and inspiring delight and admiration.',
+        color: 'Charming, Warm, Soft Pastels (Green/Orange/Neutral) Wrappers, Yellow Ribbon',
+        inclusions: [
+            'Flowers: Sunflower, Yellow and White Daisies, Baby\'s Breath fillers, and Green Eucalyptus accents.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 8-10 stems; Table display.',
+            'Materials: High-quality building bricks (ABS plastic), Pastel Green/Orange/Neutral wrappers, Yellow Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Graduation, Thank You, Housewarming), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L5': {
+        codename: 'BQT-L5',
+        image: 'LEGO FLOWERS/5L.png',
+        basePrice: '1,699.00',
+        description: 'Elevate your display and express your creativity with BQT-L5, a sophisticated brick flower bouquet featuring a striking blend of classic and exotic blooms. Wrapped in sleek, dramatic black packaging, this elegant arrangement captivates with its rich colors and intricate details, evoking feelings of delight and admiration.',
+        color: 'Sophisticated, Dramatic, Striking Blooms, Black and Gray Wrappers',
+        inclusions: [
+            'Flowers: White Lily, Red Rose, Orange/Red Daisy, Yellow Tulip/Daffodil, Small Sunflower, and delicate fillers.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 8-10 stems; Modern style arrangement.',
+            'Materials: High-quality building bricks (ABS plastic), Black and gray non-woven wrappers, Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Proposal, Anniversary, Special Milestones), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L6': {
+        codename: 'BQT-L6',
+        image: 'LEGO FLOWERS/6L.png',
+        basePrice: '1,399.00',
+        description: 'Elevate your display and express your creativity with BQT-L6, an elegant brick flower bouquet featuring three large, stunning Pink Peonies (or roses). Perfect for any special occasion, its soft pink tones and intricate details exude charm and grace, inspiring feelings of joy and admiration.',
+        color: 'Elegant, Soft Pink Tones, Sheer and Brown Wrappers, Gold Ribbon',
+        inclusions: [
+            'Flowers: Three large Pink Peonies/Roses, Green leaves, and Eucalyptus accents.',
+            'Arrangement Size: Hand-tied Bouquet; 3 main stems; Tabletop display.',
+            'Materials: High-quality building bricks (ABS plastic), Sheer and brown non-woven wrappers, Gold Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Mother\'s Day, Anniversary, Valentine\'s Day, Birthday).',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L7': {
+        codename: 'BQT-L7',
+        image: 'LEGO FLOWERS/7L.png',
+        basePrice: '1,499.00',
+        description: 'Elevate your display and express your creativity with BQT-L7, an elegant brick flower bouquet featuring a bold Sunflower and a delicate Pink Rose. Wrapped in vibrant purple packaging, this charming arrangement captivates with its vivid colors and intricate details, inspiring joy and admiration.',
+        color: 'Elegant, Vibrant Purple Wrappers, Bold Sunflower and Pink Rose',
+        inclusions: [
+            'Flowers: Sunflower, Pink Rose (or Peony), White Daisies, Baby\'s Breath fillers, Eucalyptus accents, and small brick accents (like a small cake/candy bar).',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 8-12 stems; Tabletop display.',
+            'Materials: High-quality building bricks (ABS plastic), Purple and sheer glitter wrappers, Pink Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Birthday, Valentine\'s Day, Anniversary), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L8': {
+        codename: 'BQT-L8',
+        image: 'LEGO FLOWERS/8L.png',
+        basePrice: '1,299.00',
+        description: 'Elevate your display and express your creativity with BQT-L8, a stunning brick flower bouquet featuring vibrant Orange Tulips accented with clear and pink tones. Enhanced by built-in LED lights, its warm glow and intricate details make it perfect for night-time displays, inspiring delight and admiration.',
+        color: 'Stunning, Vibrant Orange Tulips, Built-in LED Lights, Light Green/Mint Wrappers',
+        inclusions: [
+            'Flowers: Several large Orange Tulips, clear/pink accent flowers, and Baby\'s Breath fillers.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 5-7 main stems; Tabletop display.',
+            'Materials: High-quality building bricks (ABS plastic), Light Green/Mint wrappers, Pink Ribbon, Built-in LED fairy lights.',
+            'Suggested Occasions: Decoration, Gifting (Romantic occasions, Birthdays, Graduations), Hobby, Relaxation.',
+            'Complimentary Inclusions: Building instructions, Battery-powered LED lights, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L9': {
+        codename: 'BQT-L9',
+        image: 'LEGO FLOWERS/9L.png',
+        basePrice: '1,899.00',
+        description: 'Elevate your display and express your creativity with BQT-L9, an elegant brick flower bouquet featuring delicate Pink Roses adorned with graceful butterflies. Wrapped in refined white packaging, its soft hues and romantic details beautifully symbolize devotion and love.',
+        color: 'Elegant, Romantic Pink Roses and Butterflies, Refined White Wrappers',
+        inclusions: [
+            'Flowers: Three Pink Roses, Pink Baby\'s Breath fillers, and two butterfly accents.',
+            'Arrangement Size: Hand-tied Bouquet; 3 main stems; Classic table display.',
+            'Materials: High-quality building bricks (ABS plastic), Premium White non-woven wrappers, Pink Ribbon.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Mother\'s Day, Proposal.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L10': {
+        codename: 'BQT-L10',
+        image: 'LEGO FLOWERS/10L.png',
+        basePrice: '1,399.00',
+        description: 'Elevate your display and express your creativity with BQT-L10, a delightful brick flower bouquet featuring charming Pink Daisies or Mini-Roses. Nestled in soft pastel packaging, its gentle pink and blue tones make it perfect for gifting or celebrating any special occasion.',
+        color: 'Delightful, Gentle Pink and Blue Tones, Soft Pastel Pink and Light Blue Wrappers',
+        inclusions: [
+            'Flowers: Two large Pink Daisies/Cosmos, Baby\'s Breath fillers, and delicate greenery.',
+            'Arrangement Size: Hand-tied Bouquet; 2 main stems; Small table display.',
+            'Materials: High-quality building bricks (ABS plastic), Pastel Pink and Light Blue wrappers, Bright Pink Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Birthday, Baby Shower, Graduation), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L11': {
+        codename: 'BQT-L11',
+        image: 'LEGO FLOWERS/11L.png',
+        basePrice: '1,999.00',
+        description: 'Elevate your display and express your creativity with BQT-L11, a stunning brick flower bouquet featuring three striking Black Roses. Wrapped in bold red and black packaging, this arrangement exudes mysterious elegance and powerful style, captivating with its unique colors and inspiring admiration.',
+        color: 'Stunning, Mysterious Elegance, Bold Red, Black, and Silver-starred Wrappers',
+        inclusions: [
+            'Flowers: Three large Black Roses, White Baby\'s Breath fillers, and Green leaves.',
+            'Arrangement Size: Hand-tied Bouquet; 3 main stems; Bold, modern display.',
+            'Materials: High-quality building bricks (ABS plastic), Red, Black, and Silver-starred wrappers, Black Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Formal Events, Anniversaries, Unique Gifts), Hobby.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L12': {
+        codename: 'BQT-L12',
+        image: 'LEGO FLOWERS/12L.png',
+        basePrice: '1,599.00',
+        description: 'Elevate your display and express your creativity with BQT-L12, an elegant brick flower bouquet featuring three delicate Pink Roses surrounded by white fillers. Wrapped in beautiful purple and pink packaging, its charming colors and intricate details make it perfect for conveying admiration and affection.',
+        color: 'Elegant, Charming Colors, Beautiful Purple and Pink Wrappers',
+        inclusions: [
+            'Flowers: Three Pink Roses (or Peonies), White Baby\'s Breath fillers, and Green leaves.',
+            'Arrangement Size: Hand-tied Bouquet; 3 main stems; Classic table display.',
+            'Materials: High-quality building bricks (ABS plastic), Purple and Pink non-woven wrappers, Pink Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Birthday, Anniversary, Valentine\'s Day), Hobby.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L13': {
+        codename: 'BQT-L13',
+        image: 'LEGO FLOWERS/13L.png',
+        basePrice: '1,499.00',
+        description: 'Elevate your display and express your creativity with BQT-L13, a beautiful brick flower bouquet featuring elegant Pink Tulips paired with delicate mini Pink Roses. Wrapped in soft, romantic pastel packaging, its gentle hues and intricate details make it perfect for conveying affection and joy.',
+        color: 'Beautiful, Romantic, Gentle Hues, Cream/Neutral and sheer Pink Wrappers',
+        inclusions: [
+            'Flowers: Three large Pink Tulips, multiple small Pink Flowers (mini-roses/daisies), and White Baby\'s Breath fillers.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 8-10 stems; Romantic table display.',
+            'Materials: High-quality building bricks (ABS plastic), Cream/Neutral and sheer Pink wrappers, Pink Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Mother\'s Day, Valentine\'s Day, Anniversary), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L21': {
+        codename: 'BQT-L21',
+        image: 'LEGO FLOWERS/21L.png',
+        basePrice: '1,199.00',
+        description: 'Elevate your display and express your creativity with BQT-L21, an elegant minimalist bouquet featuring a single delicate Pink Rose surrounded by white fillers. Wrapped in luxurious gold-accented pink paper, it’s a timeless expression of simple, enduring love and admiration.',
+        color: 'Elegant, Minimalist, Luxurious Pink and Gold-trimmed Wrappers',
+        inclusions: [
+            'Flowers: Single Pink Rose, White Baby\'s Breath fillers.',
+            'Arrangement Size: Hand-tied Bouquet; 1 main stem; Small, intimate display.',
+            'Materials: High-quality building bricks (ABS plastic), Light Pink and Gold-trimmed wrappers, Gold Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Anniversary, Valentine\'s Day, Simple Expression of Love), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L22': {
+        codename: 'BQT-L22',
+        image: 'LEGO FLOWERS/22L.png',
+        basePrice: '1,599.00',
+        description: 'Elevate your display and express your creativity with BQT-L22, a captivating bouquet featuring three vibrant Blue Roses accented by white fillers. Wrapped in soft pink, its striking contrast embodies mystery and unattainable beauty, making it a romantic and unique statement.',
+        color: 'Captivating, Romantic, Blue Roses and White Fillers, Soft Pink Wrappers',
+        inclusions: [
+            'Flowers: Three Blue Roses, White Baby\'s Breath fillers.',
+            'Arrangement Size: Hand-tied Bouquet; 3 main stems; Classic table display.',
+            'Materials: High-quality building bricks (ABS plastic), Light Pink and Sheer wrappers, Pink Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Unique Gifts, Anniversary, Birthday, Proposal), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L23': {
+        codename: 'BQT-L23',
+        image: 'LEGO FLOWERS/23L.png',
+        basePrice: '1,499.00',
+        description: 'Elevate your display and express your creativity with BQT-L23, a captivating bouquet featuring a bright Sunflower paired with soft Pink Roses. Wrapped in striking "Starry Night" themed paper, its unique, artistic presentation is sure to inspire delight and admiration.',
+        color: 'Captivating, Unique, Artistic, Starry Night/Galaxy Patterned Wrappers',
+        inclusions: [
+            'Flowers: Single Sunflower, Two Pink Roses, White Baby\'s Breath fillers, and Green Eucalyptus accents.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 6-8 stems; Medium display size.',
+            'Materials: High-quality building bricks (ABS plastic), Starry Night/Galaxy patterned wrappers, Light Blue/Lavender Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Birthday, Graduation, Art Lovers, Unique Gifts), Hobby, Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+    'L24': {
+        codename: 'BQT-L24',
+        image: 'LEGO FLOWERS/24L.png',
+        basePrice: '1,399.00',
+        description: 'Elevate your display and express your creativity with BQT-L24, a vibrant bouquet featuring a bright Sunflower paired with cheerful Daisies. Wrapped in striking lavender and purple papers, its lively yellow and purple contrast is sure to inspire delight and admiration.',
+        color: 'Vibrant, Lively Yellow and Purple Contrast, Lavender and Purple Wrappers',
+        inclusions: [
+            'Flowers: Single Sunflower, Two Yellow Daisies, White Baby\'s Breath fillers, and Green Eucalyptus accents.',
+            'Arrangement Size: Hand-tied Bouquet; Approx. 6-8 stems; Medium display size.',
+            'Materials: High-quality building bricks (ABS plastic), Lavender and Purple non-woven wrappers, Black Ribbon.',
+            'Suggested Occasions: Decoration, Gifting (Birthday, Get Well, Thank You, Hobby), Relaxation.',
+            'Complimentary Inclusions: Message card, Decorative wrapping and ribbon.'
+        ],
+        care: [
+            'Trim the Stems: Not necessary. Plastic stems don\'t absorb water, so there\'s no need to cut them at an angle.',
+            'Change Water Daily: Do not use water. Brick flowers don\'t need water; avoid placing them in any, especially if they have LEDs.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot. Too much sun or heat can cause the colors to slowly fade.',
+            'Remove Wilting Petals: Regularly dust! Use a soft brush or air duster to keep the petals and leaves clean.',
+            'No to Heater and Fan Exposure: Not necessary. The plastic won\'t dry out or wilt, so heat and fans are fine.',
+            'Cleaning Tip: If a more thorough cleaning is needed, you may wash the flower heads in lukewarm, soapy water, rinse them gently, and allow them to air dry completely.'
+        ]
+    },
+
+
+    //Plastic
+
+    'PL1': {
+        codename: 'BQT-PL1',
+        image: 'PLASTIC FLOWERS/1P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your space or gifting with this exquisite Permanent Plastic Lily Arrangement. Featuring realistic purple-mauve blooms, it offers lasting beauty with no maintenance required. Its serene color and elegant design evoke grace, sophistication, and timeless charm.',
+        color: 'Realistic Purple-Mauve Blooms, Simple Glass Vase',
+        inclusions: [
+            'Flowers: Realistic Plastic/Acrylic Calla Lilies (Purple/Mauve) on thin, detailed plastic stems.',
+            'Arrangement Size: 6 stems, 6 inches tall, pre-arranged in a simple glass vase.',
+            'Materials: Durable High-Quality Plastic/Acrylic, Glass vase (filled with clear acrylic/resin to simulate water).',
+            'Suggested Occasions: Office Decor, Housewarming, Birthday, Long-Term Home Décor, Retirement, Sympathy/Memorial.',
+            'Complimentary Inclusions: Message card, Clear glass vase.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL2': {
+        codename: 'BQT-PL2',
+        image: 'PLASTIC FLOWERS/2P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Elevate your space or gifting with this exquisite Permanent Plastic Flower Pot. Showcasing delicate sheer blooms in enchanting purple and white, this piece offers lasting beauty with playful charm. Its vibrant hues and whimsical design are sure to uplift and evoke feelings of joy, grace, and enduring delight.',
+        color: 'Enchanting Purple and White, Decorative Pot',
+        inclusions: [
+            'Flowers: Handcrafted Plastic Flowers (Purple and White), accented with soft pom-poms and delicate greenery.',
+            'Arrangement Size: 6-7 main flowers, 8 inches tall, presented in a decorative pot.',
+            'Materials: Durable Colored Plastic, Foam pom-poms, Wire stems, Decorative paper-wrapped pot, White ribbon tie.',
+            'Suggested Occasions: Birthday, Mother\'s Day, Office Decor, Housewarming.',
+            'Complimentary Inclusions: Message card, Decorative butterfly accent.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL3': {
+        codename: 'BQT-PL3',
+        image: 'PLASTIC FLOWERS/3P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your space or gifting with this elegant Permanent Plastic Flower Pot. Featuring durable, enchanting purple and white blooms, it offers lasting beauty with zero maintenance. Its vibrant colors and delightful accents are sure to uplift and evoke feelings of joy, grace, and enduring charm.',
+        color: 'Vibrant Purple, Lilac, and White, Decorative Pot',
+        inclusions: [
+            'Flowers: Durable Plastic/Acrylic Flowers (Purple, Lilac, and White), accented with soft plastic berry clusters and delicate greenery.',
+            'Arrangement Size: 6-7 main flowers, 8 inches tall, presented in a decorative pot.',
+            'Materials: High-Quality Plastic/Acrylic and wire stems, Foam/plastic berry accents, Decorative paper-wrapped pot, White ribbon tie.',
+            'Suggested Occasions: Birthday, Mother\'s Day, Office Decor, Housewarming, Children\'s Room Accent, Get Well Soon.',
+            'Complimentary Inclusions: Message card, Decorative butterfly accent.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL4': {
+        codename: 'BQT-PL4',
+        image: 'PLASTIC FLOWERS/4P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your home or office with this exquisite Permanent Plastic Lily Arrangement. Featuring realistic soft pink lilies, this piece provides lasting beauty with zero maintenance. Its serene colors and elegant design evoke feelings of tranquility, sophistication, and timeless charm.',
+        color: 'Realistic Soft Pink Lilies, Striped Ceramic Pot',
+        inclusions: [
+            'Flowers: Realistic Plastic/Acrylic Lilies (Soft Pink) with detailed plastic stems, buds, and leaves.',
+            'Arrangement Size: 6 blooms, 10 inches tall, pre-arranged in a decorative ceramic pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic and wire, Decorative Ceramic Pot (striped brown/white).',
+            'Suggested Occasions: Office Decor, Housewarming, Mother\'s Day, Long-Term Home Décor, Retirement, Sympathy/Memorial.',
+            'Complimentary Inclusions: Message card, Decorative ceramic pot.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL5': {
+        codename: 'BQT-PL5',
+        image: 'PLASTIC FLOWERS/5P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Transform your space with this unique Permanent Plastic Flower Sculpture. Featuring vibrant red and pink blooms with textured details, this artistic piece offers durability and zero maintenance. Its bold colors and innovative design are sure to inspire creativity, uplift spirits, and add lasting charm.',
+        color: 'Vibrant Red and Pink, Artistic, Recycled Plastic Base',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Flowers (Red and Pink) with a translucent, speckled texture, attached to plastic stems and leaves.',
+            'Arrangement Size: 4 main blooms, 8 inches tall, presented in a decorative plastic base.',
+            'Materials: Durable Recycled/High-Quality Plastic/Acrylic, Plastic base (appearing green, possibly from a recycled bottle).',
+            'Suggested Occasions: Unique Gift, Housewarming, Office Decor, Birthday, Sustainable Gift Idea.',
+            'Complimentary Inclusions: Message card, Decorative plastic base.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL6': {
+        codename: 'BQT-PL6',
+        image: 'PLASTIC FLOWERS/6P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten your space with this cheerful Permanent Plastic Daisy Pot. Featuring vibrant red gerbera-style blooms and lush green leaves, this low-maintenance piece adds a lively pop of color. Its fresh design is sure to uplift and evoke feelings of happiness, energy, and enduring joy.',
+        color: 'Vibrant Red Gerbera Daisies, Brown Pot',
+        inclusions: [
+            'Flowers: Realistic Plastic/Acrylic Gerbera Daisies (Vibrant Red with yellow centers), detailed plastic stems and broad green leaves.',
+            'Arrangement Size: 3 main blooms, 10 inches tall, presented in a decorative pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic, Decorative pot (brown).',
+            'Suggested Occasions: Office Decor, Housewarming, Birthday, Brightening a Room, Thank You.',
+            'Complimentary Inclusions: Message card, Decorative pot.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL7': {
+        codename: 'BQT-PL7',
+        image: 'PLASTIC FLOWERS/7P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten your space with this cheerful Permanent Plastic Flower Pot. Featuring vibrant, uniquely colored blooms, this low-maintenance piece adds a lively touch to any setting. Its bold hues are sure to uplift and evoke feelings of happiness, energy, and enduring joy.',
+        color: 'Multi-color: Red, Yellow, Pink, Purple, Orange/Yellow Ceramic Pot',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Flowers (Multi-color: Red, Yellow, Pink, Purple) with green plastic stems and foliage.',
+            'Arrangement Size: 9-10 blooms, 12 inches tall, presented in a decorative pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic and wire, Decorative Ceramic Pot (Orange/Yellow) with white stone filling.',
+            'Suggested Occasions: Office Decor, Housewarming, Birthday, Brightening a Room, Children\'s Room Accent.',
+            'Complimentary Inclusions: Message card, Decorative ceramic pot, White decorative stone filling.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL8': {
+        codename: 'BQT-PL8',
+        image: 'PLASTIC FLOWERS/8P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your décor with this stunning Permanent Plastic Beaded Lily Arrangement. Featuring intricately beaded lilies in vibrant orange-red, this low-maintenance piece brings artistic flair and bold color to any space. Its unique texture and vibrant hue are sure to inspire creativity, energy, and lasting beauty.',
+        color: 'Vibrant Orange-Red, Intricately Beaded, Ornate Sculpted Vase',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Beaded Lilies (Orange-Red) with green plastic stems and leaves, designed to resemble a glass bead craft.',
+            'Arrangement Size: 3 main blooms, 14 inches tall, pre-arranged in a decorative sculpted vase.',
+            'Materials: Durable High-Quality Plastic/Acrylic Beading, Ornate Ceramic Pot/Vase (Brown/Orange with carved details).',
+            'Suggested Occasions: Unique Gift, Housewarming, Office Decor, Artistic Accent, Birthday.',
+            'Complimentary Inclusions: Message card, Decorative sculpted ceramic vase.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL9': {
+        codename: 'BQT-PL9',
+        image: 'PLASTIC FLOWERS/9P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Transform your space with this serene Permanent Pink Lotus Arrangement. Featuring lifelike lotus blooms in soft, vibrant pink, this maintenance-free piece brings enduring beauty and tranquility. Its graceful design and calming hues are sure to evoke feelings of peace, elegance, and spiritual harmony.',
+        color: 'Lifelike Vibrant Pink Lotus, Decorative Pink Box/Vase',
+        inclusions: [
+            'Flowers: Realistic High-Quality Plastic/Silk Blend Lotus Flowers (Vibrant Pink) with natural-looking stems and a closed bud accent.',
+            'Arrangement Size: 6 blooms + 1 bud, 12 inches tall, elegantly presented in a round box/vase.',
+            'Materials: Durable Plastic/Silk Blend, Decorative Round Box/Vase (Pink, with "MR. FLORIST" branding).',
+            'Suggested Occasions: Office Decor, Housewarming, Birthday, Meditation Space Accent, Mother\'s Day, Spa/Relaxation Gift.',
+            'Complimentary Inclusions: Message card, Decorative round box/vase.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL10': {
+        codename: 'BQT-PL10',
+        image: 'PLASTIC FLOWERS/10P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten your space with this enchanting Permanent Plastic Floral Bouquet. Featuring translucent blooms in a vibrant pastel rainbow, this maintenance-free piece adds an artistic, whimsical touch. Its ethereal glow and lively colors are sure to evoke joy, whimsy, and creative charm.',
+        color: 'Translucent Pastel Rainbow, Iridescent Vase',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Resin Flowers (Multi-color: Yellow, Pink, Blue, Purple) with delicate wire stems.',
+            'Arrangement Size: 9-10 flowers, 10 inches tall, pre-arranged in an iridescent vase.',
+            'Materials: Durable High-Quality Plastic/Resin, Iridescent Glass/Acrylic Vase (with a pink/pearl finish).',
+            'Suggested Occasions: Unique Gift, Housewarming, Office Decor, Teen/Dorm Room Accent, Birthday.',
+            'Complimentary Inclusions: Message card, Iridescent accent vase.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL11': {
+        codename: 'BQT-PL11',
+        image: 'PLASTIC FLOWERS/11P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten your space with this exhilarating Permanent Festive Floral Burst. Featuring a vibrant mix of blooms, playful accents, and sparkling details, this maintenance-free arrangement brings an unforgettable burst of joy. Its lively colors and whimsical design are sure to evoke excitement, celebration, and pure delight.',
+        color: 'Vibrant Mix: Hot Pink, Orange, Lime Green, Lilac, Decorative Pink Vase',
+        inclusions: [
+            'Flowers: Handcrafted Fabric and Plastic Flowers (Mix of Hot Pink, Bright Orange, Lime Green, Lilac) with various textures and styles.',
+            'Arrangement Size: Large, 16 inches tall, dynamically arranged in a decorative vase.',
+            'Materials: Durable Fabric, Plastic, and Wire, Sparkling butterfly accents, Ribbon streamers, Curly plastic accents, Beaded strands, Decorative Pink Vase.',
+            'Suggested Occasions: Birthday, Celebration, Party Decor, Teen/Youth Gift, Fun Housewarming, "Just Because" Joy.',
+            'Complimentary Inclusions: Message card, Variety of playful embellishments.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL12': {
+        codename: 'BQT-PL12',
+        image: 'PLASTIC FLOWERS/12P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your space with this captivating Permanent Plastic Floral Display. Featuring vibrant magenta-fuchsia blooms, this bold, maintenance-free piece adds an artistic touch. Its glowing hues and striking color evoke passion, modern elegance, and creative charm.',
+        color: 'Vibrant Magenta/Fuchsia, Artistic Resin, Iridescent Vase',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Resin Flowers (Vibrant Magenta/Fuchsia) with delicate wire stems.',
+            'Arrangement Size: [Specify number of blooms, e.g., 6 flowers, 10 inches tall], pre-arranged in an iridescent vase.',
+            'Materials: Durable High-Quality Plastic/Resin, Iridescent Glass/Acrylic Vase (with a pink/pearl finish).',
+            'Suggested Occasions: Unique Gift, Housewarming, Office Decor, Artistic Statement Piece, Birthday, Modern Romance.',
+            'Complimentary Inclusions: Message card, Iridescent accent vase.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL13': {
+        codename: 'BQT-PL13',
+        image: 'PLASTIC FLOWERS/13P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your décor with this stunning Permanent Plastic Chrysanthemum Display. Featuring rich purple and white blooms, this maintenance-free piece offers an artistic accent with intricate detail. Its bold colors and sophisticated design bring a sense of elegance, beauty, and timeless charm.',
+        color: 'Rich Purple and White, Green Fluted Vase',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Chrysanthemum-style Flowers (Deep Purple with White tips and green centers), with prominent green plastic stems and leaves.',
+            'Arrangement Size: 5-6 main flowers, 12 inches tall, pre-arranged in a decorative plastic vase.',
+            'Materials: Durable High-Quality Plastic/Acrylic, Green Plastic Vase (tall, fluted design).',
+            'Suggested Occasions: Unique Gift, Housewarming, Office Decor, Artistic Statement Piece, Birthday, Modern Home Accent.',
+            'Complimentary Inclusions: Message card, Decorative green plastic vase.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL14': {
+        codename: 'BQT-PL14',
+        image: 'PLASTIC FLOWERS/14P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten your space with this cheerful Permanent Plastic Tulip Pot. Featuring vibrant, multi-colored blooms in a classic tulip design, this maintenance-free piece adds a lively, enduring touch. Its fresh colors and joyful presence are sure to uplift and evoke feelings of happiness and lasting cheer.',
+        color: 'Vibrant Multi-color Tulips, Dark Brown Pot',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Tulip-style Flowers (Multi-color: Red, Blue, Pink, Yellow, Purple, White) with green plastic stems and lush foliage.',
+            'Arrangement Size: 9-10 flowers, 12 inches tall, presented in a decorative pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic, Decorative Pot (Dark brown, wave-edged).',
+            'Suggested Occasions: Office Decor, Housewarming, Birthday, Brightening a Room, Children\'s Room Accent.',
+            'Complimentary Inclusions: Message card, Decorative pot.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL15': {
+        codename: 'BQT-PL15',
+        image: 'PLASTIC FLOWERS/15P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten your desk or small space with this cheerful Permanent Plastic Flower Pot. Featuring vibrant magenta blooms, this maintenance-free piece adds a bold pop of color. Its lively pink hues and simple design are sure to uplift and evoke feelings of joy and lasting cheer.',
+        color: 'Vivid Magenta/Fuchsia, Small White Vase, Dark Stone Filling',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Flowers (Vivid Magenta/Fuchsia with Yellow Centers) with green plastic stems and leaves.',
+            'Arrangement Size: 9 flowers, 8 inches tall, presented in a small, simple vase.',
+            'Materials: Durable High-Quality Plastic/Acrylic, Small Ceramic/Plastic Vase (White/Light color) with dark stone filling.',
+            'Suggested Occasions: Office Decor, Small Gifts, Birthday, Brightening a Shelf, Thank You.',
+            'Complimentary Inclusions: Message card, Decorative stone filling.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL16': {
+        codename: 'BQT-PL16',
+        image: 'PLASTIC FLOWERS/16P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your indoor garden with this charming Permanent Plastic Fuchsia Pot. Featuring delicate bell-shaped blooms in vibrant purple and magenta, this low-maintenance piece offers effortless beauty. Its striking colors and graceful form are sure to uplift and evoke feelings of tranquility and lasting charm.',
+        color: 'Vibrant Purple and Magenta, Textured Taupe Pot',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Fuchsia-style Flowers (Purple and Magenta) on stems with deep green plastic leaves.',
+            'Arrangement Size: 10-12 blooms, 10 inches tall, presented in a decorative pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic and wire, Decorative Textured Plastic Pot (Taupe/Gray).',
+            'Suggested Occasions: Office Decor, Housewarming, Mother\'s Day, Plant Lover Gift, Birthday.',
+            'Complimentary Inclusions: Message card, Decorative textured pot.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL17': {
+        codename: 'BQT-PL17',
+        image: 'PLASTIC FLOWERS/17P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your home décor with this exquisite Permanent Plastic Hanging Orchid Pot. Featuring cascading clusters of soft pink and magenta blooms, this low-maintenance piece exude effortless beauty. Its vibrant colors and graceful, trailing form are perfect for evoking feelings of tranquility, elegance, and timeless charm.',
+        color: 'Cascading Pink and Magenta Orchids, Small Black Pot',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Orchid-style Flowers (Pink and Magenta) with long, trailing stems and broad green plastic leaves.',
+            'Arrangement Size: Multiple cascades, 12 inches tall, presented in a small pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic and wire, Small Black Plastic Pot.',
+            'Suggested Occasions: Office Decor, Housewarming, Mother\'s Day, High Shelf/Table Accent, Birthday.',
+            'Complimentary Inclusions: Message card, Small decorative pot.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL18': {
+        codename: 'BQT-PL18',
+        image: 'PLASTIC FLOWERS/18P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your home décor with this elegant Permanent Plastic Floral Pot. Featuring delicate white blooms with soft purple centers, this low-maintenance piece brings effortless beauty. Its serene colors and graceful design evoke feelings of tranquility, elegance, and timeless charm.',
+        color: 'Delicate White and Purple, Wicker-style Gray Pot',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Flowers (White with Purple Centers) on tall stems with dark green plastic leaves.',
+            'Arrangement Size: Multiple stems, 12 inches tall, presented in a decorative pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic and wire, Wicker-style Plastic Pot (Gray/Natural).',
+            'Suggested Occasions: Office Decor, Housewarming, Mother\'s Day, Bedroom Accent, Birthday.',
+            'Complimentary Inclusions: Message card, Decorative wicker-style pot.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL19': {
+        codename: 'BQT-PL19',
+        image: 'PLASTIC FLOWERS/19P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your contemporary space with this stunning Permanent Plastic Floral Art Piece. Featuring abstract blooms in vibrant blue and white, this maintenance-free arrangement channels the beauty of glass art. Its bold design and tranquil hues evoke sophistication, artistic flair, and timeless elegance.',
+        color: 'Abstract Blue and White Swirls, Glass-like, Clear Glass Vase',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Flowers (Blue and White Swirls/Abstract patterns) on delicate wire stems, designed with a translucent, glass-like appearance.',
+            'Arrangement Size: 9-10 flowers, 10 inches tall, presented in a clear glass vase.',
+            'Materials: Durable High-Quality Plastic/Acrylic, Clear Glass Vase.',
+            'Suggested Occasions: Unique Gift, Housewarming, Office Decor, Modern Art Enthusiast Gift, Birthday, Contemporary Home Accent.',
+            'Complimentary Inclusions: Message card, Clear glass vase.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL20': {
+        codename: 'BQT-PL20',
+        image: 'PLASTIC FLOWERS/20P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Enhance your space with this charming Permanent Plastic Pastel Bouquet. Featuring translucent poppy-style blooms in soft pink, blue, and yellow, this maintenance-free piece brings an ethereal touch to any room. Its gentle hues and sparkling centers evoke feelings of sweetness, whimsy, and delicate beauty.',
+        color: 'Translucent Pastel Pink, Blue, and Yellow, Sparkling Centers',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Resin Flowers (Pastel Pink, Light Blue, Soft Yellow) with sparkling glitter centers and thin stems.',
+            'Arrangement Size: 7-9 flowers, 14 inches long, tied simply with a ribbon (no wrapping).',
+            'Materials: Durable High-Quality Plastic/Resin, Purple/Lavender Ribbon tie.',
+            'Suggested Occasions: Unique Gift, Birthday, Bridal Shower/Baby Shower Accent, Spring Decor, Artistic Statement.',
+            'Complimentary Inclusions: Message card, Sparkling glitter accents.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL21': {
+        codename: 'BQT-PL21',
+        image: 'PLASTIC FLOWERS/21P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Add elegance to your space with this Permanent Plastic Beaded Lily Arrangement. Crafted with pink and lavender blooms and green foliage, it offers sophisticated beauty with zero maintenance. Its delicate design evokes tranquility and timeless charm.',
+        color: 'Beaded Pink and Lavender, Dark Textured Pot',
+        inclusions: [
+            'Flowers: Handcrafted Plastic/Acrylic Beaded Lilies (Pink and Lavender) and closed buds, with intricate green beaded leaves.',
+            'Arrangement Size: 3 main blooms + 2 buds, 12 inches tall, presented in a decorative pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic Beading on wire stems, Decorative Pot (Dark, textured ceramic/plastic).',
+            'Suggested Occasions: Unique Gift, Housewarming, Mother\'s Day, Artisan Accent, Birthday, Sophisticated Home Decor.',
+            'Complimentary Inclusions: Message card, Decorative textured pot.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL22': {
+        codename: 'BQT-PL22',
+        image: 'PLASTIC FLOWERS/22P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten your space with this Permanent Plastic Daisy Pot. Featuring vibrant yellow blooms and lush green leaves, it provides a durable, cheerful accent with zero maintenance. Its lively colors and whimsical charm are sure to uplift and bring lasting joy.',
+        color: 'Vibrant Yellow and Red, Teal/Turquoise Ceramic Pot',
+        inclusions: [
+            'Flowers: Artistic Plastic/Acrylic Flowers (Bright Yellow with Red Centers) with smooth green plastic stems and leaves, possibly crafted from repurposed materials.',
+            'Arrangement Size: 6 main blooms, 15 inches tall, presented in a decorative pot with yellow filling.',
+            'Materials: Durable High-Quality Plastic/Acrylic and wire, Decorative Ceramic Pot (Vibrant Teal/Turquoise) with embossed butterfly and flower details.',
+            'Suggested Occasions: Office Decor, Housewarming, Birthday, Brightening a Room, Unique Artisan Gift.',
+            'Complimentary Inclusions: Message card, Decorative ceramic pot, Yellow decorative filling.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL23': {
+        codename: 'BQT-PL23',
+        image: 'PLASTIC FLOWERS/23P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten your décor with this Permanent Plastic Beaded Floral Display. Featuring intricate yellow and orange lilies and tulips, this piece offers enduring artistry with zero maintenance. Its vibrant colors and detailed craftsmanship are sure to evoke joy, optimism, and timeless beauty.',
+        color: 'Beaded Yellow and Orange Lilies and Tulips, White/Cream Pot',
+        inclusions: [
+            'Flowers: Handcrafted Plastic/Acrylic Beaded Lilies and Tulips (Yellow and Orange) with intricate green beaded leaves and fern accents.',
+            'Arrangement Size: 4 lilies + 3 tulips, 14 inches tall, presented in a decorative pot.',
+            'Materials: Durable High-Quality Plastic/Acrylic Beading on wire stems, Decorative Ceramic/Plastic Pot (White/Cream).',
+            'Suggested Occasions: Unique Gift, Housewarming, Birthday, Artisan Accent, Summer Decor, Sophisticated Home Decor.',
+            'Complimentary Inclusions: Message card, Decorative pot.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+    'PL24': {
+        codename: 'BQT-PL24',
+        image: 'PLASTIC FLOWERS/24P.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate sustainability with this Permanent Recycled Plastic Daisy Display. Featuring handcrafted white and yellow blooms with lush green leaves, this eco-friendly piece offers lasting beauty with zero maintenance. Its vibrant colors and creative design evoke whimsy, resourcefulness, and lasting cheer.',
+        color: 'Recycled White and Yellow Daisies, Green Recycled Plastic Vase/Wrapper',
+        inclusions: [
+            'Flowers: Artistic Recycled Plastic Flowers (White petals with Yellow centers) with unique green plastic foliage and stems.',
+            'Arrangement Size: 7-9 flowers, 10 inches tall, presented in a decorative recycled plastic base.',
+            'Materials: Durable Recycled/High-Quality Plastic/Acrylic (likely from plastic bottles), Green Recycled Plastic Vase/Wrapper tied with a gold ribbon.',
+            'Suggested Occasions: Unique Gift, Housewarming, Office Decor, Eco-Conscious Gift, Birthday, Artistic Statement.',
+            'Complimentary Inclusions: Message card, Decorative gold ribbon tie.'
+        ],
+        care: [
+            'Dust Regularly: Gently dust the flowers with a feather duster or soft brush to maintain their vibrant and detailed appearance.',
+            'Avoid Direct Sunlight: Place arrangements in a shaded spot away from direct window sunlight. Prolonged exposure to intense UV rays can cause colors to fade.',
+            'Spot Clean: Gently wipe smooth surfaces with a damp cloth if needed. Do not submerge arrangements with beaded elements or delicate wraps.',
+            'Handle Gently: Handle arrangements by the vase or stem base. Intricate wire, beaded, or thin plastic components are delicate.',
+            'Safe Storage: Store in a cool, dry place. Pack loosely in a box to prevent crushing or distorting the shape.'
+        ]
+    },
+
+
+    //Paper
+
+   'PR1': {
+        codename : 'BQT-PR1',
+        image: 'PAPER FLOWERS/1PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Elevate your gift with BQT-PR1, a handmade paper flower bouquet in deep purples, blues, and blacks. This striking, everlasting arrangement combines mystery and elegance, making it a unique, unforgettable keepsake perfect for conveying appreciation or dramatic flair.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Lilies, Gladiolus, and Filler flowers)',
+            'Arrangement Size: Arm bouquet (Medium to Large size)',
+            'Materials: Premium Black non-woven and textured paper wrappers, Black Satin Ribbon',
+            'Suggested Occasions: Anniversary, Birthday, Graduation, Housewarming, Unique Gift, Home Decor',
+            'Complimentary Inclusions: (Can be customized, e.g.) Care Instructions Card, Gift Bag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR2': {
+        codename: 'BQT-PR2',
+        image: 'PAPER FLOWERS/2PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate joy with BQT-PR2 a vibrant paper bouquet of bright yellows, sunny oranges, and playful pinks. Each handcrafted bloom is a lasting symbol of warmth and cheer, making this maintenance-free arrangement a perfect gift to brighten any day or celebrate a special milestone.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Sunflowers, Gerbera Daisies, Roses, and Greenery)',
+            'Arrangement Size: Hand-tied bouquet (Medium size)',
+            'Materials: Assorted Colored Paper (including yellow, red, pink, purple, and green), Two-toned non-woven wrappers (Navy blue and light gray), Ribbon',
+            'Suggested Occasions: Birthday, Get Well Soon, Congratulatory Gift, Friendship Day, Just Because, Home Decor',
+            'Complimentary Inclusions: (e.g.) Personalized Message Card, Gift Tag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR3': {
+        codename: 'BQT-PR3',
+        image: 'PAPER FLOWERS/3PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Convey purity with BQT-PR3 a paper bouquet of pristine white gerbera daisies, symbolizing innocence and cheerfulness. Wrapped in stylish newspaper-style paper, this lasting arrangement blends classic elegance with a modern touch, making it a perfect, long-lasting alternative to fresh flowers.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to be White Gerbera Daisies with light yellow centers)',
+            'Arrangement Size: Hand-tied bouquet (Medium size)',
+            'Materials: High-quality White/Cream paper, Newspaper-style printed paper wrappers, White Satin Ribbon',
+            'Suggested Occasions: Wedding Anniversary, Sympathy, Housewarming, New Baby, Minimalist Decor',
+            'Complimentary Inclusions: (e.g.) Care Instructions Tag, Branded Dust Bag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR4': {
+        codename: 'BQT-PR4',
+        image: 'PAPER FLOWERS/4PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Capture enchantment with BQT-PR4 a handcrafted paper flower bouquet of lavender roses, symbolizing love and deep devotion, accented with delicate white blooms. Wrapped in soft, earthy tones, this everlasting arrangement conveys tender feelings and timeless grace, making it a beautiful treasure to cherish.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Lavender Roses, White Tulips or similar accents, and White Filler Flowers/Greenery)',
+            'Arrangement Size: Hand-tied bouquet (Medium size)',
+            'Materials: High-quality colored paper, Cream and Olive Green non-woven wrappers, Pink Satin Ribbon',
+            'Suggested Occasions: Anniversary, Proposal, Valentine\'s Day, Mother\'s Day, Romantic Gift, Engagement',
+            'Complimentary Inclusions: (e.g.) Luxury Brand Tag, Personalized Message Card'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR5': {
+        codename: 'BQT-PR5',
+        image: 'PAPER FLOWERS/5PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Experience serene beauty with BQT-PR5 — a handcrafted paper flower bouquet featuring shades of blue and crisp white, symbolizing mystery, tranquility, and unique love. With sculpted blooms and artistic flair, this stunning arrangement is a perfect gift for those who appreciate elegance and originality.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Blue Roses, Blue Tulips/Lilies, Blue Chrysanthemum/Pincushion Flowers, and White/Blue Accents)',
+            'Arrangement Size: Hand-tied bouquet (Medium to Large size)',
+            'Materials: High-quality colored paper, Two-toned non-woven wrappers (Misty Blue and Purple/Gray), White Tulle, White Satin Ribbon',
+            'Suggested Occasions: Anniversary, Birthday, Graduation, Just Because, Unique Gift, Corporate Gift',
+            'Complimentary Inclusions: (e.g.) Luxury Brand Card, Bouquet Carrying Bag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR6': {
+        codename: 'BQT-PR6',
+        image: 'PAPER FLOWERS/6PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Express affection with BQT-PR6 — a handcrafted paper bouquet of soft pink and white blooms, symbolizing prosperity and good fortune. Wrapped in vintage newspaper-print paper with realistic green foliage, this everlasting arrangement is a thoughtful, elegant gift for any heartfelt occasion.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to be Pink and White Peonies/Camellias and Green Leaves)',
+            'Arrangement Size: Hand-tied bouquet (Medium size)',
+            'Materials: High-quality Crepe or Colored Paper, Brown Newspaper-Print Paper Wrapper, Neutral-colored ribbon/twine',
+            'Suggested Occasions: Mother\'s Day, Birthday, Thank You Gift, Housewarming, Bridal Shower, Get Well Soon',
+            'Complimentary Inclusions: (e.g.) Personalized Message Card, Small Gift Tag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR7': {
+        codename: 'BQT-PR7',
+        image: 'PAPER FLOWERS/7PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Illuminate any space with BQT-PR7 a stunning bouquet of hand-folded origami lilies and sunny yellow filler flowers, symbolizing happiness and friendship. This lasting, maintenance-free paper arrangement is a memorable gift, perfect for celebrating new beginnings or conveying a heartfelt message.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Hand-folded Origami paper flowers (Appears to be Yellow Lilies and small Yellow Accent Flowers/Greenery)',
+            'Arrangement Size: Hand-tied bouquet (Small to Medium size)',
+            'Materials: High-quality Colored Paper (Origami paper), Natural Burlap/Linen Ribbon, Twine',
+            'Suggested Occasions: New Job/Promotion, Graduation, Get Well Soon, Friendship Day, Office Decor, Thank You Gift',
+            'Complimentary Inclusions: Small Envelope/Message Card, Ribbon Tie'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR8': {
+        codename: 'BQT-PR8',
+        image: 'PAPER FLOWERS/8PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Evoke warmth and admiration with BQT-PR8 a handcrafted paper bouquet featuring peach and orange roses, delicate daisies, and unique paper kumquats. Capturing the gentle hues of a sunset, this everlasting arrangement is a sophisticated expression of sincere joy and lasting appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Peach/Orange Roses, Gerbera Daisy, Small Daisies, Carnation, Greenery, and Paper Kumquats/Berries)',
+            'Arrangement Size: Small to Medium Hand-tied bouquet',
+            'Materials: High-quality paper, White/Cream non-woven and textured wrappers, Brown/Burlap Accent Wrap, Orange Ribbon',
+            'Suggested Occasions: Congratulations, Thank You Gift, Housewarming, Birthday, Anniversary, Hospital Visit',
+            'Complimentary Inclusions: Branded Tag, Product Card'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR9': {
+        codename: 'BQT-PR9',
+        image: 'PAPER FLOWERS/9PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Bring the charm of a sun-drenched garden indoors with BQT-PR9 a handcrafted paper bouquet of meadow blooms in soft pastels and rich purples. This whimsical arrangement captures natural beauty and vibrant color, making it the perfect everlasting centerpiece or gift.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Cosmos, Daisies, Delphinium/Larkspur, Veronica, and various Filler Flowers)',
+            'Arrangement Size: Hand-tied Posy/Bouquet (Small to Medium size)',
+            'Materials: High-quality paper in Lavender, Lilac, Soft Pink, White, and Deep Purple, Green Wire Stems',
+            'Suggested Occasions: Mother\'s Day, Get Well Soon, Housewarming, Cottagecore Decor, Bridal Shower, Birthday',
+            'Complimentary Inclusions: (Can be customized, e.g.) Ribbon Tie, Flower Care Tips Card (for paper art longevity)'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR10': {
+        codename: 'BQT-PR10',
+        image: 'PAPER FLOWERS/10PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Share a heartfelt gesture with BQT-PR10 a handcrafted origami bouquet of pink blooms and lavender accents, symbolizing affection and grace. Wrapped in natural kraft paper with a playful heart-patterned sheet, this mini paper arrangement is a lasting token of love and thoughtfulness.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Hand-folded Origami paper flowers (Appears to include Pink Tulips/Roses and Lavender Spike Flowers)',
+            'Arrangement Size: Mini/Small Posy Bouquet',
+            'Materials: High-quality Colored Origami Paper (Pink, Lavender, Mint Green), Kraft Paper Wrapper, Heart-patterned White Paper Accent, White Ribbon',
+            'Suggested Occasions: Valentine\'s Day, Anniversary, Small Thank You, Locker/Desk Decor, Friendship Gift',
+            'Complimentary Inclusions: (e.g.) Small Gift Tag, Ribbon Tie'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR11': {
+        codename: 'BQT-PR11',
+        image: 'PAPER FLOWERS/11PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Present a gift of deep admiration with BQT-PR11 a handcrafted paper bouquet featuring royal blues, lilacs, and deep purples in blooms like anemones and hydrangeas. Enhanced with lush greenery and textured wrapping, this sophisticated arrangement is a timeless centerpiece that conveys elegance and heartfelt emotion.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Blue Anemones, Lilac Hydrangea, Purple Chrysanthemum/Dahlia, Daisies, and Eucalyptus/Mixed Greenery)',
+            'Arrangement Size: Hand-tied Bouquet (Medium to Large size)',
+            'Materials: High-quality colored paper, Neutral/Earthy Toned Kraft Paper Wrapper, Neutral Fabric/Burlap Ribbon',
+            'Suggested Occasions: Anniversary, Housewarming, Birthday, Special Milestones, Hostess Gift, Sympathy',
+            'Complimentary Inclusions: (e.g.) Care Instructions Card, Branded Tag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR12': {
+        codename: 'BQT-PR12',
+        image: 'PAPER FLOWERS/12PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Embrace peace and renewal with BQT-PR12 — a handcrafted paper bouquet of mint green and white blooms, featuring detailed roses and accent flowers. Wrapped in complementary green and white paper, this everlasting arrangement symbolizes tranquility and growth, perfect for fresh beginnings or milestones.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include White and Light Green Roses, White Daisies/Plumeria-like blooms, and Filler Flowers/Greenery)',
+            'Arrangement Size: Hand-tied Bouquet (Medium size)',
+            'Materials: High-quality colored paper, Light Green and White non-woven wrappers, White Lace/Textured Paper, Printed Satin Ribbon',
+            'Suggested Occasions: Congratulations, Housewarming, Get Well Soon, New Job/Venture, Bridal Bouquet Alternative',
+            'Complimentary Inclusions: (e.g.) Ribbon Printed with Message (e.g., \'LOVE IS ETERNAL\'), Gift Card'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR13': {
+        codename: 'BQT-PR13',
+        image: 'PAPER FLOWERS/13PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Present a declaration of devotion with BQT-PR13 a handcrafted paper bouquet of pink and white carnations, symbolizing fascination and distinction. Wrapped in dramatic dark purple paper with delicate trim, this everlasting arrangement is a sophisticated expression of profound love and respect.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to be Pink/Buchsia-tipped Carnations or ruffled blooms)',
+            'Arrangement Size: Round, full-headed bouquet (Large size)',
+            'Materials: High-quality paper, Dark Purple Textured Wrapper, Light Purple Crumpled Accent Paper, Decorative Trim/Buttons, Lavender Satin Ribbon',
+            'Suggested Occasions: Mother\'s Day, Anniversary, Proposal, Valentine\'s Day, Luxury Gift, Significant Birthday',
+            'Complimentary Inclusions: (e.g.) Care Instructions Card, Decorative Bouquet Pins'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR14': {
+        codename: 'BQT-PR14',
+        image: 'PAPER FLOWERS/14PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Convey luxury and reverence with BQT-PR14 — a handcrafted paper bouquet of White Phalaenopsis orchids, symbolizing beauty, strength, and love. Complemented by delicate white fillers and wrapped in soft pale blue paper, this everlasting arrangement makes a stunning statement of grace and admiration.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include White Phalaenopsis Orchids and White Delphinium/Filler Flowers)',
+            'Arrangement Size: Large Arm Bouquet',
+            'Materials: High-quality paper, Light Blue and White non-woven wrappers, White Organza/Tulle, Blue Satin Ribbon',
+            'Suggested Occasions: Anniversary, Proposal, Celebration of Achievement, Formal Gift, Sympathy, Grand Opening',
+            'Complimentary Inclusions: (e.g.) Luxury Brand Card, Tall Carrying Bag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR15': {
+        codename: 'BQT-PR15',
+        image: 'PAPER FLOWERS/15PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Evoke the magic of a winter wonderland with BQT-PR15 a handcrafted paper bouquet of powder blues, lavenders, and whites, featuring exquisite lilies and complementary accents. Wrapped in textured, patterned paper, this everlasting arrangement symbolizes serenity and purity, making it a unique and lasting keepsake.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include large Blue/Lavender Lilies, Roses, Accented Greenery, and Small Filler Flowers)',
+            'Arrangement Size: Hand-tied bouquet (Medium size)',
+            'Materials: High-quality colored paper, Crinkled/Textured White Wrapper, Blue/White Patterned Paper Accent, Sheer Organza Ribbon',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Birthday, Artistic Gift, Luxury Home Decor, Unique Proposal',
+            'Complimentary Inclusions: (e.g.) Branded Card/Tag (\'Calm Floral Art\'), Care Instructions Card'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR16': {
+        codename: 'BQT-PR16',
+        image: 'PAPER FLOWERS/16PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Convey purity and renewed hope with BQT-PR16 a handcrafted paper bouquet featuring two White Oriental Lilies, symbolizing majesty and devotion, framed by elegant green foliage. Wrapped in crisp white paper, this luxurious, monochromatic arrangement is a dignified tribute for expressing sincere sentiment and deep respect.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to be White Oriental Lilies and Long Green Leaves)',
+            'Arrangement Size: Small to Medium Arm Bouquet',
+            'Materials: High-quality white paper, White/Cream Textured and Non-woven Wrappers, White Satin Ribbon',
+            'Suggested Occasions: Sympathy, Condolence, Anniversary, Formal Gift, Baptism/Christening, Apology',
+            'Complimentary Inclusions : (e.g.) Small Note Card, Custom Embossed Tag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR17': {
+        codename: 'BQT-PR17',
+        image: 'PAPER FLOWERS/17PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Make a powerful statement with BQT-PR17 a handcrafted paper bouquet of indigo and cobalt blue lilies, accented with pure white calla lilies. Wrapped in luxurious black paper and tied with a branded ribbon, this arrangement embodies mystery and elite elegance, making it a perfect gift for special occasions.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Blue-tipped White Lilies, Blue Gladiolus, Dark Blue Rose, and White Calla Lily)',
+            'Arrangement Size: Arm Bouquet (Medium to Large size)',
+            'Materials: High-quality colored paper, Premium Black Non-woven Wrappers, Black Ribbon with silver/white print (\'Endless Flora\')',
+            'Suggested Occasions: Formal Anniversary, Proposal, Graduation, Luxury Gift, Special Milestone, Home Decor',
+            'Complimentary Inclusions : (e.g.) Branded Tag, Care Instructions Card'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR18': {
+        codename: 'BQT-PR18',
+        image: 'PAPER FLOWERS/18PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Make a bold statement with BQT-PR18 a handcrafted paper bouquet of indigo and cobalt blue lilies, accented with white calla lilies. Wrapped in luxurious black paper and tied with a branded ribbon, this elegant arrangement embodies mystery and devotion, making it a perfect gift for extraordinary occasions.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Blue-tipped White Lilies, Blue Gladiolus, Dark Blue Rose, and White Calla Lily)',
+            'Arrangement Size: Arm Bouquet (Medium to Large size)',
+            'Materials: High-quality colored paper, Premium Black Non-woven Wrappers, Black Ribbon with silver/white print (\'Endless Flora\')',
+            'Suggested Occasions: Formal Anniversary, Proposal, Graduation, Luxury Gift, Special Milestone, Home Decor',
+            'Complimentary Inclusions: (e.g.) Branded Tag, Care Instructions Card'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR19': {
+        codename: 'BQT-PR19',
+        image: 'PAPER FLOWERS/19PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Share sweetness and affection with BQT-PR19 a charming paper bouquet of light pink gerbera daisies, ruffled ranunculus, and fuzzy pink accents. Wrapped in white and cream paper with a lovely bow, this everlasting arrangement is perfect for expressing admiration, congratulations, or tender love.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Light Pink Gerbera Daisies, Pink Ranunculus, and Pink Pom Pom/Fuzzy Accents)',
+            'Arrangement Size: Hand-tied bouquet (Medium size)',
+            'Materials: High-quality colored paper, White/Cream non-woven wrappers, Pink Bow Accent, Pink and White Ribbon',
+            'Suggested Occasions: Birthday, Valentine\'s Day, Mother\'s Day, New Baby Girl, Proposal, Cheer-up Gift',
+            'Complimentary Inclusions: (e.g.) Branded Card (\'FOURSEASONS FLOWER\'), Decorative Pins'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR20': {
+        codename: 'BQT-PR20',
+        image: 'PAPER FLOWERS/20PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Unleash joy with BQT-PR20 — a vibrant paper bouquet of origami and quilled flowers in bold primary colors. Wrapped in soft pink and blue paper with a cute strawberry tag, this fun, everlasting arrangement is perfect for expressing enthusiasm and cheer, especially for the young at heart.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include White Origami Lilies, Yellow Chrysanthemum/Quilled Flowers, Blue Accent Flowers, and Red/Purple Blooms)',
+            'Arrangement Size: Hand-tied Bouquet (Medium size)',
+            'Materials: High-quality colored paper, Light Blue and Pink non-woven wrappers, Red Ribbon/Twine',
+            'Suggested Occasions: Birthday (Especially for children), Get Well Soon, Congratulatory Gift, Teacher Appreciation, Friendship Gift',
+            'Complimentary Inclusions: Handwritten-style Strawberry Tag, Ribbon Tie'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR21': {
+        codename: 'BQT-PR21',
+        image: 'PAPER FLOWERS/21PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Capture vintage romance with BQT-PR21 a lush paper bouquet featuring blush pink, peach, and cream blooms, reminiscent of heirloom garden flowers. Presented in a rustic vase wrapped with twine and script, this maintenance-free arrangement makes a perfect centerpiece or luxurious gift, lasting a lifetime.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Peonies, Ranunculus, and Daisies/Filler Blooms)',
+            'Arrangement Size: Table/Centerpiece Bouquet (Round shape, Medium size)',
+            'Materials: High-quality colored paper, Glass Vase wrapped with Twine and Script-printed Paper/Fabric',
+            'Suggested Occasions: Wedding Centerpiece, Anniversary, Housewarming, Romantic Gift, Mother\'s Day, Home Decor',
+            'Complimentary Inclusions: (e.g.) Small Rhinestone Accents (as seen in the flowers), Care Instructions Tag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR22': {
+        codename: 'BQT-PR22',
+        image: 'PAPER FLOWERS/22PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Celebrate life with BQT-PR22 — a vibrant paper bouquet of hand-folded origami lilies and blooms in bright white, yellow, blue, and purple. Presented in a clear glass vase, this permanent centerpiece brings the lasting beauty of paper art, making it a perfect, unique gift for any cheerful occasion or home decor.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Hand-folded Origami paper flowers (Appears to be Lilies in White, Yellow, Orange, Blue, and Purple)',
+            'Arrangement Size: Vase Arrangement (Medium size)',
+            'Materials: High-quality Colored Origami Paper, Green stems, Clear Glass Vase',
+            'Suggested Occasions: Housewarming, Birthday, Graduation, Office Decor, Teacher Appreciation, Just Because',
+            'Complimentary Inclusions: (e.g.) Arrangement Care Card (for dust/sunlight), Gift Tag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR23': {
+        codename: 'BQT-PR23',
+        image: 'PAPER FLOWERS/23PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Ignite joy with BQT-PR23 a radiant paper bouquet featuring poppy reds, sunny oranges, and yellow tulips, accented by crisp white daisies. Wrapped in soft cream paper, this handcrafted arrangement is a lasting token of happiness, cheer, and eternal care.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted paper flowers (Appears to include Poppies, Tulips, Daisies, and Greenery/Berries)',
+            'Arrangement Size: Hand-tied Bouquet (Small to Medium size)',
+            'Materials: High-quality colored paper, Cream/Champagne non-woven wrappers, Taupe/Neutral Satin Ribbon',
+            'Suggested Occasions: Birthday, Get Well Soon, Housewarming, Spring Celebration, Just Because, Teacher Appreciation',
+            'Complimentary Inclusions: (e.g.) Care Instructions Card, Ribbon Tie'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+    'PR24': {
+        codename: 'BQT-PR24',
+        image: 'PAPER FLOWERS/24PP.png',
+        basePrice: 'PLACEHOLDER PRICE',
+        description: 'Brighten any day with BQT-PR24 a vibrant paper bouquet featuring origami tulips, spike flowers, and a detailed daisy in sunny yellow, bright red, and purple. Housed in a clean white vase, this handcrafted arrangement is a lasting symbol of cheer and creativity, perfect for adding a pop of color to any space.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Hand-folded Origami and handcrafted paper flowers (Appears to include Tulips, Daisies, Hyacinth-like Spike Flowers, and Small Origami Roses)',
+            'Arrangement Size: Vase Arrangement (Small to Medium size)',
+            'Materials: High-quality Colored Origami Paper, Green stems, White Ceramic/Porcelain Vase',
+            'Suggested Occasions: Birthday, Office Decor, Get Well Soon, Teacher Appreciation, Friendship Gift, Kids\' Room Decor',
+            'Complimentary Inclusions: (e.g.) Arrangement Care Card, Small Gift Tag'
+        ],
+        care: [
+            'Handle with Care: Always hold paper flowers by their stems or base to avoid damaging delicate petals.',
+            'Dust Regularly: Use a soft, dry brush (like a makeup brush) or a can of compressed air on a low setting to gently remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place paper flowers in a cool, shaded area to prevent colors from fading over time.',
+            'Keep Dry: Avoid exposing paper flowers to water, high humidity, or damp conditions, as this can weaken the paper and glue.',
+            'No Extreme Temperatures: Keep flowers away from heat sources (such as radiators) and cold drafts to maintain their shape and integrity.',
+            'Store Properly: If storing, place the flowers in a sturdy box lined with tissue paper to prevent crushing or damage.'
+        ]
+    },
+
+
+    //Ribbon
+
+   'RB1': {
+        codename: 'BQT-RB1',
+        image: 'RIBBON FLOWERS/1RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your declarations of love with the timeless red romance bouquet. Featuring dramatic, handcrafted red satin roses, this exquisite arrangement is perfect for any occasion celebrating affection. Its luxurious depth and passionate design will undoubtedly evoke feelings of ardent love, desire, and lasting devotion.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Deep Red Satin Ribbon Roses, accented with delicate white butterfly embellishments.',
+            'Arrangement Size: 5-7 stems, wrapped for an elegant presentation.',
+            'Materials: High-quality Double-Sided Red Satin Ribbon, Artistic "You Are My Love" script wrapping paper, Sheer white netting/tulle, Decorative ribbon tie.',
+            'Suggested Occasions: Anniversary, Valentine\'s Day, Proposal, Romantic Birthday, Date Night Surprise.',
+            'Complimentary Inclusions: Message card, Decorative butterfly accents.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB2': {
+        codename: 'BQT-RB2',
+        image: 'RIBBON FLOWERS/2RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your gifting with this exquisite handcrafted arrangement. Showcasing ribbon roses in beautiful blended hues, this unique bouquet is perfect for any celebration that calls for a thoughtful, artistic touch. Its rich colors and distinctive wrapping will uplift and evoke feelings of nostalgia, appreciation, and timeless elegance.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Deep Red/Fuchsia and Soft Pink blend), adorned with delicate butterfly embellishments.',
+            'Arrangement Size: 5-7 stems, wrapped for a distinct, high-style presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Unique Vintage Newspaper/Script Print wrapping paper, White and gold accents, Sheer netting/tulle.',
+            'Suggested Occasions: Anniversary, Birthday, Graduation, Artistic Gift, Mother\'s Day, Milestone Celebration.',
+            'Complimentary Inclusions: Message card, Decorative butterfly accents.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB3': {
+        codename: 'BQT-RB3',
+        image: 'RIBBON FLOWERS/3RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your gifting with this exquisite handcrafted arrangement. Featuring luxurious satin ribbon roses in a beautiful, muted pink, this unique bouquet is perfect for expressing affection and refined taste. Its soft colors and elegant design will undoubtedly evoke feelings of gentle love, warmth, and enduring beauty.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Dusty/Rosy Pink blend).',
+            'Arrangement Size: 6-stem cluster, wrapped for a simple, elegant presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Elegant white and soft pink wrapping paper, Gold heart-shaped "Just for you" tag.',
+            'Suggested Occasions: Anniversary, Birthday, Mother\'s Day, Get Well Soon, Bridal Shower, "Just Because" gesture.',
+            'Complimentary Inclusions: Message card, Gold-clipped "Just for you" accent tag.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB4': {
+        codename: 'BQT-RB4',
+        image: 'RIBBON FLOWERS/4RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your sentiments with this handcrafted arrangement featuring luxurious satin ribbon roses in serene lavender. Perfect for expressing admiration and grace, its calming colors and elegant design evoke tranquility, sophistication, and cherished moments.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Lavender and Lilac tones).',
+            'Arrangement Size: [Specify number of stems, e.g., 7-stem cluster], elegantly wrapped for a graceful presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Elegant white and soft lavender wrapping paper with gold accents, Sheer lavender tulle/netting.',
+            'Suggested Occasions: Anniversary, Birthday, Mother\'s Day, Friendship Appreciation, Congratulations, New Beginnings.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB5': {
+        codename: 'BQT-RB5',
+        image: 'RIBBON FLOWERS/5RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your gifting with this handcrafted arrangement featuring luxurious satin ribbon roses in soft pink and white. Perfect for expressing affection and appreciation, its light colors and layered design evoke feelings of sweetness, joy, and sincere admiration.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Soft Pink and Light Blue/Lilac), accented with realistic greenery.',
+            'Arrangement Size: 5-stem cluster, gracefully wrapped for a delicate presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Layered pink and white tissue/wrapping paper, Decorative gold ribbon accent.',
+            'Suggested Occasions: Birthday, Baby Shower (Girl or Boy), Thank You, Mother\'s Day, First Date, Hospitality Gift.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB6': {
+        codename: 'BQT-RB6',
+        image: 'RIBBON FLOWERS/6RB.png',
+        basePrice: '3000.00',
+        description: 'Enhance your gifting with this handcrafted arrangement featuring delicate pink satin ribbon roses and dramatic black wrapping. Perfect for expressing sophisticated affection, its striking design evokes modern romance, unique style, and heartfelt appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Soft Pink), accented with delicate white filler flowers and lush green foliage.',
+            'Arrangement Size: [Specify number of stems, e.g., 3-stem cluster], elegantly wrapped for a modern presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium black and white wrapping paper, Pink ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Graduation, Modern Romance, Thank You, Fashion Event Gift.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB7': {
+        codename: 'BQT-RB7',
+        image: 'RIBBON FLOWERS/7RB.png',
+        basePrice: '3000.00',
+        description: 'Make a luxurious statement with this exquisite handcrafted arrangement, featuring satin ribbon roses and decadent Ferrero Rocher chocolates. Perfect for expressing lavish affection and celebration, its rich hues and sweet surprise evoke feelings of luxury, admiration, and pure joy.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Vibrant Purple), featuring white pearl centers.',
+            'Arrangement Size: 8 Roses and 7 Chocolates, elegantly wrapped in a round presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Ferrero Rocher Chocolates, Layered purple, gold, and white wrapping paper.',
+            'Suggested Occasions: Anniversary, Birthday, Graduation, Luxury Valentine\'s Day, Mother\'s Day, Congratulations.',
+            'Complimentary Inclusions: Message card, Decorative pearl accents on roses, Ferrero Rocher Chocolates.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB8': {
+        codename: 'BQT-RB8',
+        image: 'RIBBON FLOWERS/8RB.png',
+        basePrice: '3000.00',
+        description: 'Brighten any day with this handcrafted arrangement, featuring a vibrant satin ribbon sunflower and soft peachy roses. Perfect for expressing warmth and joy, its radiant hues and cheerful design evoke feelings of happiness, optimism, and heartfelt appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Sunflower and Satin Ribbon Roses (Peachy/Light Yellow).',
+            'Arrangement Size: 1 Sunflower, 5 Roses, elegantly wrapped for a bright presentation.',
+            'Materials: High-quality Satin Ribbon, Layered yellow and white wrapping paper, Dried filler flowers/greenery, Glitter accent on base.',
+            'Suggested Occasions: Get Well Soon, Birthday, Graduation, Encouragement Gift, Mother\'s Day, Housewarming.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB9': {
+        codename: 'BQT-RB9',
+        image: 'RIBBON FLOWERS/9RB.png',
+        basePrice: '3000.00',
+        description: 'Send a burst of sunshine with this handcrafted arrangement, featuring vibrant satin ribbon sunflowers accented with delicate butterflies. Perfect for expressing joy and encouragement, its radiant hues and cheerful design evoke feelings of happiness, optimism, and warm appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Sunflowers, accented with small white/blue filler flowers.',
+            'Arrangement Size: 3 Sunflowers, gracefully wrapped for a bright presentation.',
+            'Materials: High-quality Satin Ribbon, Elegant white and yellow wrapping paper, Decorative White Butterfly embellishments.',
+            'Suggested Occasions: Get Well Soon, Birthday, Graduation, Encouragement Gift, Friendship Day.',
+            'Complimentary Inclusions: Message card, Decorative Butterfly Accents, Gold-edged wrapping.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB10': {
+        codename: 'BQT-RB10',
+        image: 'RIBBON FLOWERS/10RB.png',
+        basePrice: '3000.00',
+        description: 'Enhance your gifting with this handcrafted arrangement of satin ribbon roses in muted pink and contemporary grey wrapping. Perfect for expressing refined affection, its elegant design evokes modern romance and lasting appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Muted/Dusty Pink), accented with delicate dried filler flowers and greenery.',
+            'Arrangement Size: [Specify number of stems, e.g., 6-stem cluster], elegantly wrapped for a contemporary presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium charcoal grey and blush pink wrapping paper, Grey ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Engagement, Sophisticated Thank You, Mother\'s Day, Housewarming.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB11': {
+        codename: 'BQT-RB11',
+        image: 'RIBBON FLOWERS/11RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your gifting with this exquisite handcrafted arrangement. Featuring a blend of realistic satin flowers and tempting chocolates, this bouquet offers a luxurious and permanent way to show sweet appreciation for any special milestone.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Satin Ribbon Roses and Tulips, accented with a glittering gold butterfly embellishment.',
+            'Arrangement Size: 12-14 stems (e.g., 6 Roses, 4 Tulips, 4 Chocolates), Grand presentation wrap.',
+            'Materials: High-quality Gold/Yellow Double-Sided Satin Ribbon, Ferrero Rocher Chocolates, Assorted premium wrapping paper (Gold, White, and Pearlescent accents), Gold Ribbon tie.',
+            'Suggested Occasions: Graduation, Anniversary, Birthday, Engagement, Proposal, Retirement, "Just Because" luxury gift.',
+            'Complimentary Inclusions: Message card, Luxury decorative gold butterfly accent, Ferrero Rocher Chocolates.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB12': {
+        codename: 'BQT-RB12',
+        image: 'RIBBON FLOWERS/12RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your celebrations with this exquisite ribbon bouquet, designed to showcase beautiful roses in soft, romantic hues. Perfect for any momentous occasion, its gentle colors and enchanting design evoke feelings of romance, delight, and appreciation. A truly heartfelt gift that is sure to leave a lasting impression.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses, adorned with rhinestone centers and elegant butterfly accents.',
+            'Arrangement Size: 9-12 stems, beautifully wrapped for an arm bouquet presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Decorative wrapping paper, Rhinestone embellishments, Wired butterflies.',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Valentine\'s Day, Mother\'s Day, Bridal Shower, Sweet Sixteen.',
+            'Complimentary Inclusions: Message card, Decorative butterfly accents.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB13': {
+        codename: 'BQT-RB13',
+        image: 'RIBBON FLOWERS/13RB.png',
+        basePrice: '3000.00',
+        description: 'Celebrate with this handcrafted arrangement featuring luxurious satin ribbon roses in vibrant purple and lilac. Perfect for expressing admiration and deep affection, its rich colors and layered design evoke tranquility, passion, and sophistication.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Vibrant Purple and Lilac), accented with light greenery.',
+            'Arrangement Size: 6-stem cluster, gracefully wrapped for a stunning presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium wrapping paper (Purple and Lilac), Glittering silver mesh/tulle, Organza ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Mother\'s Day, Grand Celebration, Romantic Milestone.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB14': {
+        codename: 'BQT-RB14',
+        image: 'RIBBON FLOWERS/14RB.png',
+        basePrice: '3000.00',
+        description: 'Make a statement of love and appreciation with this handcrafted arrangement, featuring satin ribbon roses in soft to vibrant pinks. Perfect for celebrating affection, its lush colors and elegant design evoke romance, devotion, and lasting admiration.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Mixed Shades of Pink and Blush), accented with lush green fern foliage.',
+            'Arrangement Size: [Specify number of stems, e.g., 9-stem cluster], gracefully wrapped for a stunning, full presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium wrapping paper (Soft yellow/iridescent and white), Pink ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Valentine\'s Day, Mother\'s Day, Bridal Shower, Romantic Gesture.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+    'RB15': {
+        codename: 'BQT-RB15',
+        image: 'RIBBON FLOWERS/15RB.png',
+        basePrice: '3000.00',
+        description: 'Enhance your gifting with this handcrafted arrangement, featuring satin ribbon roses in delicate pink and modern grey wrapping. Perfect for expressing refined affection, its sophisticated design evokes modern elegance, subtle romance, and lasting appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Muted/Dusty Pink), accented with lush green fern foliage.',
+            'Arrangement Size: [Specify number of stems, e.g., 6-stem cluster], elegantly wrapped for a contemporary presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium wrapping paper (Slate Grey and Blush Pink), Pink satin ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Engagement, Sophisticated Thank You, Mother\'s Day, Housewarming.',
+            'Complimentary Inclusions: Message card.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB16': {
+        codename: 'BQT-RB16',
+        image: 'RIBBON FLOWERS/16RB.png',
+        basePrice: '3000.00',
+        description: 'Enhance your sentiments with this handcrafted arrangement, featuring satin ribbon roses in soft peach and delicate dried accents. Perfect for expressing gentle affection, its earthy tones and elegant design evoke warmth, serenity, and rustic charm.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Soft Peach/Blush), expertly blended with dried natural fillers (e.g., Baby\'s Breath, accent sprays).',
+            'Arrangement Size: [Specify number of stems, e.g., 6-stem cluster], gracefully wrapped for a soft, elegant presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Sheer white tulle, Soft peach tissue wrap, Matching satin ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Engagement, Vintage-themed Gift, Thank You, Housewarming.',
+            'Complimentary Inclusions: Message card, High-quality dried accent fillers.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB17': {
+        codename: 'BQT-RB17',
+        image: 'RIBBON FLOWERS/17RB.png',
+        basePrice: '3000.00',
+        description: 'Make a memorable impression with this exquisite handcrafted arrangement, featuring luxurious satin ribbon roses in rare Aqua Blue. Perfect for expressing serene affection and unique taste, its calming hues and sophisticated design evoke feelings of tranquility, lasting friendship, and deep appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Aqua/Light Blue), accented with dried natural fillers and soft cotton accents.',
+            'Arrangement Size: [Specify number of stems, e.g., 3-stem cluster], elegantly wrapped for a tranquil presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Sheer aqua tulle, Grey and white wrapping paper, Silver/Grey satin ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Friendship Appreciation, Graduation, Thinking of You, Unique Gesture.',
+            'Complimentary Inclusions: Message card, Soft cotton/pompom accents, Dried natural fillers.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB18': {
+        codename: 'BQT-RB18',
+        image: 'RIBBON FLOWERS/18RB.png',
+        basePrice: '3000.00',
+        description: 'Make a bold statement with this exquisite handcrafted arrangement, featuring luxurious Royal Blue Satin Ribbon Roses adorned with shimmering glitter accents. Perfect for conveying profound mystery, beauty, and unwavering devotion, its dramatic hues and captivating design evoke feelings of intense love, admiration, and enchanting wonder.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Royal Blue Satin Ribbon Roses, each adorned with a subtle glitter finish.',
+            'Arrangement Size: [Specify number of stems, e.g., 9-stem cluster], elegantly wrapped for a grand, impactful presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium black and white/scripted wrapping paper, Glittering blue mesh/tulle, Dark blue and gold ribbon tie.',
+            'Suggested Occasions: Anniversary, Proposal, Valentine\'s Day, Dramatic Romantic Gesture, Birthday, Milestone Celebration.',
+            'Complimentary Inclusions: Message card, Sparkling glitter accents.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB19': {
+        codename: 'BQT-RB19',
+        image: 'RIBBON FLOWERS/19RB.png',
+        basePrice: '3000.00',
+        description: 'Make a lasting impression with this exquisite handcrafted arrangement, featuring luxurious golden yellow satin ribbon roses. Perfect for expressing sincere devotion and unique style, its warm hues and elegant design evoke feelings of joy, admiration, and enduring love.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Golden Yellow Satin Ribbon Roses, accented with purple butterfly embellishments and light greenery.',
+            'Arrangement Size: 4-stem cluster, elegantly wrapped for a modern, dramatic presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium "You Are My Love" script and vintage newspaper wrapping, Black and gold paper accents.',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Romantic Milestone, Wedding Gift.',
+            'Complimentary Inclusions: Message card, Decorative Butterfly Accents.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB20': {
+        codename: 'BQT-RB20',
+        image: 'RIBBON FLOWERS/20RB.png',
+        basePrice: '3000.00',
+        description: 'Crown your celebration with this exquisite handcrafted arrangement. Featuring a stunning satin ribbon sunflower, golden crowns, and sparkling butterflies, this piece is perfect for expressing joy and admiration. Its vibrant colors and festive design will uplift spirits, evoking feelings of happiness, success, and regal appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Sunflower and smaller accent blooms (e.g., white roses/fillers), adorned with golden crowns.',
+            'Arrangement Size: 1 large Sunflower, 3-5 accent blooms, grandly wrapped for a celebratory presentation.',
+            'Materials: High-quality Satin Ribbon (Yellow, Gold, White), Decorative wrapping paper, Golden crown embellishments, Glittering butterfly accents.',
+            'Suggested Occasions: Graduation, Anniversary, Birthday, Mother\'s Day.',
+            'Complimentary Inclusions: Message card, Golden crown embellishment, Decorative butterfly accents.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB21': {
+        codename: 'BQT-RB21',
+        image: 'RIBBON FLOWERS/21RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your gifting with this exquisite handcrafted arrangement. Featuring satin ribbon roses in serene Sky Blue and Cream, this piece conveys calm affection and purity. Its tranquil colors and timeless design are sure to evoke feelings of peace, joy, and elegant serenity.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses (Sky Blue and Cream/Pale Yellow), accented with delicate dried filler flowers (e.g., Baby\'s Breath).',
+            'Arrangement Size: [Specify number of stems, e.g., 11-stem cluster], gracefully wrapped for a full, elegant presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium white and gold-edged wrapping paper, Gold ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, New Baby (Boy), Thinking of You, Bridal Shower, Graduation.',
+            'Complimentary Inclusions: Message card, Delicate dried filler accents.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB22': {
+        codename: 'BQT-RB22',
+        image: 'RIBBON FLOWERS/22RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your gifting with this exquisite handcrafted arrangement. Featuring a stunning display of satin ribbon tulips in serene lavender, this piece communicates deep affection and devotion. Its captivating colors and elegant design evoke feelings of tranquility, grace, and enduring love.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Tulips (Lavender/Lilac).',
+            'Arrangement Size: 25-30 stems, dramatically wrapped for a grand, impactful presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Unique Newspaper-style wrapping paper, Decorative silver butterfly accent, Satin ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Grand Gesture, Mother\'s Day, Achievement Celebration.',
+            'Complimentary Inclusions: Message card, Decorative Silver Butterfly Accent.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB23': {
+        codename: 'BQT-RB23',
+        image: 'RIBBON FLOWERS/23RB.png',
+        basePrice: '3000.00',
+        description: 'Express your love with this handcrafted satin ribbon rose arrangement, thoughtfully shaped into a heart. Perfect for communicating unwavering devotion, its romantic design evokes deep affection and cherished commitment.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Satin Ribbon Roses, arranged in a prominent heart shape.',
+            'Arrangement Size: 15-stem heart, dramatically wrapped for an iconic romantic presentation.',
+            'Materials: High-quality Double-Sided Satin Ribbon, Premium wrapping paper (Soft lavender/pink), Dried/sparkling silver filler accents, Cream satin ribbon tie.',
+            'Suggested Occasions: Valentine\'s Day, Proposal, Anniversary, Birthday, Engagement, Grand Romantic Gesture.',
+            'Complimentary Inclusions: Message card, Heart-shaped rose arrangement, Sparkling filler accents.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+    'RB24': {
+        codename: 'BQT-RB24',
+        image: 'RIBBON FLOWERS/24RB.png',
+        basePrice: '3000.00',
+        description: 'Elevate your gifting with this handcrafted arrangement of luxurious Fuzzy Wire Flowers in mocha and blush tones. Perfect for expressing warmth and timeless appreciation, its earthy hues and preserved foliage evoke nostalgia, elegance, and enduring style.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Handcrafted Fuzzy Wire Flowers, expertly blended with dried natural fillers.',
+            'Arrangement Size: 7-stem cluster, gracefully wrapped for a rustic-elegant presentation.',
+            'Materials: High-quality Fuzzy Wire and fabric, Premium wrapping paper, Cream satin ribbon tie.',
+            'Suggested Occasions: Anniversary, Birthday, Engagement, Vintage-themed Gift, Thank You, Housewarming.',
+            'Complimentary Inclusions: Message card, High-quality dried and preserved accent fillers, Brand/Logo tag.'
+        ],
+        care: [
+            'Dust Regularly: Use a soft, dry cloth or a can of compressed air to remove dust and keep your flowers looking fresh.',
+            'Avoid Direct Sunlight: Place your bouquet in a shaded spot away from direct from the sun to prevent the ribbon colors from fading over time.',
+            'Handle with Care: The stems and embellishments are delicate. Avoid harsh bending or crushing the ribbon petals to maintain their shape.',
+            'No Water Needed: Do not place the bouquet in water. Moisture can damage the ribbon and paper wrapping.',
+            'Gentle Cleaning Only: For minor marks, gently spot clean the ribbon with a slightly damp cloth. Do not soak the flowers or the paper wrap.',
+            'Keep Away from Heat: Avoid placing the bouquet near open flames or high heat sources that could cause the ribbon to warp or melt.'
+        ]
+    },
+
+   
+
+
+    //Standard
+
+     'STD1': {
+        codename: 'STD1', 
+        image: 'STANDARD ARRANGEMENT/1.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'Celebrate new beginnings with STD1, an elegant standing arrangement in pristine white. Ideal for grand openings, this display symbolizes purity, success, and positive energy, making it a perfect choice to mark a fresh start with grace and optimism.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Classic White Mums (Chrysanthemums), White Roses, White Lilies (or similar elegant white fillers), and lush Green Foliage.',
+            'Arrangement Size: Standing Spray (Approx. 5 to 6 ft. tall on an easel).',
+            'Materials: Fresh Cut Flowers, Floral Foam (to keep flowers hydrated), and Sturdy Wooden Easel/Stand.',
+            'Suggested Occasions: Grand Opening, Business Inauguration, Office Launch, Milestone Celebration, New Venture.',
+            'Complimentary Inclusions: Congratulatory Message Card, Personalized Ribbon Banner (e.g., "Congratulations" or "Best Wishes").'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'STD2': {
+        codename: 'STD2', 
+        image: 'STANDARD ARRANGEMENT/2.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'Honor a life or significant event with this dignified standing spray. Featuring pure white blooms in a serene design, this elegant display conveys peace, reverence, and eternal love. Its graceful structure and lush premium flowers make it a heartfelt tribute for any solemn occasion.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Premium White Phalaenopsis Orchids (symbolizing eternal love), White Roses, White Spray Mums, and Tropical Foliage (e.g., Monstera leaves).',
+            'Arrangement Size: Grand Standing Spray (Approx. 5.5 to 6.5 ft. tall).',
+            'Materials: Fresh Cut Flowers, Floral Foam, and Sturdy Wooden Easel/Stand.',
+            'Suggested Occasions: Sympathy/Funeral Service, Memorial Tribute, Anniversary of Passing, Dignified Commemoration.',
+            'Complimentary Inclusions: Message Card, White or Black Personalized Ribbon Banner (e.g., "In Loving Memory" or "Deepest Sympathy").'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'STD3': {
+        codename: 'STD3', 
+        image: 'STANDARD ARRANGEMENT/3.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'The arrangement features an all-white selection of lush flowers, creating a serene and respectful centerpiece for a final farewell. This powerful visual of a cross, adorned with premium blooms, is a meaningful way to deliver a message of love, devotion, and spiritual comfort to the bereaved.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: White Roses, White Lilies (Casablanca or Asiatic), White Carnations, White Hydrangea, and delicate White Spray Roses.',
+            'Arrangement Size: Standing Floral Cross (Typically ranges from 36"H to 40"L on an easel).',
+            'Materials: Fresh Cut Flowers, Sturdy Wire Easel/Stand, and Rich Green Foliage.',
+            'Suggested Occasions: Memorial Tribute, Funeral Service, Dignified Commemoration, Anniversary of Passing, Expression of Deep Sympathy.',
+            'Complimentary Inclusions: Personalized Card Message, Banner Ribbon (optional add-on with customized text, like "Beloved Son" or "In God\'s Hands").'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'STD4': {
+        codename: 'STD4', 
+        image: 'STANDARD ARRANGEMENT/4.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This is a placeholder entry for Product BQT-36. Please update the details with the correct flower data when available.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Placeholder Bouquet Flowers',
+            'Arrangement Size: Medium, Hand-tied bouquet',
+            'Materials: Placeholder Wrappers and Ribbon',
+            'Suggested Occasions: Placeholder Occasion',
+            'Complimentary Inclusions: Message card, Water tubes'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'STD5': {
+        codename: 'STD5', 
+        image: 'STANDARD ARRANGEMENT/5.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This elegant arrangement blends the timeless symbolism of a circular wreath, representing eternal life and remembrance, with a graceful cascading lower spray. The all-white palette, highlighted by premium orchids, conveys purity, peace, and hope, offering a dignified tribute.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Premium White Phalaenopsis Orchids, White Roses, White Hydrangea/Mums, and delicate White Accent Flowers (such as Baby\'s Breath or other fillers).',
+            'Arrangement Size: Extra Large Double-Tiered Standing Spray (This is one of the largest forms, typically standing 6 to 7 feet tall on the easel).',
+            'Materials: Fresh Cut Flowers, Sturdy Wooden Easel, Decorative White/Black Ribbon, and Lush Green Foliage (like Aspidistra leaves).',
+            'Suggested Occasions: High-Dignity Funeral Service, Major Memorial Event, Family Tribute, Prominent Display at a Wake/Mortuary.',
+            'Complimentary Inclusions: Premium Vellum Message Card, Delivery/Setup at Funeral Home (where available).'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+
+
+    // Premium
+
+     'PRM1': {
+        codename: 'PRM1', 
+        image: 'PREMIUM ARRANGEMENT/1.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This unique, artistic arrangement features a vibrant, voluminous bouquet of golden blooms crowning an elegantly tiered, ruffled fabric stand. It is a modern and luxurious choice, designed to command attention and convey the deepest well wishes for any grand celebration or important milestone.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: Abundant clusters of Bright Yellow Spray Roses and Yellow Chrysanthemums , creating a rich, sunny texture.',
+            'Arrangement Size: Luxury Tiered Congratulatory Stand (Impressive height and width, designed for high visual impact).',
+            'Materials: Premium Fresh Cut Flowers, Unique Ruffled Fabric-Wrapped Stand in cream or light yellow, with decorative ribbons.',
+            'Suggested Occasions: High-Profile Grand Opening, Business Anniversary, Corporate Gala, VIP Congratulatory Gift, Milestone Achievement.',
+            'Complimentary Inclusions: Elegant Message Card/Banner, Premium Gift Presentation.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'PRM2': {
+        codename: 'PRM2', 
+        image: 'PREMIUM ARRANGEMENT/2.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This unique, high-end arrangement breaks from tradition by using an elegant palette of soft pastels—including lavender, peach, and muted green—combined with stunning, modern textures. The design is presented in a flowing cascade, making it an exquisite statement piece.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: Luxurious Peach Garden Roses (or similar large roses), soft Lavender Anemones, and decorative Lime-Green Anthurium paddles, creating a chic, multi-layered look.',
+            'Arrangement Size: High-Style Cascading Stand (Single large arrangement with a dramatic downward flow, placed on a subtle golden stand).',
+            'Materials: Premium Fresh Cut Flowers, Minimalist Gold Metal Stand, Neutral Ribbon Accents.',
+            'Suggested Occasions: High-End Corporate Events, Modern Grand Opening, Luxury Anniversary, Art Gallery Display, Celebrations of Life.',
+            'Complimentary Inclusions: Premium Message Card, Custom-colored Ribbons.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'PRM3': {
+        codename: 'PRM3', 
+        image: 'PREMIUM ARRANGEMENT/3.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This majestic, two-tiered arrangement is overflowing with rich pink and deep red blooms, dramatically framed by layered, sculpted fabric. It is a stunning visual tribute perfect for a grand opening or significant anniversary.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: A rich blend of Red and Pink Spray Roses (symbolizing love, passion, and appreciation) and large, textured Pink Globe Chrysanthemums.',
+            'Arrangement Size: Extra Large, Two-Tiered Congratulatory Stand (Maximum visual impact and density).',
+            'Materials: Premium Fresh Cut Flowers, Sturdy Stand, Luxurious Pink and Magenta Fabric Wrap with coordinating ribbons.',
+            'Suggested Occasions: Grand Opening, Significant Anniversary, Corporate Milestone, Valentine\'s Day or Mother\'s Day Event.',
+            'Complimentary Inclusions: Message Card/Banner, Premium Ribbon Accents.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'PRM4': {
+        codename: 'PRM4', 
+        image: 'PREMIUM ARRANGEMENT/4.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This exquisite arrangement showcases a gorgeous mix of roses, perfect for any momentous occasion. Its vibrant hues and enchanting composition are sure to uplift and evoke feelings of delight and appreciation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Classic Red Roses and delicate Cream/Yellow Spray Roses (representing love, passion, and joy).',
+            'Arrangement Size: Large, Two-Tiered Arm Bouquet (Designed for an impressive presentation).',
+            'Materials: Premium Fresh Cut Flowers, Modern Peach/Cream Non-woven Wrappers, Ribbon accents.',
+            'Suggested Occasions: Anniversary, Birthday, Proposal, Valentine\'s Day, Mother\'s Day, Romantic Gestures.',
+            'Complimentary Inclusions: Message card, Water tubes (for freshness).'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'PRM5': {
+        codename: 'PRM5', 
+        image: 'PREMIUM ARRANGEMENT/5.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: ' This distinctive two-tiered arrangement features a fresh, modern palette of creamy white and lime green. The cascading tropical leaves and carefully sculpted monochromatic fabric wrap create a high-style, clean aesthetic perfect for modern celebrations.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: Unique Cream/Lime Green Garden Roses (or similar heavily-petaled, light green blooms) and White Spray Roses (symbolizing purity and new beginnings).',
+            'Arrangement Size: Large, Two-Tiered Congratulatory Stand (Designed for a fresh, sophisticated, and prominent display).',
+            'Materials: Premium Fresh Cut Flowers, Sturdy Stand, Sculpted Lime Green Fabric Wrap with matching ribbon.',
+            'Suggested Occasions: Modern Grand Opening, Artistic or Design Firm Launch, Anniversary, Milestone Event Focused on Innovation.',
+            'Complimentary Inclusions: Message Card/Banner, Premium Gift Presentation.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'PRM6': {
+        codename: 'PRM6', 
+        image: 'PREMIUM ARRANGEMENT/6.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This unique, two-tiered arrangement features an unexpected and sophisticated color palette of vibrant blues and pristine whites, conveying success, trust, and lasting loyalty. The sculpted, neutral wrapping adds a final touch of contemporary luxury.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: Bold, deep Blue Roses (or Hydrangea/Dyes), lively Light Blue and White Accents (such as Spray Carnations or Chrysanthemums), and long, decorative twigs for height.',
+            'Arrangement Size: Luxury, Two-Tiered Congratulatory Stand (Designed to be a prominent and sophisticated centerpiece).',
+            'Materials: Premium Fresh Cut Flowers, Sturdy Stand, Sculpted Beige/Neutral Fabric Wrap with matching ribbon.',
+            'Suggested Occasions: Corporate Events, Grand Opening, Business Partnership Signing, Anniversary, Celebrations of Professional Achievement.',
+            'Complimentary Inclusions: Message Card/Banner, Premium Gift Presentation.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+
+    // Ribbon - Cutting
+
+     'RC1': {
+        codename: 'RC1', 
+        image: 'RIBBON CUTTING/1.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This large, freestanding cross is an extremely dignified and reverent tribute, often chosen by the immediate family to honor a person of Christian faith. The all-white design emphasizes purity and serenity, while the varied textures of premium blooms ensure a striking and memorable presentation.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: White Spray Roses, White Carnations/Mums, White Lilies (often symbolizing peace and majesty), and White Accent Blooms (like Snapdragons or Stock).',
+            'Arrangement Size: Large Standing Cross (Typically 4 to 5 feet high, designed for high visibility on an easel).',
+            'Materials: Fresh Cut Flowers, Sturdy Easel Stand, and Lush Green Foliage.',
+            'Suggested Occasions: High-Dignity Christian Funeral Service, Wake, Memorial Mass, Family Grave Site Tribute.',
+            'Complimentary Inclusions: Premium Vellum Message Card, Delivery/Setup at Funeral Home.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'RC2': {
+        codename: 'RC2', 
+        image: 'RIBBON CUTTING/2.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This striking, double-tiered arrangement is a joyful burst of color, offering a message of remembrance, joy, and lasting warmth. It beautifully combines the traditional tribute form with a lively, tropical palette, making it ideal for a "celebration of life" service.',
+        color: 'Placeholder',
+        inclusions: [
+            'Flowers: Bright Yellow Sunflowers (representing adoration and longevity), Orange Orchids, Cream/Light Peach Roses, and the stately Bird of Paradise.',
+            'Arrangement Size: Extra Large Double-Tiered Standing Spray (A commanding height and presence, often 6-7 feet tall on the easel).',
+            'Materials: Fresh Cut Flowers, Sturdy Easel Stand, and Lush Tropical Foliage (including Anthurium leaves and decorative greens).',
+            'Suggested Occasions: Celebration of Life Service, Funerals where color is encouraged, Memorial for a lively personality, Grand Opening/Corporate Tribute.',
+            'Complimentary Inclusions: Premium Vellum Message Card, Personalized Ribbon Banner (recommended in a gold or yellow print).'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'RC3': {
+        codename: 'RC3', 
+        image: 'RIBBON CUTTING/3.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This striking, modern design moves beyond traditional greenery by integrating bold, tropical leaves to frame its pure white blooms, creating an atmosphere of peace, elegance, and everlasting love. It is a stunning choice that signifies the enduring, tropical beauty of life.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: Cascading White Phalaenopsis Orchids (symbolizing eternal love and luxury) and masses of White Roses (symbolizing reverence and innocence).',
+            'Arrangement Size: Extra Large, Architectural Standing Spray (High visibility, designed for a significant presence on an easel).',
+            'Materials: Premium Fresh Cut Flowers, Sturdy Easel Stand, and Elegant Fabric/Foil Wrap Base.',
+            'Suggested Occasions: Elegant Funeral or Memorial Service, Tributes for those who loved the tropics or modern design, Wake.',
+            'Complimentary Inclusions: Message Card, Black or White Satin Ribbon Accents.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'RC4': {
+        codename: 'RC4', 
+        image: 'RIBBON CUTTING4/4.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This elegant, one-sided arrangement combines the purity of tropical white blooms with long, graceful draping foliage, symbolizing an eternal and peaceful rest. The design is presented on a simple, natural easel, drawing attention to its stunning cascade of white and green.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: Pristine White Anthurium (representing hospitality and deep, lasting affection) and delicate White Dendrobium Orchids (symbolizing purity, elegance, and life well-lived).',
+            'Arrangement Size: Large Standing Spray (Tall and prominent, suitable for display at the front of a service or wake).',
+            'Materials: Premium Fresh Cut Flowers, Sturdy Natural Bamboo-Style Easel Stand.',
+            'Suggested Occasions: Traditional Funeral Service, Wake, Memorial Service where a tribute of peace and purity is desired.',
+            'Complimentary Inclusions: Message Card, White Ribbon Accents.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'RC5': {
+        codename: 'RC5', 
+        image: 'RIBBON CUTTING/5.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This striking, tall, two-tiered arrangement is a vibrant fusion of warm, energetic tones, perfectly capturing the spirit of celebration and good fortune. It is a brilliant way to illuminate a grand opening, anniversary, or special milestone.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: Bold, large-headed Sunflowers (symbolizing longevity, adoration, and happiness) and a generous mix of Orange and Peach Roses (representing enthusiasm and gratitude).',
+            'Arrangement Size: Extra Large, Two-Tiered Congratulatory Stand (Designed for high visibility and impact at events).',
+            'Materials: Premium Fresh Cut Flowers, Sturdy Stand, Light-toned fabric wrap accent.',
+            'Suggested Occasions: Grand Opening, Business Launch, Congratulatory Events, Anniversaries, Birthday Celebrations.',
+            'Complimentary Inclusions: Message Card/Banner, Ribbon Accents.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+    'RC6': {
+        codename: 'RC6', 
+        image: 'RIBBON CUTTING/6.png',
+        basePrice: 3000.00, // PLACEHOLDER PRICE
+        description: 'This majestic, two-tiered arrangement is rich with exotic tropical foliage and a brilliant array of warm-toned flowers, creating a sense of drama and vibrancy perfect for a major milestone or grand opening.',
+        color: 'Placeholder',
+        inclusions: [
+            'Focal Flowers: Striking Birds of Paradise (representing joy and paradise), golden Yellow Oncidium Orchids, and radiant Sunflowers (symbolizing adoration and longevity).',
+            'Arrangement Size: Extra Large, Two-Tiered Congratulatory Stand (Designed for maximum height and presence).',
+            'Materials: Premium Fresh Cut Flowers, Sturdy Stand, Rich Red Fabric Wrap accenting the base.',
+            'Suggested Occasions: Grand Opening Ceremony, Corporate Events, Major Business Milestones, Launch Party.',
+            'Complimentary Inclusions: Message Card/Banner, Ribbon Accents.'
+        ],
+        care: [
+            'Trim the Stems: Cut the stems at a 45-degree angle to increase water absorption.',
+            'Change Water Daily: Keep the water clean and fresh by changing it every day.',
+            'Avoid Direct Sunlight: Place flowers in a cool, shaded spot to prevent wilting.',
+            'Remove Wilting Petals: Regularly trim away any dead or wilting petals and leaves.',
+            'No to Heater and Fan Exposure: Keep them away as they will dry out the flowers.',
+            'Do Not Place Near Fruits: Fruits can release ethylene gas and shorten the lifespan of blooms.'
+        ]
+    },
+
+
+
+    
+
+    
+
+
+    
+
+
+
+
+
+    
+    
+};
+
+// --- CATALOGUE PAGE LOGIC (real-flower.html) ---
+
+// This function is run on the catalogue page to make the buttons work.
+function handleViewDetailsClick() {
+    const detailsButtons = document.querySelectorAll('.catalogue-grid .details');
+    
+    detailsButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            // Get the product ID from the data-id attribute
+            const productId = event.target.getAttribute('data-id');
+            if (productId) {
+                // Redirect to the product detail page with the product ID as a URL parameter
+                // CORRECTED: Removed space from "product - details.html"
+                window.location.href = `product - details.html?id=${productId}`;
+            }
+        });
+    });
+}
+
+
+// --- PRODUCT DETAIL PAGE LOGIC (product-details.html) ---
+
+// Function to get a URL parameter by name
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// Function to update the total price displayed
+function updateTotalPrice(basePrice, quantity, safetyBoxAddon) {
+    const priceElement = document.getElementById('product-price');
+    const totalPrice = (basePrice + safetyBoxAddon) * quantity;
+    priceElement.textContent = formatPrice(totalPrice);
+}
+
+// Function to populate the product details page
+function loadProductDetails() {
+    const productId = getUrlParameter('id');
+    const product = productDetails[productId];
+
+    if (!product) {
+        // Fallback if product ID is missing or invalid
+        document.querySelector('.product-detail-container').innerHTML = '<h1>Product Not Found</h1><p>The selected product details could not be loaded. Please return to the <a href="real-flower.html">catalogue</a>.</p>';
+        return;
+    }
+
+    // --- Dynamic Elements ---
+    let currentQuantity = 1;
+    // Default: 'With Safety Box' is active (₱150 addon)
+    let currentSafetyBoxAddon = SAFETY_BOX_PRICE; 
+
+    // Picture, Codename, Name, Price, Description
+    document.getElementById('product-main-image').style.backgroundImage = `url('${product.image}')`;
+    
+    // CORRECTED: The HTML now only has one span with ID 'product-name' in the H1.
+    // We populate this single span with the codename (e.g., BQT-R3).
+    document.getElementById('product-name').textContent = product.codename; 
+    
+    document.getElementById('product-description').textContent = product.description;
+    document.getElementById('product-color').textContent = product.color;
+    updateTotalPrice(product.basePrice, currentQuantity, currentSafetyBoxAddon);
+
+    // Product Inclusions
+    const inclusionsList = document.getElementById('product-inclusions');
+    inclusionsList.innerHTML = product.inclusions.map(item => `<li>${item}</li>`).join('');
+
+    // Care Instructions
+    const careList = document.getElementById('product-care');
+    careList.innerHTML = product.care.map(item => `<li>${item}</li>`).join('');
+
+    
+    // --- Safety Box Logic ---
+    const safetyOptions = document.querySelectorAll('.safety-option');
+
+    // Add event listeners for safety box buttons
+    safetyOptions.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove 'active' class from all buttons
+            safetyOptions.forEach(btn => btn.classList.remove('active'));
+            // Add 'active' class to the clicked button
+            button.classList.add('active');
+
+            // Determine the new addon price
+            currentSafetyBoxAddon = parseFloat(button.getAttribute('data-price'));
+            
+            // Update the total price
+            updateTotalPrice(product.basePrice, currentQuantity, currentSafetyBoxAddon);
+        });
+    });
+
+    // --- Quantity Selector Logic ---
+    const quantityInput = document.getElementById('quantity-input');
+    const quantityContainer = document.querySelector('.quantity-selector');
+
+    quantityContainer.addEventListener('click', (event) => {
+        // Only proceed if a button was clicked
+        if (event.target.tagName === 'BUTTON') {
+            
+            if (event.target.textContent === '−') {
+                if (parseInt(quantityInput.value) > parseInt(quantityInput.min)) {
+                    quantityInput.stepDown();
+                }
+            } else if (event.target.textContent === '+') {
+                if (parseInt(quantityInput.value) < parseInt(quantityInput.max)) {
+                    quantityInput.stepUp();
+                }
+            }
+
+            // Update quantity variable and price display
+            currentQuantity = parseInt(quantityInput.value);
+            updateTotalPrice(product.basePrice, currentQuantity, currentSafetyBoxAddon);
+        }
+    });
+
+    // Handle manual input change on the quantity box
+    quantityInput.addEventListener('change', () => {
+        currentQuantity = parseInt(quantityInput.value) || 1;
+        if (currentQuantity < parseInt(quantityInput.min)) currentQuantity = parseInt(quantityInput.min);
+        if (currentQuantity > parseInt(quantityInput.max)) currentQuantity = parseInt(quantityInput.max);
+        quantityInput.value = currentQuantity;
+        updateTotalPrice(product.basePrice, currentQuantity, currentSafetyBoxAddon);
+    });
+}
+
+
+// --- INITIALIZATION ---
+
+// Determine which page we are on and run the corresponding logic
+if (document.querySelector('.catalogue-page')) {
+    // We are on real-flower.html
+    handleViewDetailsClick();
+} else if (document.querySelector('.product-detail-page')) {
+    // We are on product-details.html (or similar)
+    loadProductDetails();
+}

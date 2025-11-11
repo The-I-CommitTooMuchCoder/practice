@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Checkout - Citiflora Flowers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css"> 
+    
+</head>
+<body>
+
+     <section class="about-banner">
+            <div class="about-content">
+                <h3>About La Casa de Las Flora Flower Shop</h3>
+                <p>We are La Casa de las Flora, a flower shop in Alta Vista, Pardo, Cebu City offering fresh blooms and everlasting arrangements made from materials such as crochet yarn and LEGO bricks. We take pride in creating high-quality floral pieces for any occasion, ensuring beautiful designs and excellent service whether you want natural flowers or creations that last forever.</p>
+            </div>
+        </section>
+    <div class="checkout-wrapper">
+        
+        <div class="checkout-main-content">
+            <header class="checkout-header">
+                <h1 class="checkout-logo">Citiflora Flowers</h1>
+            </header>
+            
+            <div class="checkout-content-container">
+                <main class="checkout-main">
+                    
+                    <div class="express-checkout-header">
+                        <p>Express checkout</p>
+                        <button class="paypal-express-btn">PayPal</button>
+                        <div class="or-separator">OR</div>
+                    </div>
+
+                    <section class="checkout-section contact-section">
+                        <form class="contact-form">
+                            <div class="form-group full-width">
+                                <input type="email" id="contact-email" name="email" value="altheagimena326@gmail.com" placeholder="Email" required>
+                                <i class="fas fa-ellipsis-v more-options-icon"></i>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="email-updates" name="email_updates">
+                                <label for="email-updates">Email me with news and offers</label>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="checkout-section delivery-section">
+                        <h2 class="section-title">Delivery</h2>
+                        
+                        <div class="delivery-options-box">
+                            <label class="delivery-option active-delivery-option">
+                                <input type="radio" name="delivery_method" value="ship" checked>
+                                <div class="delivery-details">
+                                    <span class="delivery-title">Ship</span>
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                            </label>
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery_method" value="pickup">
+                                <div class="delivery-details">
+                                    <span class="delivery-title">Pick up</span>
+                                    <i class="fas fa-shopping-bag"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                        <form class="shipping-form">
+                            <div class="form-group full-width">
+                                <select id="country" name="country" required>
+                                    <option value="PH" selected>Philippines</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-row-split">
+                                <div class="form-group">
+                                    <input type="text" id="first-name" name="first_name" placeholder="First name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="last-name" name="last_name" placeholder="Last name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <input type="text" id="company" name="company" placeholder="Company (optional)">
+                            </div>
+                            <div class="form-group full-width">
+                                <input type="text" id="address" name="address" placeholder="Address" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <input type="text" id="apartment" name="apartment" placeholder="Apartment, suite, etc. (optional)">
+                            </div>
+                            
+                            <div class="form-row-split">
+                                <div class="form-group">
+                                    <input type="text" id="zip" name="zip" placeholder="Postal code" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="city" name="city" placeholder="City" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <select id="region" name="region" required>
+                                    <option value="NCR" selected>Metro Manila</option>
+                                </select>
+                            </div>
+                        </form>
+
+                    </section>
+                    
+                    <section class="checkout-section shipping-method-section">
+                        <h2 class="section-title">Shipping method</h2>
+                        <div class="shipping-message">
+                            <p>Enter your shipping address to view available shipping methods.</p>
+                        </div>
+                    </section>
+
+                    <section class="checkout-section payment-section">
+                        <h2 class="section-title">Payment</h2>
+                        <p class="payment-intro">All transactions are secure and encrypted.</p>
+
+                        <div class="payment-options-box">
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="paypal">
+                                <div class="payment-details">
+                                    <span class="payment-title">PayPal</span>
+                                    <div class="payment-icons"><i class="fab fa-cc-paypal"></i></div>
+                                </div>
+                            </label>
+
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="paymongo">
+                                <div class="payment-details">
+                                    <span class="payment-title">Secure Payments via PayMongo</span>
+                                    <div class="payment-icons">
+                                        <i class="fab fa-cc-mastercard"></i>
+                                        <i class="fab fa-cc-visa"></i>
+                                        <i class="fas fa-credit-card"></i>
+                                        <span>+7</span>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-option bank-deposit-option active-payment-option">
+                                <input type="radio" name="payment_method" value="bank_deposit" checked>
+                                <div class="payment-details">
+                                    <span class="payment-title">Bank Deposit</span>
+                                </div>
+                                <div class="bank-deposit-content">
+                                    <p class="bank-note">Visit any of the banks with bank details listed below and fill out the deposit slip.</p>
+                                    <div class="bank-details-group"><p class="account-name">Account Name: CITIFLORA FLOWER SHOP</p></div>
+                                    <div class="bank-details-group">
+                                        <p class="bank-name">BANCO DE ORO (BDO)</p>
+                                        <p>Account Type: Savings</p>
+                                        <p>Savings Account No. 00707026224</p>
+                                        <p>Branch: Visayas Avenue Branch</p>
+                                    </div>
+                                    <div class="bank-details-group">
+                                        <p class="bank-name">METROBANK</p>
+                                        <p>Account Type: Savings</p>
+                                        <p>Savings Account No. 507-3-507626-4</p>
+                                        <p>Branch: Visayas Avenue Branch</p>
+                                    </div>
+                                    <div class="form-group checkbox-group">
+                                        <input type="checkbox" id="proof-of-payment" name="proof_of-payment">
+                                        <label for="proof-of-payment">I will send the proof of payment within 48 hours to complete the order.</label>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="payment-option ewallets-option">
+                                <input type="radio" name="payment_method" value="ewallets">
+                                <div class="payment-details">
+                                    <span class="payment-title">E-wallets</span>
+                                </div>
+                                <div class="ewallets-content">
+                                    <p class="ewallet-provider">GCASH/MAYA</p>
+                                    <p class="ewallet-detail">Account Name: EL**A D.</p>
+                                    <p class="ewallet-detail">Account No.: 09666340019</p>
+                                </div>
+                            </label>
+
+                        </div>
+                    </section>
+
+                    <section class="checkout-section">
+                        <h2 class="section-title">Billing address</h2>
+                        <div class="delivery-options-box">
+                            <label class="delivery-option same-billing-toggle">
+                                <input type="radio" name="billing_address_option" value="same">
+                                <div class="delivery-details">
+                                    <span class="delivery-title">Same as shipping address</span>
+                                </div>
+                            </label>
+                            <label class="delivery-option billing-form-toggle active-delivery-option">
+                                <input type="radio" name="billing_address_option" value="different" checked>
+                                <div class="delivery-details">
+                                    <span class="delivery-title">Use a different billing address</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="billing-form-wrapper"> 
+                            <form class="shipping-form">
+                                <div class="form-group full-width">
+                                    <select required>
+                                        <option value="PH" selected>Philippines</option>
+                                    </select>
+                                </div>
+                                <div class="form-row-split">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="First name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Last name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group full-width">
+                                    <input type="text" placeholder="Company (optional)">
+                                </div>
+                                <div class="form-group full-width">
+                                    <input type="text" placeholder="Address" required>
+                                </div>
+                                <div class="form-group full-width">
+                                    <input type="text" placeholder="Apartment, suite, etc. (optional)">
+                                </div>
+                                <div class="form-row-split">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Postal code" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="City" required>
+                                    </div>
+                                </div>
+                                <div class="form-group full-width">
+                                    <select>
+                                        <option value="Cebu" selected>Cebu</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                    
+                    <section class="checkout-section tip-section">
+                        <h2 class="section-title">Add tip</h2>
+                        <div class="tip-options-wrapper checkbox-group">
+                            <input type="checkbox" id="show-support" name="show_support">
+                            <label for="show-support">Show your support for the team at Citiflora Flower Shop</label>
+                        </div>
+                    </section>
+
+                    <div class="complete-order-action">
+                        <button type="submit" class="complete-order-button">Complete order</button>
+                    </div>
+                </main>
+                
+                <footer class="checkout-page-footer">
+                    <a href="#">Refund policy</a>
+                    <a href="#">Shipping</a>
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Terms of service</a>
+                    <a href="#">Contact</a>
+                </footer>
+            </div>
+        </div>
+
+        <div class="checkout-order-summary">
+            <div class="summary-content-sticky">
+                
+                <div class="summary-product-list">
+                    <div class="summary-item">
+                        <div class="summary-item-left">
+                            <div class="summary-img-box">
+                                <span class="item-quantity-badge">1</span>
+                                
+                            </div>
+                            <div class="summary-item-details">
+                                <p class="summary-item-name">BQT-140</p>
+                                <p class="summary-item-variant">Red / With Safety Box (+₱150)</p>
+                                <p class="summary-item-note">Schedule the date: 10.15.2026</p>
+                            </div>
+                        </div>
+                        <span class="summary-item-price">₱1,440.00</span>
+                    </div>
+                </div>
+
+                <div class="summary-discount-code">
+                    <form class="discount-form">
+                        <input type="text" placeholder="Discount code">
+                        <button type="submit" class="discount-apply-btn">Apply</button>
+                    </form>
+                </div>
+
+                <div class="summary-subtotals">
+                    <div class="subtotal-row">
+                        <span>Subtotal</span>
+                        <span>₱1,440.00</span>
+                    </div>
+                    <div class="subtotal-row shipping-row">
+                        <span>Shipping <i class="fas fa-question-circle"></i></span>
+                        <span class="shipping-message">Enter shipping address</span>
+                    </div>
+                </div>
+
+                <div class="summary-total">
+                    <div class="subtotal-row total-line">
+                        <span class="total-label">Total</span>
+                        <span class="total-price"><span class="currency-code">PHP</span> ₱1,440.00</span> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
