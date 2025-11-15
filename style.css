@@ -71,7 +71,249 @@ section {
     padding: 0 20px; /* Add some horizontal padding */
 }
 
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 100px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
 
+.search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-container {
+    background-color: white;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.search-close:hover {
+    color: #333;
+}
+
+.search-input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-input-wrapper i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 1.2em;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid #e0d0b0;
+    border-radius: 50px;
+    font-size: 1.1em;
+    transition: border-color 0.2s;
+}
+
+.search-input-wrapper input:focus {
+    outline: none;
+    border-color: #f88379;
+}
+
+.search-results {
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.search-result-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+    background-color: #f9f9f9;
+}
+
+.search-result-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #e0d0b0;
+}
+
+.result-info h4 {
+    margin: 0 0 5px 0;
+    color: #3f1013;
+    font-size: 1.1em;
+}
+
+.result-category {
+    font-size: 0.85em;
+    color: #777;
+    margin: 0;
+}
+
+.result-price {
+    font-weight: 700;
+    color: #f88379;
+    margin: 5px 0 0 0;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-size: 1.1em;
+}
+
+/* ==========================================================================
+   FILTER AND SORT DROPDOWN STYLES
+   ========================================================================== */
+.dropdown-filter, .dropdown-sort {
+    position: relative;
+}
+
+.filter-dropdown-menu,
+.sort-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #e0d0b0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-width: 200px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+}
+
+.filter-dropdown-menu.active,
+.sort-dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.filter-option,
+.sort-option {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #333;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.filter-option:last-child,
+.sort-option:last-child {
+    border-bottom: none;
+}
+
+.filter-option:hover,
+.sort-option:hover {
+    background-color: #f9f0db;
+    color: #3f1013;
+}
+
+/* ==========================================================================
+   CART BADGE AND NOTIFICATION STYLES
+   ========================================================================== */
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #f88379;
+    color: white;
+    font-size: 0.7em;
+    padding: 3px 7px;
+    border-radius: 50%;
+    font-weight: 700;
+    min-width: 18px;
+    text-align: center;
+}
+
+.cart-notification {
+    position: fixed;
+    top: 100px;
+    right: -300px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 10000;
+    transition: right 0.3s ease;
+    font-weight: 500;
+}
+
+.cart-notification.show {
+    right: 30px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .search-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .search-result-item img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .filter-dropdown-menu,
+    .sort-dropdown-menu {
+        min-width: 180px;
+        right: 0;
+        left: auto;
+    }
+}
 
 .nav-logo {
     /* Adjust these values to fit your header */
@@ -727,6 +969,7 @@ width: 100%;
   flex-direction: column;
   justify-content: flex-start; /* keeps name + source pinned near bottom */
   box-shadow: 0 1px 0 rgba(0,0,0,0.06) inset, 0 6px 18px rgba(0,0,0,0.04);
+  user-select: none;
 }
 
 /* subtle inner radius so border sits outside like image */

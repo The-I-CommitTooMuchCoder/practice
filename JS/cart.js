@@ -162,7 +162,7 @@ class ShoppingCart {
                     alert('Your cart is empty!');
                     return;
                 }
-                window.location.href = '../pages/checkout.html';
+                window.location.href = 'pages/checkout.html';
             });
         }
     }

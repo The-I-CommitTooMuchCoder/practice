@@ -5036,59 +5036,74 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
     };
+
 // Flatten all products into single array
 const products = Object.values(allProducts).flat();
 
+// Ensure searchOverlay is defined
+const searchOverlay = document.getElementById('search-input');
 // Search icon click handler
 const searchIcon = document.querySelector('.header-icons a[href="#"] i.fa-search');
 if (searchIcon) {
     searchIcon.parentElement.addEventListener('click', function(e) {
         e.preventDefault();
-        searchOverlay.classList.add('active');
-        document.getElementById('search-input').focus();
+        if (searchOverlay) {
+            searchOverlay.classList.add('active');
+            document.getElementById('search-input').focus();
+        } else {
+            console.error('searchOverlay element not found');
+        }
     });
 }
 
-
 // Search functionality
 const searchInput = document.getElementById('search-input');
-searchInput.addEventListener('input', function(e) {
-    const query = e.target.value.toLowerCase().trim();
-    const resultsContainer = document.getElementById('search-results');
+if (searchInput) {
+    searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        const resultsContainer = document.getElementById('search-results');
 
-    if (query.length < 2) {
-        resultsContainer.innerHTML = '';
-        return;
-    }
+        if (query.length < 2) {
+            if (resultsContainer) {
+                resultsContainer.innerHTML = '';
+            }
+            return;
+        }
 
-    // Filter products
-    const results = products.filter(product => 
-        product.name.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query)
-    );
+        // Filter products
+        const results = products.filter(product => 
+            product.name.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query)
+        );
 
-    // Display results
-    if (results.length === 0) {
-        resultsContainer.innerHTML = '<div class="no-results">No products found</div>';
-    } else {
-        resultsContainer.innerHTML = results.map(product => `
-            <div class="search-result-item" data-id="${product.id}">
-                <img src="${product.image}" alt="${product.name}">
-                <div class="result-info">
-                    <h4>${product.name}</h4>
-                    <p class="result-category">${product.category}</p>
-                    <p class="result-price">${product.price}</p>
-                </div>
-            </div>
-        `).join('');
+        // Display results
+        if (results.length === 0) {
+            if (resultsContainer) {
+                resultsContainer.innerHTML = '<div class="no-results">No products found</div>';
+            }
+        } else {
+            if (resultsContainer) {
+                resultsContainer.innerHTML = results.map(product => `
+                    <div class="search-result-item" data-id="${product.id}">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="result-info">
+                            <h4>${product.name}</h4>
+                            <p class="result-category">${product.category}</p>
+                            <p class="result-price">${product.price}</p>
+                        </div>
+                    </div>
+                `).join('');
 
-        // Add click handlers to results
-        resultsContainer.querySelectorAll('.search-result-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const productId = this.dataset.id;
-                window.location.href = `../pages/product-details.html?id=${productId}`;
-            });
-        });
-    }
-});
-});
+                // Add click handlers to results
+                resultsContainer.querySelectorAll('.search-result-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const productId = this.dataset.id;
+                        window.location.href = `../pages/product-details.html?id=${productId}`;
+                    });
+                });
+            }
+        }
+    });
+} else {
+    console.error('searchInput element not found');
+}})
