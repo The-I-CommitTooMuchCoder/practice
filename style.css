@@ -485,7 +485,7 @@ width: 100%;
 }
 
 /* --- Button Styling --- */
-.explore-button {
+.explore-btn {
   display: inline-block;
   background-color: #7d634a; 
   color: white;
@@ -500,7 +500,7 @@ width: 100%;
 }
 
 /* Hover effect — turns pink with white text */
-.explore-button:hover {
+.explore-btn:hover {
   background-color: #f0827b;  /* pink tone */
   color: #ffffff;
   transform: scale(1.05);     /* gentle grow effect */
@@ -510,7 +510,7 @@ width: 100%;
 /* --- Product of the Month --- */
 .product-of-the-month {
     background-color: #fffbf2; /* Light creamy background from Featured Products */
-    padding: 60px 0;
+    padding: 100px 0;
 }
 
 .product-of-the-month h2 {
@@ -520,16 +520,15 @@ width: 100%;
 }
 
 .potm-container {
-    /* Use the global wide container settings */
-    width: 89%; 
-    max-width: 1350px;
+    width: 95%; 
+    max-width: 1500px; /* bigger full container */
     margin: 0 auto;
-
     display: flex;
-    gap: 40px; /* Space between the image/thumbnails and the details */
-    align-items: flex-start; /* Aligns content to the top */
+    gap: 60px; /* increase spacing */
+    align-items: flex-start;
     text-align: left;
 }
+
 
 /* --- Left Side: Images and Thumbnails --- */
 .potm-images {
@@ -635,51 +634,48 @@ width: 100%;
 .quantity-selector {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    height: 50px; /* Match button height */
-     border-radius: 70px; 
+    border: 1px solid #e5ddcf;
+    background-color: #faf5ef;
+    border-radius: 40px;
+    padding: 5px 10px;
+    height: 45px;
 }
 
-.quantity-selector button, .quantity-selector input {
-    background-color: white;
+.quantity-selector button {
+    background: none;
     border: none;
-     border-radius: 70px; 
-    padding: 10px 15px;
-    font-size: 1.1em;
+    font-size: 1.3em;
+    color: #a8927a;
+    width: 30px;
     cursor: pointer;
-    text-align: center;
-    height: 100%;
 }
 
 .quantity-selector input {
-    width: 50px;
-    padding: 0;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
- 
+    width: 35px;
+    border: none;
+    background: none;
+    text-align: center;
+    font-size: 1.1em;
+    color: #6c5a48;
 }
+
 
 /* Add To Cart Button Style (The one you provided) */
 .add-to-cart-potm {
-    background-color: #7d634a; 
+    background-color: #6c5a48;  /* soft brown like screenshot */
     color: white;
-    padding: 15px 40px;
+    padding: 12px 32px;         /* small + clean */
     border: none;
-    border-radius: 50px; /* Fully rounded/pill shape */
-    text-transform: none; 
+    border-radius: 40px;        /* rounded */
+    font-size: 1em;
     font-weight: 500;
-    margin-top: 0; /* Remove top margin since it's now in a flex container */
-    
-    display: inline-block;
     cursor: pointer;
-    transition: background-color 0.3s;
-    height: 50px; /* Ensures vertical alignment with quantity selector */
+    transition: 0.3s ease;
+  width: 20px;
 }
 
 .add-to-cart-potm:hover {
-    background-color: #f88379; 
+    background-color: #544739;  /* darker on hover */
 }
 
 /* --- Client Feedback Section Styles --- */
@@ -1436,8 +1432,8 @@ width: 100%;
 }
 
 .product-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1em;
+    font-family: 'Tahoma', serif;
+    font-size: 1.7em;
     font-weight: 500;
     margin: 5px 0;
     color: #333;
@@ -1445,7 +1441,7 @@ width: 100%;
 
 .product-price {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
+    font-size: 1.6em;
     font-weight: 700;
     color: #f88379; /* A light red/pink for emphasis */
     margin-bottom: 15px;
@@ -1467,7 +1463,7 @@ width: 100%;
 }
 
 .details:hover {
-    background-color: #a02027;
+    background-color: #f88379;
 } 
 
 /* Pagination Styles */
@@ -1573,23 +1569,26 @@ width: 100%;
     margin-bottom: 5px;
     color: #3f1013;
     font-weight: normal;
+    font-family: 'Tahoma';
 }
 
 .color-product {
     margin-bottom: 20px;
-     font-size: 20px;
+     font-size: 23px;
 }
 .potm-price {
     font-size: 1.8em;
     font-weight:normal;
     color: #7d634a; 
     margin-bottom: 25px;
+    font-family: 'Roborto';
 }
 
 .product-short-desc {
     margin: 20px 0 30px;
     line-height: 1.8;
     color: #555;
+    font-size: 25px;
 }
 
 /* --- Form General Styles --- */
@@ -1629,7 +1628,7 @@ width: 100%;
     
     /* Max-Width for the field length: */
     max-width: 470px; 
-    width: 100%;     
+    width: 200%;     
 
     border: 1px solid #c8b9a6;
     background-color: #fcf9f2; 
@@ -1664,7 +1663,6 @@ width: 100%;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-
 
 
 .color-swatch.active {
@@ -1714,72 +1712,105 @@ width: 100%;
     width: 449px;
 }
 
+
+/* --- Quantity Selector Updated --- */
+/* --- Quantity Selector Container --- */
 .quantity-selector {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc; 
-    border-radius: 4px;
-    height: 40px; 
-    
-    overflow: hidden; 
+    justify-content: space-between; /* Ensure buttons are fully visible */
+    border: 2px solid #7d634a;
+    border-radius: 20px;
+    height: 60px;
+    width: 220px;                  /* Enough width for input + buttons */
+    background-color: #f9f0db;
+    padding: 0 5px;                /* Small padding inside */
+    box-sizing: border-box;
+    overflow: visible;             /* Allow buttons to be visible */
 }
 
+/* --- Plus and Minus Buttons --- */
 .quantity-selector button {
-    background-color: #f5f5f5;
+    background-color: transparent;
+    color: #3f1013;
     border: none;
-    padding: 5px 12px;
-    font-size: 1.1em;
+    flex-shrink: 0;                /* Prevent buttons from shrinking */
+    width: 50px;                   /* Make button wide enough */
+    font-size: 1.5em;
     cursor: pointer;
-    text-align: center;
     height: 100%;
-   
+    line-height: 1;                /* Center symbol vertically */
 }
 
-.quantity-selector input {
-    border: none;
-    border-radius: 0;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    width: 40px;
-    height: 100%;
-    padding: 0;
+/* --- Input Field --- */
+.quantity-selector input[type=number] {
+    -moz-appearance: textfield;       /* Firefox */
+    -webkit-appearance: none;         /* Chrome, Safari, Edge */
+    appearance: none;                 /* Remove default styling */
+    border: none;                     /* No inner border */
+    background: none;                 /* Remove background box */
+    box-shadow: none;                 /* Remove inner shadow */
+    width: 60px;                      
+    height: auto;                     /* Use container height */
+    text-align: center;               /* Center the number */
+    font-size: 1.5em;
+    color: #3f1013;                   /* Dark text */
+    margin: 0 5px;                    /* Space between buttons */
+    outline: none;                    
+    padding: 0;                       
 }
+
+
+/* --- Remove browser spinner arrows --- */
+.quantity-selector input::-webkit-inner-spin-button,
+.quantity-selector input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-selector input::-moz-inner-spin-button {
+    -moz-appearance: none;
+}
+
 
 .add-to-cart-potm {
-    background-color: #a02027; 
+    background-color: #7d634a; /* Brown background */
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    padding: 12px 25px; /* Bigger size */
+    border: 2px solid #7d634a; /* Border same color as button */
+    border-radius: 25px; /* Fully rounded corners */
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s;
-    height: 40px; 
-    flex-grow: 1; 
+    height: 50px; /* Slightly taller */
+    flex-grow: 1;
     width: 300px;
     margin-left: 20px;
 }
 
 .add-to-cart-potm:hover {
-    background-color: #3f1013;
+    background-color: #5c472f; /* Darker brown on hover */
 }
 
 /* --- Product Details List --- */
 .section-title-underline {
-    border-bottom: 1px solid rgba(104, 85, 71, 0.3);
-    padding-bottom: 5px;
-    margin-bottom: 15px !important;
-    margin-top: 40px !important;
-    display: block; 
-     font-size: 20px;
-    
+    font-size: 24px; /* Bigger font for Product Inclusions & Details */
+    font-weight: 700;
+    margin-top: 30px;
+    display: block;
 }
 
+/* Make Care Instructions slightly smaller but still prominent */
+#product-care, 
+#product-inclusions {
+    font-size: 22px; /* Larger font for list items */
+    margin-top: 10px;
+}
 .inclusions-list {
     margin: 10px 0 30px 20px;
     list-style-type: disc;
     color: #333;
-    font-size: 0.95em;
+    font-size: 24px;
 }
 
 .inclusions-list li {
@@ -1793,6 +1824,7 @@ width: 100%;
     line-height: 1.6;
     margin-top: 10px;
 }
+
 
 
 
@@ -2316,7 +2348,7 @@ position: relative;
 
 .banner-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5em;
+    font-size: 2.2em;
     color: white;
     margin-bottom: 20px;
     letter-spacing: 5px;
@@ -2333,31 +2365,49 @@ position: relative;
 
 .banner-buttons {
     display: flex;
-    justify-content: center;
     gap: 20px;
+    justify-content: center;
 }
 
+/* Base button styling */
 .banner-btn {
-    padding: 14px 40px;
-    border-radius: 5px; 
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s;
-    font-family: 'Roboto', sans-serif;
+    padding: 12px 65px;   /* slimmer height + longer width */
+    font-size: 1.1em;     /* slightly smaller so it looks sleek */
+    font-weight: 600;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-/* Button Styles (same as before) */
-.btn-filled {
-    background-color: #3f1013;
-    color: white;
-    border: 2px solid #e0d0b0; 
-}
 
+/* -------------------------------------------------------
+   BUTTON 1 — Transparent Default, Brown Hover
+   ------------------------------------------------------- */
 .btn-outline {
-    background-color: #f9f0db; 
-    color: #3f1013;
-    border: 2px solid #f9f0db;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-outline:hover {
+    background-color: #684a32; /* brown */
+    color: white;
+    border-color: white;
+}
+
+/* -------------------------------------------------------
+   BUTTON 2 — Filled Default, Pink Hover
+   ------------------------------------------------------- */
+.btn-filled {
+    background-color: #f9f0db;
+    color: #684a32; /* brown text */
+    border: 2px solid #684a32;
+}
+
+.btn-filled:hover {
+    background-color: #f88379; 
+    color: white;
+    border-color: #684a32;
 }
 
 
@@ -3130,4 +3180,64 @@ position: relative;
     margin-right: 5px;
 }
 
+/* CEBU BRANCH  */
+/* Pull ONLY the city name closer */
+.location-text h2.story-heading-lg {
+    font-size: 3.8rem;
+    font-weight: 800;
+    margin-top: -25px;   /* moves city name up */
+    margin-bottom: 10px; /* small spacing under it */
+}
+
+/* Keep container normal */
+.location-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+/* NORMAL spacing for everything else */
+.location-text {
+    max-width: 600px;
+    font-family: "Montserrat", sans-serif;
+    color: black;
+}
+
+/* Shop name – NOT moved closer */
+.location-text .store-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Address – normal spacing */
+.location-text p {
+    font-size: 1.25rem;
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+/* Section titles – normal spacing */
+.location-text h3 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+/* List items – big but normal spacing */
+.location-text ul {
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
+.location-text ul li {
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+
+/* CARCAR BRANCH  */
 
