@@ -1,19 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Create search overlay HTML
-    const searchOverlay = document.createElement('div');
-    searchOverlay.className = 'search-overlay';
-    searchOverlay.innerHTML = `
-        <div class="search-container">
-            <button class="search-close" aria-label="Close search">&times;</button>
-            <div class="search-input-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="text" id="search-input" placeholder="Search for flowers..." autocomplete="off">
-            </div>
-            <div class="search-results" id="search-results"></div>
-        </div>
-    `;
-    document.body.appendChild(searchOverlay);
-
     const allProducts = {
         'R1': {
             codename: 'BQT-R1', 
@@ -5064,22 +5049,6 @@ if (searchIcon) {
     });
 }
 
-// Close search overlay
-const closeBtn = searchOverlay.querySelector('.search-close');
-closeBtn.addEventListener('click', function() {
-    searchOverlay.classList.remove('active');
-    document.getElementById('search-input').value = '';
-    document.getElementById('search-results').innerHTML = '';
-});
-
-// Close on overlay click
-searchOverlay.addEventListener('click', function(e) {
-    if (e.target === searchOverlay) {
-        searchOverlay.classList.remove('active');
-        document.getElementById('search-input').value = '';
-        document.getElementById('search-results').innerHTML = '';
-    }
-});
 
 // Search functionality
 const searchInput = document.getElementById('search-input');
