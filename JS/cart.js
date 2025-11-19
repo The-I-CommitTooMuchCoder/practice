@@ -97,7 +97,9 @@ class ShoppingCart {
                 return `
                     <div class="cart-item">
                         <div class="item-details">
-                            <div class="item-image-box" style="background-image: url('${item.image}')"></div>
+                            <div class="item-image-box">
+                                <img src="${item.image}">
+                            </div>
                             <div class="item-info">
                                 <h4 class="item-name">${item.name}</h4>
                                 <p class="item-price-original">${item.price}</p>

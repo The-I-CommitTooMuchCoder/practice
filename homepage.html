@@ -93,7 +93,7 @@
         </nav>
         <div class="header-icons">
             <div class="search-box">
-                <input type="text" id="search-input" placeholder="Search..." />
+                <input type="text" id="searchInput" placeholder="Search..." onkeydown="handleSearch(event)"/>
             </div>
             <a href="#" id="search-toggle"><i class="fas fa-search"></i></a>
             <a href="#"><i class="fas fa-user"></i></a> 
@@ -475,7 +475,7 @@
         <div class="cart-item">
             <div class="item-details">
                 <div class="item-image-box">
-                    
+                    <img src="/Resources/Crochet/1.png">
                 </div>
                 <div class="item-info">
                     <h4 class="item-name">BQT-162</h4>
@@ -520,11 +520,22 @@
     </div>
 </div>
 <a href="#_" class="cart-overlay" id="cart-overlay-link"></a>
+<script>
+    import data from "JSON/product-overview.json" assert { type: "json" };
 
-<script src="JS/script.js"></script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get("q").toLowerCase();
+
+    const results = data.filter(item =>
+        item.codename.toLowerCase().includes(query) ||
+        item.description.toLowerCase().includes(query) ||
+        item.color.toLowerCase().includes(query)
+    );
+    console.log(results);
+</script>
+<script src="JS/script.js"></script>   
 <script src="JS/product-details.js"></script>
 <script src="JS/filter-sort.js"></script>
-<script src="JS/search.js"></script>
 <script src="JS/cart.js"></script>
 </body>
 </html>
