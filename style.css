@@ -2772,6 +2772,10 @@ position: relative;
     border-radius: 5px;
     overflow: hidden;
 }
+.item-image-box img{
+    width: 100%;
+    height: auto;
+}
 
 .item-name { font-family: 'Playfair Display', serif; font-size: 1.1em; color: #3f1013; }
 .item-price-original { font-size: 0.9em; color: #555; }
