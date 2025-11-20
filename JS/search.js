@@ -5041,7 +5041,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const products = Object.values(allProducts).flat();
 
 // Ensure searchOverlay is defined
-const searchOverlay = document.getElementById('search-input');
+const searchOverlay = document.getElementById('searchInput');
 // Search icon click handler
 const searchIcon = document.querySelector('.header-icons a[href="#"] i.fa-search');
 if (searchIcon) {
@@ -5049,7 +5049,7 @@ if (searchIcon) {
         e.preventDefault();
         if (searchOverlay) {
             searchOverlay.classList.add('active');
-            document.getElementById('search-input').focus();
+            document.getElementById('searchInput').focus();
         } else {
             console.error('searchOverlay element not found');
         }
@@ -5057,7 +5057,7 @@ if (searchIcon) {
 }
 
 // Search functionality
-const searchInput = document.getElementById('search-input');
+const searchInput = document.getElementById('searchInput');
 if (searchInput) {
     searchInput.addEventListener('input', function(e) {
         const query = e.target.value.toLowerCase().trim();
@@ -5107,3 +5107,15 @@ if (searchInput) {
 } else {
     console.error('searchInput element not found');
 }})
+
+window.handleSearch = function (event) {
+    if (event.key === "Enter") {
+        const input = document.getElementById("search-input");
+        if (!input) return console.error("search-input not found");
+
+        const query = input.value.trim();
+        if (query === "") return;
+
+        window.location.href = `homepage.html?q=${encodeURIComponent(query)}`;
+    }
+};

@@ -19,8 +19,8 @@ class ShoppingCart {
     }
 
     addItem(product) {
-        const existingItem = this.items.find(item => 
-            item.id === product.id && 
+        const existingItem = this.items.find(item =>
+            item.id === product.id &&
             item.safetyBox === product.safetyBox
         );
 
@@ -76,7 +76,7 @@ class ShoppingCart {
 
         // Update cart icon badge
         if (cartIcon) {
-            const badge = cartIcon.parentElement.querySelector('.cart-badge') || 
+            const badge = cartIcon.parentElement.querySelector('.cart-badge') ||
                 document.createElement('span');
             badge.className = 'cart-badge';
             badge.textContent = this.items.reduce((sum, item) => sum + item.quantity, 0);
@@ -175,9 +175,9 @@ class ShoppingCart {
 
         const product = {
             id: button.dataset.id || 'unknown',
-            name: productCard.querySelector('.product-name, .product-name-lg')?.textContent || 'Unknown',
+            name: productCard.querySelector('.product-name, .product-name-lg, .potm-name')?.textContent || 'Unknown',
             price: productCard.querySelector('.product-price, .potm-price')?.textContent || '₱0.00',
-            image: productCard.querySelector('.product-image-placeholder, .potm-image-placeholder')?.style.backgroundImage?.match(/url\(['"]?([^'"]+)['"]?\)/)?.[1] || '',
+            image: productCard.querySelector('.product-image-placeholder, .potm-images')?.style.backgroundImage?.match(/url\(['"]?([^'"]+)['"]?\)/)?.[1] || '',
             quantity: 1,
             safetyBox: false,
             safetyBoxPrice: 0

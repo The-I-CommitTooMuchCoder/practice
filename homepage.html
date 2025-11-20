@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div class="search-overlay" style="display:none;"></div>
 
 <header class="main-header">
     <div class="header-content">
@@ -285,15 +286,14 @@
     <h2>Product Of The Month</h2>
     <div class="potm-container">
         
-        <div class="potm-images">
-            
+        <div class="potm-images" style="background-image: url('Resources/Real/28.png');">
             <div class="potm-image-placeholder">
                 <img src="Resources/Real/28.png" alt="BQT-38 Pink Ecuadorian Roses Bouquet" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
             </div>
         </div>
         
         <div class="potm-details">
-            <h3>BQT-R28</h3>
+            <h3 class="potm-name">BQT-R28</h3>
             <p class="potm-price">₱5,590.00</p>
             <p>Unites the bright optimism of sunflowers with the elegant charm of lavender or mauve roses (symbolizing enchantment and love at first sight). A joyful and unique expression.</p>
             <strong>About the Product</strong>
@@ -520,11 +520,12 @@
     </div>
 </div>
 <a href="#_" class="cart-overlay" id="cart-overlay-link"></a>
-<script>
-    import data from "JSON/product-overview.json" assert { type: "json" };
+<script type="module">
+    //import data from "JSON/product-overview.json" assert { type: "json" };
 
     const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get("q").toLowerCase();
+    const queryParam = urlParams.get("q");
+    const query = queryParam ? queryParam.toLowerCase() : "";
 
     const results = data.filter(item =>
         item.codename.toLowerCase().includes(query) ||
@@ -537,5 +538,6 @@
 <script src="JS/product-details.js"></script>
 <script src="JS/filter-sort.js"></script>
 <script src="JS/cart.js"></script>
+<script src="JS/search.js"></script>
 </body>
 </html>
